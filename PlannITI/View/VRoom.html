@@ -1,0 +1,20 @@
+﻿<div>
+    <!--formulaire d’édition d’une salle-->
+    <div ng-controller="FormVMRooms">
+        <form ng-submit="addRoom()">
+            <input type="submit" value="add new room" />
+            <input type="text" ng-model="roomSetting.currentRoom.roomName" size="30" />
+            <input type="text" ng-model="roomSetting.currentRoom.roomCapacity" size="30" />
+        </form>
+    </div>
+
+    <!--liste des salles-->
+    <div ng-controller="ListVMRooms">
+        <ul>
+            <li ng-repeat="room in roomSetting.rooms" ng-show="!$last">
+                <span ng-click="editRoom(room)">{{room.roomName}}</span>
+                <span ng-click="editRoom(room)">{{room.roomCapacity}} croix </span>
+            </li>
+        </ul>
+    </div>
+</div>

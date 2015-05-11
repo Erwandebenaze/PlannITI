@@ -1,0 +1,6 @@
+D:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\bin\PlannITI.dll.config
+D:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\bin\PlannITI.dll
+D:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\bin\PlannITI.pdb
+D:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\obj\Debug\PlannITI.csprojResolveAssemblyReference.cache
+D:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\obj\Debug\PlannITI.dll
+D:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\obj\Debug\PlannITI.pdb

@@ -1,0 +1,20 @@
+﻿<div>
+    <!--formulaire d’édition d’un prof-->
+    <div ng-controller="FormVMTeachers">
+        <form ng-submit="addTeacher()">
+            <input type="submit" value="add new teacher" />
+            <input type="text" ng-model="teacherSetting.currentTeacher.teacherName" size="30" />
+            <input type="text" ng-model="teacherSetting.currentTeacher.teacherMail" size="30" />
+        </form>
+    </div>
+
+    <!--liste des profs-->
+    <div ng-controller="ListVMTeachers">
+        <ul>
+            <li ng-repeat="teacher in teacherSetting.teachers" ng-show="!$last">
+                <span ng-click="editTeacher(teacher)">{{teacher.teacherName}}</span>
+                <span ng-click="editTeacher(teacher)">{{teacher.teacherMail}} croix </span>
+            </li>
+        </ul>
+    </div>
+</div> 

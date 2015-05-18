@@ -59,15 +59,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\jasmine.css" />
     <Content Include="Model\ModelBase.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\jasmine-html.js" />
-    <Content Include="Scripts\jasmine.js" />
     <Content Include="Tests\calcTests.js" />
     <Content Include="ViewModel\MVPeriod.js" />
     <Content Include="ViewModel\MVPromotion.js" />

@@ -1,0 +1,21 @@
+﻿<div ng-app="promotionsController">
+    <!--formulaire d’édition d’un prof-->
+    <div ng-controller="FormVMPromotions">
+        <form ng-submit="addPromotion()">
+            <input type="submit" value="add new promotion" />
+            <input type="text" ng-model="promotionSetting.currentPromotion.promotionName" size="30" />
+            <input type="text" ng-model="promotionSetting.currentPromotion.promotionMail" size="30" />
+        </form>
+    </div>
+
+    <!--liste des profs-->
+    <div ng-controller="ListVMPromotions">
+        <ul>
+            <li ng-repeat="promotion in promotionSetting.promotions" ng-show="!$last">
+                <span ng-click="editPromotion(promotion)">{{promotion.promotionName}}</span>
+                <span ng-click="editPromotion(promotion)">{{promotion.promotionMail}} croix </span>
+            </li>
+        </ul>
+    </div>
+</div>
+

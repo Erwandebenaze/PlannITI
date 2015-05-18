@@ -59,17 +59,24 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\MRooms.js" />
-    <Content Include="Model\MTeacher.js" />
+    <Content Include="css\jasmine.css" />
+    <Content Include="Model\ModelBase.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="ViewModel\MVRooms.js" />
+    <Content Include="Scripts\jasmine-html.js" />
+    <Content Include="Scripts\jasmine.js" />
+    <Content Include="Tests\calcTests.js" />
+    <Content Include="ViewModel\MVPeriod.js" />
+    <Content Include="ViewModel\MVPromotion.js" />
+    <Content Include="ViewModel\MVRoom.js" />
     <Content Include="ViewModel\MVTeacher.js" />
     <Content Include="PlannITI.js" />
     <Content Include="View\index.html" />
+    <Content Include="View\VPeriods.html" />
+    <Content Include="View\VPromotion.html" />
     <Content Include="View\VRoom.html" />
     <Content Include="View\VTeacher.html" />
     <Content Include="Web.config" />
@@ -88,7 +95,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

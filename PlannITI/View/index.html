@@ -5,20 +5,22 @@
     <script src="../Scripts/angular-route.min.js"></script>
     <script src="../Scripts/angular-route.js"></script>  
     <script src="../PlannITI.js"></script>
-    <script src="../Model/MRooms.js"></script>
-
-    <script src="../Model/MTeacher.js"></script>
-    <script src="../ViewModel/MVRooms.js"></script>
+    <script src="../Model/ModelBase.js"></script>
+    <script src="../ViewModel/MVRoom.js"></script>
     <script src="../ViewModel/MVTeacher.js"></script>
+    <script src="../ViewModel/MVPeriod.js"></script>
+    <script src="../ViewModel/MVPromotion.js"></script>
 
     <title>Plann'ITI</title>
 </head>
 <body ng-app ="plann">
 
     <h1>Plann'ITI</h1>
-    <a href='#/index'>Accueil</a>
+    <a href='#/'>Accueil</a>
     <a href='#/teachers'>Profs</a>
     <a href='#/rooms'>Salles</a>
+    <a href='#/periods'>Périodes</a>
+    <a href='#/promotions'>Promotions</a>
     <div ng-view></div>
 </body>
 </html>

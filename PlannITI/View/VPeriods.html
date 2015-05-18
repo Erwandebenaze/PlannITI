@@ -1,0 +1,25 @@
+﻿<div ng-app="periodsController">
+    <!--formulaire d’édition d’une salle-->
+    <div ng-controller="FormVMPeriods">
+        <form ng-submit="addPeriod()">
+            <input type="submit" value="add new period" />
+            <input type="text" ng-model="periodSetting.currentPeriod.periodName" size="30" />
+            <input type="text" ng-model="periodSetting.currentPeriod.periodCapacity" size="30" />
+        </form>
+    </div>
+
+    <!--liste des salles-->
+    <div ng-controller="ListVMPeriods">
+        <ul>
+            <li ng-repeat="period in periodSetting.periods" ng-show="!$last">
+                <span ng-click="editPeriod(period)">{{period.periodName}}</span>
+                <span ng-click="editPeriod(period)">{{period.periodCapacity}} croix </span>
+                <!--<form ng-submit="addHolidayToPeriod(period)">
+                    <input type="submit" value="add new holiday" />
+                    <input type="date" />
+                    <input type="date" />
+                </form>-->
+            </li>
+        </ul>
+    </div>
+</div>

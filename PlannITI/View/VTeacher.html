@@ -1,19 +1,29 @@
 ﻿<div ng-app="teachersController">
     <!--formulaire d’édition d’un prof-->
-    <div ng-controller="FormVMTeachers">
-        <form ng-submit="addTeacher()">
-            <input type="submit" value="add new teacher" />
-            <input type="text" ng-model="teacherSetting.currentTeacher.teacherName" size="30" />
-            <input type="text" ng-model="teacherSetting.currentTeacher.teacherMail" size="30" />
+        <form name="teachersForm" ng-controller="FormVMTeachers" ng-submit="addTeacher()" novalidate>
+
+            <div>
+                <label>Nom</label>
+                <input name="teacherName" type="text" ng-model="teacherSetting.currentTeacher.teacherName" size="30" required />
+                <span ng-if="teachersForm.$submitted" ng-messages="teachersForm.teacherName.$error" ng-messages-include="errors.html"></span>
+            </div>
+
+            <div>
+                <label>Mail</label>
+                <input name="teacherMail" type="email" ng-model="teacherSetting.currentTeacher.teacherMail" size="30" required />
+                <span ng-if="teachersForm.$submitted" ng-messages="teachersForm.teacherMail.$error" ng-messages-include="errors.html"></span>
+            </div>
+
+            <input type="submit" value="Ajouter" />
         </form>
-    </div>
 
     <!--liste des profs-->
     <div ng-controller="ListVMTeachers">
         <ul>
             <li ng-repeat="teacher in teacherSetting.teachers" ng-show="!$last">
-                <span ng-click="editTeacher(teacher)">{{teacher.teacherName}}</span>
-                <span ng-click="editTeacher(teacher)">{{teacher.teacherMail}} croix </span>
+                <span ng-click="editTeacher(teacher)">{{teacher.teacherName}} </span>
+                <span ng-click="editTeacher(teacher)">{{teacher.teacherMail}}</span>
+                <span ng-click="deleteTeacher(teacher)"> X </span>
             </li>
         </ul>
     </div>

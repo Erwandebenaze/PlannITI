@@ -1,0 +1,47 @@
+﻿<div ng-app="slotsController">
+    <!--formulaire d’édition d’une salle-->
+        <form name="slotsForm" ng-controller="FormVMSlots" ng-submit="addSlot()" novalidate>
+
+            <div>
+                <label>Salle</label>
+                <input name="slotRoom" type="text" ng-model="slotSetting.currentSlot.slotRoom" size="30" required />
+                <span ng-if="slotsForm.$submitted" ng-messages="slotsForm.slotRoom.$error" ng-messages-include="errors.html"></span>
+            </div>
+
+            <div>
+                <label>Matière</label>
+                <input name="slotMaterial" type="text" ng-model="slotSetting.currentSlot.slotMaterial" size="30" required />
+                <span ng-if="slotsForm.$submitted" ng-messages="slotsForm.slotMaterial.$error" ng-messages-include="errors.html"></span>
+            </div>
+
+            <div>
+                <label>Date</label>
+                <input name="slotDate" type="date" ng-model="slotSetting.currentSlot.slotDate" size="30" required />
+                <span ng-if="slotsForm.$submitted" ng-messages="slotsForm.slotDate.$error" ng-messages-include="errors.html"></span>
+            </div>
+
+            <div>
+                <label>Moment</label>
+                <select ng-model="slotSetting.currentSlot.slotMoment" name="slotsMoment" required>
+                    <option>Matin</option>
+                    <option>Après-midi</option>
+                </select>
+            </div>
+
+            <input type="submit" value="add new slot" />
+        </form>
+
+    <!--liste des salles-->
+    <div ng-controller="ListVMSlots">
+        <ul>
+            <li ng-repeat="slot in slotSetting.slots" ng-show="!$last">
+                <span ng-click="editSlot(slot)">{{slot.slotRoom}}</span>
+                <span ng-click="editSlot(slot)">{{slot.slotMaterial}} </span>
+                <span ng-click="editSlot(slot)">{{slot.slotDate}} </span>
+                <span ng-click="editSlot(slot)">{{slot.slotMoment}}</span>
+                <span ng-click="deleteSlot(slot)"> X </span>
+            </li>
+        </ul>
+    </div>
+</div>
+

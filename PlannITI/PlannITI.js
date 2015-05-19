@@ -1,4 +1,4 @@
-﻿var plann = angular.module('plann', ['ngRoute', 'teachersController', 'roomsController', 'periodsController', 'promotionsController']);
+﻿var plann = angular.module('plann', ['ngRoute', 'teachersController', 'roomsController', 'periodsController', 'promotionsController', 'subjectsController', 'slotsController']);
 plann.config( ['$routeProvider', function ( $routeProvider ) {
 
     $routeProvider.
@@ -17,6 +17,14 @@ plann.config( ['$routeProvider', function ( $routeProvider ) {
         when('/promotions', {
             templateUrl: '/View/VPromotion.html',
             controller: 'FormVMPromotions'
+        }).
+        when('/subjects', {
+            templateUrl: '/View/VSubject.html',
+            controller: 'FormVMSubjects'
+        }).
+        when('/slots', {
+            templateUrl: '/View/VSlots.html',
+            controller: 'FormVMSlots'
         }).
       otherwise( { redirectTo: '/' } );
 

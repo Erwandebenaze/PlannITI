@@ -1,27 +1,32 @@
-﻿var roomsController = angular.module( 'roomsController', [] );
+﻿var roomsController = angular.module('roomsController', ['ngMessages']);
 
-    //ViewModel utilisé par le formulaire
+//ViewModel for the Form
 roomsController.controller( 'FormVMRooms', ['$scope', function ( $scope ) {
 
-    //charge le modèle dans le ViewModel
     $scope.roomSetting = roomSetting;
 
-    //méthode d’ajout d’une room
-    $scope.addRoom = function ( name, capacity ) {
-        var newRoom = { roomName: name, roomCapacity: capacity };
-        $scope.roomSetting.rooms.push( newRoom );
-        $scope.roomSetting.currentRoom = newRoom;
+    //Add a room
+    $scope.addRoom = function (name, capacity) {
+        if ($scope.roomForm.$valid) {
+            var newRoom = { roomName: name, roomCapacity: capacity };
+            $scope.roomSetting.rooms.push(newRoom);
+            $scope.roomSetting.currentRoom = newRoom;
+        }
     };
 }] );
 
-    //ViewModel utilisé par la liste
+//ViewModel for the list
 roomsController.controller( 'ListVMRooms', ['$scope', function ( $scope ) {
 
-        //charge le même modèle
         $scope.roomSetting = roomSetting;
 
-        //méthode permettant d’éditer une tâche
+        //Edit room
         $scope.editRoom = function ( room ) {
             $scope.roomSetting.currentRoom = room;
         };
-    }] );
+
+        // Delete a room
+        $scope.deleteRoom = function ( room ) {
+            $scope.roomSetting.rooms.splice( $scope.roomSetting.rooms.indexOf(room),1 );
+        }
+    }]);

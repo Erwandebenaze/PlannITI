@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model\ModelBase.js" />
+    <Content Include="Scripts\angular-messages.js" />
+    <Content Include="Scripts\angular-messages.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
@@ -69,12 +71,17 @@
     <Content Include="ViewModel\MVPeriod.js" />
     <Content Include="ViewModel\MVPromotion.js" />
     <Content Include="ViewModel\MVRoom.js" />
+    <Content Include="ViewModel\MVSubject.js" />
+    <Content Include="ViewModel\MVSlot.js" />
     <Content Include="ViewModel\MVTeacher.js" />
     <Content Include="PlannITI.js" />
+    <Content Include="View\errors.html" />
     <Content Include="View\index.html" />
+    <Content Include="View\VSubject.html" />
     <Content Include="View\VPeriods.html" />
     <Content Include="View\VPromotion.html" />
     <Content Include="View\VRoom.html" />
+    <Content Include="View\VSlots.html" />
     <Content Include="View\VTeacher.html" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -85,6 +92,7 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="packages.config" />
     <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

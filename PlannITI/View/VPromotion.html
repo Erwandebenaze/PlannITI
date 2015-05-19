@@ -1,19 +1,29 @@
 ﻿<div ng-app="promotionsController">
     <!--formulaire d’édition d’un prof-->
-    <div ng-controller="FormVMPromotions">
-        <form ng-submit="addPromotion()">
-            <input type="submit" value="add new promotion" />
-            <input type="text" ng-model="promotionSetting.currentPromotion.promotionName" size="30" />
-            <input type="text" ng-model="promotionSetting.currentPromotion.promotionMail" size="30" />
-        </form>
-    </div>
+    <form name="promotionsForm" ng-controller="FormVMPromotions" ng-submit="addPromotion()" novalidate>
+
+        <div>
+            <label>Nom/Code</label>
+            <input name="promotionName" type="text" ng-model="promotionSetting.currentPromotion.promotionName" size="30" required />
+            <span ng-if="promotionsForm.$submitted" ng-messages="promotionsForm.promotionName.$error" ng-messages-include="errors.html"></span>
+        </div>
+
+        <div>
+            <label>Mail</label>
+            <input name="promotionMail" type="email" ng-model="promotionSetting.currentPromotion.promotionMail" size="30" required />
+            <span ng-if="promotionsForm.$submitted" ng-messages="promotionsForm.promotionMail.$error" ng-messages-include="errors.html"></span>
+        </div>
+
+        <input type="submit" value="Ajouter" />
+    </form>
 
     <!--liste des profs-->
     <div ng-controller="ListVMPromotions">
         <ul>
             <li ng-repeat="promotion in promotionSetting.promotions" ng-show="!$last">
                 <span ng-click="editPromotion(promotion)">{{promotion.promotionName}}</span>
-                <span ng-click="editPromotion(promotion)">{{promotion.promotionMail}} croix </span>
+                <span ng-click="editPromotion(promotion)">{{promotion.promotionMail}}</span>
+                <span ng-click="deletePromotion(promotion)"> X </span>
             </li>
         </ul>
     </div>

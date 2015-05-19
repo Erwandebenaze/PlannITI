@@ -1,27 +1,33 @@
-﻿var teachersController = angular.module( 'teachersController', [] );
+﻿var teachersController = angular.module('teachersController', ['ngMessages']);
 
-//ViewModel utilisé par le formulaire
+//ViewModel used
 teachersController.controller( 'FormVMTeachers', ['$scope', function ( $scope ) {
 
-    //charge le modèle dans le ViewModel
     $scope.teacherSetting = teacherSetting;
 
-    //méthode d’ajout d’une room
-    $scope.addTeacher = function ( name, mail ) {
-        var newTeacher = { teacherName: name, teacherMail: mail };
-        $scope.teacherSetting.teachers.push( newTeacher );
-        $scope.teacherSetting.currentTeacher = newTeacher;
+    //Add a teacher
+    $scope.addTeacher = function (name, mail) {
+        if ($scope.teachersForm.$valid) {
+            var newTeacher = { teacherName: name, teacherMail: mail };
+            $scope.teacherSetting.teachers.push( newTeacher );
+            $scope.teacherSetting.currentTeacher = newTeacher;
+        }
+      
     };
 }] );
 
-//ViewModel utilisé par la liste
+//ViewModel for the list
 teachersController.controller( 'ListVMTeachers', ['$scope', function ( $scope ) {
 
-    //charge le même modèle
     $scope.teacherSetting = teacherSetting;
 
-    //méthode permettant d’éditer une tâche
+    //Edit teacher
     $scope.editTeacher = function ( teacher ) {
         $scope.teacherSetting.currentTeacher = teacher;
     };
+
+    // Delete a teacher
+    $scope.deleteTeacher = function (teacher) {
+        $scope.teacherSetting.teachers.splice($scope.teacherSetting.teachers.indexOf(teacher), 1);
+    }
 }] );

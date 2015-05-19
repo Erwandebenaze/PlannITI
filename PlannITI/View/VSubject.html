@@ -1,0 +1,38 @@
+﻿<div ng-app="subjectsController">
+
+    <form name="subjectForm" ng-controller="FormVMSubjects" ng-submit="addSubject()" novalidate>
+
+        <div>
+            <label>Nom</label>
+            <input name="subjectName" type="text" ng-model="subjectSetting.currentSubject.subjectName" size="30" required />
+            <span ng-if="subjectForm.$submitted" ng-messages="subjectForm.subjectName.$error" ng-messages-include="errors.html"></span>
+        </div>
+
+        <div>
+            <label>Professeur référent</label>
+            <input name="subjectDefaultTeacher" type="text" ng-model="subjectSetting.currentSubject.subjectDefaultTeacher" size="30" required />
+            <span ng-if="subjectForm.$submitted" ng-messages="subjectForm.subjectDefaultTeacher.$error" ng-messages-include="errors.html"></span>
+        </div>
+
+        <div>
+            <label>Nombre de créneaux par période</label>
+            <input name="subjectSlotsByPeriod" type="number" ng-model="subjectSetting.currentSubject.subjectSlotsByPeriod" size="30" required />
+            <span ng-if="subjectForm.$submitted" ng-messages="subjectForm.subjectSlotsByPeriod.$error" ng-messages-include="errors.html"></span>
+        </div>
+
+
+        <input type="submit" value="Ajouter" />
+    </form>
+
+        <!--liste des salles-->
+        <div ng-controller="ListVMSubjects">
+            <ul>
+                <li ng-repeat="subject in subjectSetting.subjects" ng-show="!$last">
+                    <span ng-click="editSubject(subject)">{{subject.subjectName}}</span>
+                    <span ng-click="editSubject(subject)">{{subject.subjectDefaultTeacher}} </span>
+                    <span ng-click="editSubject(subject)">{{subject.subjectSlotsByPeriod}} </span>
+                    <span ng-click="deleteSubject(subject)"> X </span>
+                </li>
+            </ul>
+        </div>
+</div>

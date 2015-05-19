@@ -1,27 +1,33 @@
-﻿var promotionsController = angular.module('promotionsController', []);
+﻿var promotionsController = angular.module('promotionsController', ['ngMessages']);
 
-//ViewModel utilisé par le formulaire
+//ViewModel for the Form
 promotionsController.controller('FormVMPromotions', ['$scope', function ($scope) {
 
-    //charge le modèle dans le ViewModel
     $scope.promotionSetting = promotionSetting;
 
-    //méthode d’ajout d’une room
+    //Add a room
     $scope.addPromotion = function (name, number, mail) {
-        var newPromotion = { promotionName: name, promotionNumber : number, promotionMail: mail };
-        $scope.promotionSetting.promotions.push(newPromotion);
-        $scope.promotionSetting.currentPromotion = newPromotion;
+        if ($scope.promotionsForm.$valid) {
+            var newPromotion = { promotionName: name, promotionNumber : number, promotionMail: mail };
+            $scope.promotionSetting.promotions.push(newPromotion);
+            $scope.promotionSetting.currentPromotion = newPromotion;
+        }
+        
     };
 }]);
 
-//ViewModel utilisé par la liste
+//ViewModel for the list
 promotionsController.controller('ListVMPromotions', ['$scope', function ($scope) {
 
-    //charge le même modèle
     $scope.promotionSetting = promotionSetting;
 
-    //méthode permettant d’éditer une tâche
+    //Edit promotion
     $scope.editPromotion = function (promotion) {
         $scope.promotionSetting.currentPromotion = promotion;
     };
+
+    // Delete a promotion
+    $scope.deletePromotion = function (promotion) {
+        $scope.promotionSetting.promotions.splice($scope.promotionSetting.promotions.indexOf(promotion), 1);
+    }
 }]);

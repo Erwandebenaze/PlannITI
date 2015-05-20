@@ -68,6 +68,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Tests\calcTests.js" />
+    <Content Include="ViewModel\MVJSON.js" />
     <Content Include="ViewModel\MVPeriod.js" />
     <Content Include="ViewModel\MVPromotion.js" />
     <Content Include="ViewModel\MVRoom.js" />
@@ -93,6 +94,8 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="JSON\test.json" />
+    <Content Include="JSON\test" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -102,6 +105,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\img\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

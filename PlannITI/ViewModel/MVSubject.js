@@ -5,7 +5,6 @@ subjectsController.controller('FormVMSubjects', ['$scope', function ($scope) {
 
     $scope.subjectSetting = subjectSetting;
     $scope.savedTeachers = teacherSetting.teachers;
-    $scope.savedTeachers_selection = $scope.savedTeachers[1];
     
     //Add a subject
     $scope.addSubject = function (name, defaultTeacher, slotsByPeriod) {
@@ -15,6 +14,11 @@ subjectsController.controller('FormVMSubjects', ['$scope', function ($scope) {
             $scope.subjectSetting.currentSubject = newSubject;
         }
     };
+
+    //Filter for the dropdown list
+    $scope.isDefined = function (teacher) {
+        return typeof teacher.teacherName !== "undefined";
+    }
 }]);
 
 //ViewModel for the list

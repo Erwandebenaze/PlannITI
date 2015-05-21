@@ -11,9 +11,11 @@
         <div>
             <label>Professeur référent</label>
 
-            <select ng-model="savedTeachers_selection" ng-options="teacher.name for teacher in savedTeachers"></select>
-            <!--<input name="subjectDefaultTeacher" type="text" ng-model="subjectSetting.currentSubject.subjectDefaultTeacher" size="30" required />
-            <span ng-if="subjectForm.$submitted" ng-messages="subjectForm.subjectDefaultTeacher.$error" ng-messages-include="errors.html"></span>-->
+            <select name="subjectTeacher" ng-model="subjectSetting.currentSubject.subjectDefaultTeacher" ng-options="teacher.teacherName for teacher in savedTeachers
+                    | filter: isDefined" required>
+                <option value="">Selectionnez un professeur</option>
+            </select>
+            <span ng-if="subjectForm.$submitted" ng-messages="subjectForm.subjectTeacher.$error" ng-messages-include="errors.html"></span>
         </div>
 
         <div>
@@ -31,7 +33,7 @@
             <ul>
                 <li ng-repeat="subject in subjectSetting.subjects" ng-show="!$last">
                     <span ng-click="editSubject(subject)">{{subject.subjectName}}</span>
-                    <span ng-click="editSubject(subject)">{{subject.subjectDefaultTeacher}} </span>
+                    <span ng-click="editSubject(subject)">{{subject.subjectDefaultTeacher.teacherName}} </span>
                     <span ng-click="editSubject(subject)">{{subject.subjectSlotsByPeriod}} </span>
                     <span ng-click="deleteSubject(subject)"> X </span>
                 </li>

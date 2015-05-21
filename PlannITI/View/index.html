@@ -6,17 +6,24 @@
     <script src="../Scripts/angular-messages.min.js"></script>
     <script src="../PlannITI.js"></script>
     <script src="../Model/ModelBase.js"></script>
-    <script src="../ViewModel/MVRoom.js"></script> 
+    <script src="../ViewModel/MVJSON.js"></script>
+    <script src="../ViewModel/MVRoom.js"></script>
     <script src="../ViewModel/MVTeacher.js"></script>
     <script src="../ViewModel/MVPeriod.js"></script>
     <script src="../ViewModel/MVPromotion.js"></script>
     <script src="../ViewModel/MVSubject.js"></script>
     <script src="../ViewModel/MVSlot.js"></script>
+    <link rel="icon" type="image/jpg" href="img/293gjc9f.jpg" />
 
     <title>Plann'ITI</title>
 </head>
-<body ng-app="plann">
 
+<body ng-app="plann">
+    <div ng-controller="PhoneListCtrl">
+        model: {{phones.model}}<br />id: {{phones.id }}
+        <br/>
+        <button ng-click="save(phones)">Sauvegarder le JSON</button>
+    </div>
     <h1>Plann'ITI</h1>
     <a href='#/'>Accueil</a>
     <a href='#/teachers'>Profs</a>

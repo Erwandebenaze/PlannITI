@@ -2,16 +2,25 @@
     <!--formulaire d’édition d’une salle-->
         <form name="slotsForm" ng-controller="FormVMSlots" ng-submit="addSlot()" novalidate>
 
+
             <div>
                 <label>Salle</label>
-                <input name="slotRoom" type="text" ng-model="slotSetting.currentSlot.slotRoom" size="30" required />
-                <span ng-if="slotsForm.$submitted" ng-messages="slotsForm.slotRoom.$error" ng-messages-include="errors.html"></span>
+
+                <select name="slotRoom" ng-model="slotSetting.currentSlot.slotRoom" ng-options="room.roomName for room in savedRooms
+                    | filter: isRoomDefined" required>
+                    <option value="">Selectionnez une salle</option>
+                </select>
+                <span ng-if="slotRoom.$submitted" ng-messages="slotsForm.slotRoom.$error" ng-messages-include="errors.html"></span>
             </div>
 
             <div>
                 <label>Matière</label>
-                <input name="slotMaterial" type="text" ng-model="slotSetting.currentSlot.slotMaterial" size="30" required />
-                <span ng-if="slotsForm.$submitted" ng-messages="slotsForm.slotMaterial.$error" ng-messages-include="errors.html"></span>
+
+                <select name="slotSubject" ng-model="slotSetting.currentSlot.slotMaterial" ng-options="subject.subjectName for subject in savedSubjects
+                    | filter: isSubjectDefined" required>
+                    <option value="">Selectionnez une matière</option>
+                </select>
+                <span ng-if="slotsForm.$submitted" ng-messages="slotsForm.slotSubject.$error" ng-messages-include="errors.html"></span>
             </div>
 
             <div>

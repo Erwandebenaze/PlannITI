@@ -4,6 +4,8 @@
 slotsController.controller('FormVMSlots', ['$scope', function ($scope) {
 
     $scope.slotSetting = slotSetting;
+    $scope.savedRooms = roomSetting.rooms;
+    $scope.savedSubjects = subjectSetting.subjects;
 
     //Add a slot
     $scope.addSlot = function (room, material, date, moment) {
@@ -13,6 +15,14 @@ slotsController.controller('FormVMSlots', ['$scope', function ($scope) {
             $scope.slotSetting.currentSlot = newSlot;
         }
     };
+
+    //Filters for the dropdown list
+    $scope.isSubjectDefined = function (subject) {
+        return typeof subject.subjectName !== "undefined";
+    }
+    $scope.isRoomDefined = function (room) {
+        return typeof room.roomName !== "undefined";
+    }
 }]);
 
 //ViewModel for the list

@@ -16,7 +16,7 @@ subjectsController.controller('FormVMSubjects', ['$scope', function ($scope) {
     };
 
     //Filter for the dropdown list
-    $scope.isDefined = function (teacher) {
+    $scope.isTeacherDefined = function (teacher) {
         return typeof teacher.teacherName !== "undefined";
     }
 }]);

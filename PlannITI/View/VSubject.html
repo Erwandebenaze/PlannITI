@@ -12,7 +12,7 @@
             <label>Professeur référent</label>
 
             <select name="subjectTeacher" ng-model="subjectSetting.currentSubject.subjectDefaultTeacher" ng-options="teacher.teacherName for teacher in savedTeachers
-                    | filter: isDefined" required>
+                    | filter: isTeacherDefined" required>
                 <option value="">Selectionnez un professeur</option>
             </select>
             <span ng-if="subjectForm.$submitted" ng-messages="subjectForm.subjectTeacher.$error" ng-messages-include="errors.html"></span>

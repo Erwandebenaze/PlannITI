@@ -5,7 +5,7 @@ slotsController.controller('FormVMSlots', ['$scope', function ($scope) {
 
     $scope.slotSetting = slotSetting;
     $scope.savedRooms = roomSetting.rooms;
-    $scope.savedSubjects = subjetSetting.subjects;
+    $scope.savedSubjects = subjectSetting.subjects;
 
     //Add a slot
     $scope.addSlot = function (room, material, date, moment) {

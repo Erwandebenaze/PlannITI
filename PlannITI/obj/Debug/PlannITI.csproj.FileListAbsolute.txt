@@ -16,3 +16,9 @@ D:\Boulot\PI\S4 Plann'ITI\Plann\PlannITI\bin\PlannITI.pdb
 D:\Boulot\PI\S4 Plann'ITI\Plann\PlannITI\obj\Debug\PlannITI.csprojResolveAssemblyReference.cache
 D:\Boulot\PI\S4 Plann'ITI\Plann\PlannITI\obj\Debug\PlannITI.dll
 D:\Boulot\PI\S4 Plann'ITI\Plann\PlannITI\obj\Debug\PlannITI.pdb
+F:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\bin\PlannITI.dll.config
+F:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\bin\PlannITI.dll
+F:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\bin\PlannITI.pdb
+F:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\obj\Debug\PlannITI.csprojResolveAssemblyReference.cache
+F:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\obj\Debug\PlannITI.dll
+F:\Boulot\PI\S4 Plann'ITI\PlannITI\PlannITI\obj\Debug\PlannITI.pdb

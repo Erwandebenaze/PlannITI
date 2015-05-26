@@ -4,6 +4,11 @@
     <script src="../Scripts/angular.min.js"></script>
     <script src="../Scripts/angular-route.min.js"></script>
     <script src="../Scripts/angular-messages.min.js"></script>
+    <script src="../Scripts/moment-with-locales.min.js"></script>
+    <script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css">
+
     <script src="../PlannITI.js"></script>
     <script src="../Model/ModelBase.js"></script>
     <script src="../ViewModel/MVJSON.js"></script>
@@ -18,7 +23,7 @@
     <title>Plann'ITI</title>
 </head>
 
-<body ng-app="plann">
+<body ng-app="demo">
     <div ng-controller="PhoneListCtrl">
         model: {{phones.model}}<br />id: {{phones.id }}
         <br/>

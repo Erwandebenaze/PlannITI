@@ -1,6 +1,6 @@
 ﻿namespace Plann.Interface
 {
-    partial class Form1
+    partial class PlannITI
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -28,12 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.ucManagementSubject1 = new Plann.Interface.UcManagementSubject();
+            this.SuspendLayout();
+            // 
+            // ucManagementSubject1
+            // 
+            this.ucManagementSubject1.Location = new System.Drawing.Point(131, 12);
+            this.ucManagementSubject1.Name = "ucManagementSubject1";
+            this.ucManagementSubject1.Size = new System.Drawing.Size(409, 506);
+            this.ucManagementSubject1.TabIndex = 0;
+            // 
+            // PlannITI
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(787, 490);
+            this.Controls.Add(this.ucManagementSubject1);
+            this.Name = "PlannITI";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private UcManagementSubject ucManagementSubject1;
     }
 }
 

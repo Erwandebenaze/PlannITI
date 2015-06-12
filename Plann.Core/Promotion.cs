@@ -4,29 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlannIti
+namespace Plann.Core
 {
-    internal class Promotion
+    public class Promotion
     {
         readonly string _name;
         int _numberOfStudents;
         string _mail;
-        internal string Name
+        public string Name
         {
             get { return _name; }
         }
-        internal int NumberOfStudents
+        public int NumberOfStudents
         {
             get { return _numberOfStudents; }
             set { _numberOfStudents = value; }
         }
 
-        internal string Mail
+        public string Mail
         {
             get { return _mail; }
         }
 
-        internal Promotion(string name, string mail, int numberOfStudents)
+        public Promotion(string name, string mail, int numberOfStudents)
         {
             if( String.IsNullOrWhiteSpace( name ) || String.IsNullOrWhiteSpace( mail ) ) throw new ArgumentNullException();
             if( !IsValidEmail( mail ) ) throw new ArgumentException( "La chaine entrée n'est pas un mail" );

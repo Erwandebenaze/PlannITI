@@ -4,60 +4,75 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlannIti
+namespace Plann.Core
 {
-    public class Plann
+    public class Soft
     {
-        List<Room> _listRooms = new List<Room>();
-        List<Subject> _listSubjects = new List<Subject>();
-        List<Teacher> _listTeachers = new List<Teacher>();
+        List<Room> _listRooms;
+        List<Subject> _listSubjects;
+        List<Teacher> _listTeachers;
 
-        internal List<Teacher> ListTeachers
+        public Soft()
+        {
+            _listRooms = new List<Room>();
+            _listSubjects = new List<Subject>();
+            _listTeachers = new List<Teacher>();
+            Teacher spi = new Teacher( "Spi", "spi@gmail.com" );
+            Subject pi = new Subject("PI",spi,"red");
+            addSubject( pi );
+        }
+        public List<Teacher> ListTeachers
         {
             get { return _listTeachers; }
         }
 
-        internal List<Subject> ListSlots
+        public List<Subject> ListSubjects
         {
             get { return _listSubjects; }
         }
-        internal List<Room> ListRooms
+        public List<Subject> GetSubjects()
+        {
+            return _listSubjects;
+        }
+        public List<Room> ListRooms
         {
             get { return _listRooms; }
         }
 
-        internal bool addRoom(Room room)
+
+
+        public bool addRoom(Room room)
         {
             if( room == null ) throw new ArgumentNullException();
             _listRooms.Add( room );
             return true;
         }
-        internal bool removeRoom(Room room)
+        public bool removeRoom(Room room)
         {
             if( !_listRooms.Contains( room ) ) throw new ArgumentException( "La salle n'est pas dans la liste des salles." );
             _listRooms.Remove( room );
             return true;
         }
 
-        internal bool addTeacher( Teacher teacher )
+        public bool addTeacher( Teacher teacher )
         {
             if( teacher == null ) throw new ArgumentNullException();
             _listTeachers.Add( teacher );
             return true;
         }
-        internal bool removeTeacher( Teacher teacher )
+        public bool removeTeacher( Teacher teacher )
         {
             if( !_listTeachers.Contains( teacher ) ) throw new ArgumentException( "Le prof n'est pas dans la liste des profs." );
             _listTeachers.Remove( teacher );
             return true;
         }
-        internal bool addSubject( Subject subject )
+        public bool addSubject( Subject subject )
         {
             if( subject == null ) throw new ArgumentNullException();
             _listSubjects.Add( subject );
             return true;
         }
-        internal bool removeSubject( Subject subject )
+        public bool removeSubject( Subject subject )
         {
             if( !_listSubjects.Contains( subject ) ) throw new ArgumentException( "La matière  n'est pas dans la liste des matières." );
             _listSubjects.Remove( subject );

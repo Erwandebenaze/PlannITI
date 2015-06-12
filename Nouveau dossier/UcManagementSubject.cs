@@ -17,12 +17,16 @@ namespace Plann.Interface
         public UcManagementSubject()
         {
             InitializeComponent();
-            //this.objectListView1.SetObjects( SoftContext.CurrentSoft.GetSubjects() );
-            //MessageBox.Show(SoftContext.CurrentSoft.ToString());
+            InitializeListView();
         }
-        IPlannContext SoftContext
+        IPlannContext PlannContext
         {
             get { return (IPlannContext)TopLevelControl; }
+        }
+
+        private void InitializeListView()
+        {
+            this.objectListView1.SetObjects(PlannContext.CurrentPlann.GetSubjects() );
         }
 
         private void button1_Click( object sender, EventArgs e )

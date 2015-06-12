@@ -33,7 +33,7 @@
             // 
             // ucManagementSubject1
             // 
-            this.ucManagementSubject1.Location = new System.Drawing.Point(131, 12);
+            this.ucManagementSubject1.Location = new System.Drawing.Point(106, 12);
             this.ucManagementSubject1.Name = "ucManagementSubject1";
             this.ucManagementSubject1.Size = new System.Drawing.Size(409, 506);
             this.ucManagementSubject1.TabIndex = 0;
@@ -53,6 +53,8 @@
         #endregion
 
         private UcManagementSubject ucManagementSubject1;
+
+
     }
 }
 

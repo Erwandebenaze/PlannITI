@@ -16,7 +16,8 @@ namespace Plann.Interface
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault( false );
-            Application.Run( new PlannITI() );
+            PlannITI softForm = new PlannITI();
+            Application.Run( softForm );
         }
     }
 }

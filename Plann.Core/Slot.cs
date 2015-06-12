@@ -4,37 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlannIti
+namespace Plann.Core
 {
-    class Slot
+    public class Slot
     {
         Room _associatedRoom;
         DateTime _date;
         bool _morning;
         Subject _associatedSubject;
-        internal Room AssociatedRoom
+        List<Promotion> _associatedPromotionList;
+        public Room AssociatedRoom
         {
             get { return _associatedRoom; }
         }
-        internal Subject AssociatedSubject
+        public Subject AssociatedSubject
         {
             get { return _associatedSubject; }
         }
-        internal bool Morning
+        public bool Morning
         {
             get { return _morning; }
         }
-        internal DateTime Date
+        public DateTime Date
         {
             get { return _date; }
         }
-        internal Slot(DateTime date, bool morning, Room associatedRoom, Subject associatedSubject)
+        public Slot(DateTime date, bool morning, Room associatedRoom, Subject associatedSubject, List<Promotion> promotionAssociatedList)
         {
             if( date == null || associatedRoom == null || associatedSubject == null ) throw new ArgumentNullException();
             _date = date;
             _morning = morning;
             _associatedRoom = associatedRoom;
             _associatedSubject = associatedSubject;
+            _associatedPromotionList = promotionAssociatedList;
         }
     }
 }

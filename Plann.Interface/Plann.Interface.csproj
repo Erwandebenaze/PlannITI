@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPlannContext.cs" />
     <Compile Include="PlannITI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,7 +56,7 @@
     <Compile Include="UcManagementSubject.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UcManagementSubject.Designer.cs">
+    <Compile Include="UcManagementSubject.designer.cs">
       <DependentUpon>UcManagementSubject.cs</DependentUpon>
     </Compile>
     <Compile Include="UcTeacher.cs">

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlannIti
+namespace Plann.Core
 {
-    internal class Period
+    public class Period
     {
         string _name;
         DateTime _begginningDate;
         DateTime _endingDate;
         List<DateTime> _listOfHolidays;
 
-        internal Period( string name, DateTime begginningDate, DateTime endingDate, List<DateTime> listOfHolidays)
+        public Period( string name, DateTime begginningDate, DateTime endingDate, List<DateTime> listOfHolidays)
         {
             if( String.IsNullOrWhiteSpace( name ) ) throw new ArgumentException( "Name est null ou vide" );
             if( begginningDate == null || endingDate == null ) throw new ArgumentNullException();
@@ -24,7 +24,7 @@ namespace PlannIti
             _listOfHolidays = listOfHolidays;
         }
 
-        internal bool addHoliday(DateTime date)
+        public bool addHoliday(DateTime date)
         {
             if( date == null ) throw new ArgumentNullException();
             _listOfHolidays.Add( date );

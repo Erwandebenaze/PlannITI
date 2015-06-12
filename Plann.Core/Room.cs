@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlannIti
+namespace Plann.Core
 {
-    class Room
+    public class Room
     {
         int _numberOfSeats;
         string _name;
 
-        internal Room(string name, int numberOfSeats)
+        public Room(string name, int numberOfSeats)
         {
             if( String.IsNullOrWhiteSpace( name ) ) throw new ArgumentNullException( "Nom de la salle vide" );
             if( numberOfSeats <= 4 ) throw new ArgumentException( "Le minimum de place assises est de 4." );
@@ -19,13 +19,13 @@ namespace PlannIti
             _name = name;
             _numberOfSeats = numberOfSeats;
         }
-        internal int NumberOfSeats
+        public int NumberOfSeats
         {
             get { return _numberOfSeats; }
             set { _numberOfSeats = value; }
         }
 
-        internal string Name
+        public string Name
         {
             get { return _name; }
             set { _name = value; }

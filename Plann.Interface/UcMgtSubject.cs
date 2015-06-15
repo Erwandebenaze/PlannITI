@@ -27,9 +27,14 @@ namespace Plann.Interface
         protected override void OnLoad( EventArgs e )
         {
             base.OnLoad( e );
-            this.objectListView1.SetObjects( SoftContext.CurrentSoft.GetSubjects() );
-
+            InitializeOlv();
         }
+
+        private void InitializeOlv()
+        {
+            this.objectListView1.SetObjects( SoftContext.CurrentSoft.GetSubjects() );
+        }
+
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -53,7 +58,7 @@ namespace Plann.Interface
             } else
             {
                 Subject tmpSubject = null;
-                if(teacherNameComboBox == null)
+                if( teacherNameComboBox.SelectedItem == null )
                 {
                     tmpSubject = new Subject(nameTextBox.Text, button1.BackColor);
                 } else
@@ -65,7 +70,17 @@ namespace Plann.Interface
                 }
 
                 SoftContext.CurrentSoft.addSubject( tmpSubject );
+                InitializeOlv();
             }
+        }
+
+        private void objectListView1_FormatCell( object sender, BrightIdeasSoftware.FormatCellEventArgs e )
+        {
+            MessageBox.Show( "Fesses" );
+            Color c = (Color)e.Model;
+           
+            e.Item.BackColor = c;
+            e.Item.Text = "";
         }
     }
 }

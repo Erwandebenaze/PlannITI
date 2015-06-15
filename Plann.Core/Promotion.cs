@@ -11,20 +11,6 @@ namespace Plann.Core
         readonly string _name;
         int _numberOfStudents;
         string _mail;
-        public string Name
-        {
-            get { return _name; }
-        }
-        public int NumberOfStudents
-        {
-            get { return _numberOfStudents; }
-            set { _numberOfStudents = value; }
-        }
-
-        public string Mail
-        {
-            get { return _mail; }
-        }
 
         public Promotion(string name, string mail, int numberOfStudents)
         {
@@ -47,6 +33,25 @@ namespace Plann.Core
                 return false;
             }
         }
+
+        #region Properties
+
+        public string Name
+        {
+            get { return _name; }
+        }
+        public int NumberOfStudents
+        {
+            get { return _numberOfStudents; }
+            set { _numberOfStudents = value; }
+        }
+
+        public string Mail
+        {
+            get { return _mail; }
+        }
+
+        #endregion
         
     }
 }

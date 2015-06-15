@@ -13,6 +13,9 @@ namespace Plann.Core
         bool _morning;
         Subject _associatedSubject;
         List<Promotion> _associatedPromotionList;
+
+        #region Properties
+
         public Room AssociatedRoom
         {
             get { return _associatedRoom; }
@@ -28,7 +31,10 @@ namespace Plann.Core
         public DateTime Date
         {
             get { return _date; }
-        }
+        } 
+
+        #endregion
+
         public Slot(DateTime date, bool morning, Room associatedRoom, Subject associatedSubject, List<Promotion> promotionAssociatedList)
         {
             if( date == null || associatedRoom == null || associatedSubject == null ) throw new ArgumentNullException();

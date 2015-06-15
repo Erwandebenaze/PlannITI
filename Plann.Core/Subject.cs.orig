@@ -13,10 +13,26 @@ namespace Plann.Core
     {
         readonly string _name;
         Teacher _referentTeacher;
-        Color _color;
+<<<<<<< HEAD
+        string _color;
         
+        public Subject(string name, Teacher referentTeacher, string color )
+=======
+        Color _color;
+        public string Name
+        {
+            get { return _name; }
+        }
+        public Teacher ReferentTeacher
+        {
+            get { return _referentTeacher; }
+        }
         public Color Color
+        {
+            get { return _color; }
+        }
         public Subject(string name, Teacher referentTeacher, Color color )
+>>>>>>> origin/dev
         {
             if( String.IsNullOrWhiteSpace( name ) ) throw new ArgumentNullException();
             if( referentTeacher == null ) throw new ArgumentException( "Le professeur référent est nul" );

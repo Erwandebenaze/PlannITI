@@ -19,6 +19,8 @@ namespace Plann.Core
             _name = name;
             _numberOfSeats = numberOfSeats;
         }
+        #region Properties
+
         public int NumberOfSeats
         {
             get { return _numberOfSeats; }
@@ -30,6 +32,8 @@ namespace Plann.Core
             get { return _name; }
             set { _name = value; }
         }
+
+        #endregion
 
     }
 }

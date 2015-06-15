@@ -30,6 +30,9 @@ namespace Plann.Core
                 return false;
             }
         }
+
+        #region Properties
+
         public string Name
         {
             get { return _name; }
@@ -41,5 +44,6 @@ namespace Plann.Core
             get { return _mail; }
         }
 
+        #endregion
     }
 }

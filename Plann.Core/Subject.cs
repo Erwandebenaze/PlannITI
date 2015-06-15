@@ -11,18 +11,7 @@ namespace Plann.Core
         readonly string _name;
         Teacher _referentTeacher;
         string _color;
-        public string Name
-        {
-            get { return _name; }
-        }
-        public Teacher ReferentTeacher
-        {
-            get { return _referentTeacher; }
-        }
-        public string Color
-        {
-            get { return _color; }
-        }
+        
         public Subject(string name, Teacher referentTeacher, string color )
         {
             if( String.IsNullOrWhiteSpace( name ) || String.IsNullOrWhiteSpace( color ) ) throw new ArgumentNullException();
@@ -39,6 +28,22 @@ namespace Plann.Core
             _color = color;
         }
 
+        #region Properties
+
+        public string Name
+        {
+            get { return _name; }
         }
+        public Teacher ReferentTeacher
+        {
+            get { return _referentTeacher; }
+        }
+        public string Color
+        {
+            get { return _color; }
+        }
+
+        #endregion
+    }
     
 }

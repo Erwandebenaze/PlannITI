@@ -30,5 +30,29 @@ namespace Plann.Core
             _listOfHolidays.Add( date );
             return true;
         }
+
+        #region Properties
+
+        public string Name
+        {
+            get { return _name; }
+        }
+
+        public DateTime BegginningDate
+        {
+            get { return _begginningDate; }
+        }
+
+        public DateTime EndingDate
+        {
+            get { return _endingDate; }
+        }
+
+        public List<DateTime> ListOfHolidays
+        {
+            get { return _listOfHolidays; }
+        } 
+
+        #endregion
     }
 }

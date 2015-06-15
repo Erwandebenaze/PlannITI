@@ -32,7 +32,14 @@ namespace Plann.Interface
 
         private void InitializeOlv()
         {
-            this.objectListView1.SetObjects( SoftContext.CurrentSoft.GetSubjects() );
+            try
+            {
+                this.objectListView1.SetObjects( SoftContext.CurrentSoft.ListSubjects );
+            }
+            catch (NullReferenceException e) 
+            {
+                Console.Write( e );
+            }
         }
 
 
@@ -48,6 +55,7 @@ namespace Plann.Interface
         private void manageTeachersLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
             // Load UcMgtTeacher
+           
         }
 
         private void validateButton_Click( object sender, EventArgs e )
@@ -57,30 +65,44 @@ namespace Plann.Interface
                 MessageBox.Show( "Vous ne pouvez pas valider le formulaire. Vous devez au moins entrer un intitulé et une couleur." );
             } else
             {
-                Subject tmpSubject = null;
-                if( teacherNameComboBox.SelectedItem == null )
+                if (SoftContext.CurrentSoft.ListSubjects.Contains(new Subject(nameTextBox.Text, Color.Red)))
                 {
-                    tmpSubject = new Subject(nameTextBox.Text, button1.BackColor);
+                    MessageBox.Show( "Cette matière a déjà était entrée." );
                 } else
                 {
-                    // Erreur probable sur la récupération du professeur
-                    // Récupérer le professeur selon son nom.
-                    MessageBox.Show( teacherNameComboBox.SelectedItem.ToString());
-                    tmpSubject = new Subject(nameTextBox.Text,(Teacher)teacherNameComboBox.SelectedItem, button1.BackColor);
+                    Subject tmpSubject = null;
+                    if( teacherNameComboBox.SelectedItem == null )
+                    {
+                        tmpSubject = new Subject( nameTextBox.Text, button1.BackColor );
+                    }
+                    else
+                    {
+                        // Erreur probable sur la récupération du professeur
+                        // Récupérer le professeur selon son nom.
+                        MessageBox.Show( teacherNameComboBox.SelectedItem.ToString() );
+                        tmpSubject = new Subject( nameTextBox.Text, (Teacher)teacherNameComboBox.SelectedItem, button1.BackColor );
+                    }
+
+                    SoftContext.CurrentSoft.addSubject( tmpSubject );
+                    InitializeOlv();
                 }
 
-                SoftContext.CurrentSoft.addSubject( tmpSubject );
-                InitializeOlv();
             }
         }
 
         private void objectListView1_FormatCell( object sender, BrightIdeasSoftware.FormatCellEventArgs e )
         {
-            MessageBox.Show( "Fesses" );
-            Color c = (Color)e.Model;
-           
-            e.Item.BackColor = c;
-            e.Item.Text = "";
+           try
+           {
+               Color c = (Color)e.CellValue;
+               e.SubItem.BackColor = c;
+               e.SubItem.Text = "";
+           }
+            catch
+           {
+
+           }
+
         }
     }
 }

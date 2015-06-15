@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3303C020-F06D-49E1-90F9-A71F49BE1424}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Plann.Interface</RootNamespace>
     <AssemblyName>Plann.Interface</AssemblyName>
@@ -30,6 +30,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -58,6 +61,18 @@
     </Compile>
     <Compile Include="UcMgtSubject.designer.cs">
       <DependentUpon>UcMgtSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMgtRoom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMgtRoom.Designer.cs">
+      <DependentUpon>UcMgtRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMgtTeacher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMgtTeacher.Designer.cs">
+      <DependentUpon>UcMgtTeacher.cs</DependentUpon>
     </Compile>
     <Compile Include="UcTeacher.cs">
       <SubType>UserControl</SubType>
@@ -91,6 +106,12 @@
     </Compile>
     <EmbeddedResource Include="UcMgtSubject.resx">
       <DependentUpon>UcMgtSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMgtRoom.resx">
+      <DependentUpon>UcMgtRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMgtTeacher.resx">
+      <DependentUpon>UcMgtTeacher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcTeacher.resx">
       <DependentUpon>UcTeacher.cs</DependentUpon>

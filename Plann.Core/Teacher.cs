@@ -45,5 +45,18 @@ namespace Plann.Core
         }
 
         #endregion
+        public override bool Equals( object obj )
+        {
+            if( obj == null ) throw new ArgumentNullException( "obj == null" );
+            Teacher otherSub = obj as Teacher;
+
+            if( otherSub == null ) throw new ArgumentException( "obj != Teacher" );
+            return (this.Name == otherSub.Name);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

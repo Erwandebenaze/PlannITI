@@ -15,7 +15,6 @@ namespace Plann.Core
         Teacher _referentTeacher;
         Color _color;
         
-        public Color Color
         public Subject(string name, Teacher referentTeacher, Color color )
         {
             if( String.IsNullOrWhiteSpace( name ) ) throw new ArgumentNullException();

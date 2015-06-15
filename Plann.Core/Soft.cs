@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Plann.Core
 {
@@ -22,7 +23,7 @@ namespace Plann.Core
             _listPeriods = new List<Period>();
             _listSlots = new List<Slot>();
             Teacher spi = new Teacher( "Spi", "spi@gmail.com" );
-            Subject pi = new Subject("PI",spi,"red");
+            Subject pi = new Subject("PI",spi,Color.Red);
             addSubject( pi );
         }
         public List<Teacher> ListTeachers

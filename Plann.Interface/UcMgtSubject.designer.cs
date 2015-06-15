@@ -149,6 +149,7 @@
             this.objectListView1.TabIndex = 17;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
+            this.objectListView1.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.objectListView1_FormatCell);
             // 
             // nameColumn
             // 

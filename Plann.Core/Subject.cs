@@ -43,7 +43,7 @@ namespace Plann.Core
         {
             get { return _referentTeacher; }
         }
-        public string Color
+        public Color Color
         {
             get { return _color; }
         }

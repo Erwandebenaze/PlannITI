@@ -1,6 +1,6 @@
 ﻿namespace Plann.Interface
 {
-    partial class UcManagementSubject
+    partial class UcMgtSubject
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -32,13 +32,13 @@
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label label4;
-            this.subjectNameComboBox = new System.Windows.Forms.ComboBox();
             this.teacherNameComboBox = new System.Windows.Forms.ComboBox();
             this.manageTeachersLink = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.validateButton = new System.Windows.Forms.Button();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.nameColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colorColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.teacherColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -88,14 +88,6 @@
             label4.Size = new System.Drawing.Size(0, 18);
             label4.TabIndex = 18;
             // 
-            // subjectNameComboBox
-            // 
-            this.subjectNameComboBox.FormattingEnabled = true;
-            this.subjectNameComboBox.Location = new System.Drawing.Point(3, 36);
-            this.subjectNameComboBox.Name = "subjectNameComboBox";
-            this.subjectNameComboBox.Size = new System.Drawing.Size(124, 24);
-            this.subjectNameComboBox.TabIndex = 3;
-            // 
             // teacherNameComboBox
             // 
             this.teacherNameComboBox.FormattingEnabled = true;
@@ -113,15 +105,33 @@
             this.manageTeachersLink.TabIndex = 15;
             this.manageTeachersLink.TabStop = true;
             this.manageTeachersLink.Text = "Gérer les professeurs";
+            this.manageTeachersLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.manageTeachersLink_LinkClicked);
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(147, 36);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(57, 39);
+            this.button1.Size = new System.Drawing.Size(57, 24);
             this.button1.TabIndex = 16;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // validateButton
+            // 
+            this.validateButton.Location = new System.Drawing.Point(117, 92);
+            this.validateButton.Name = "validateButton";
+            this.validateButton.Size = new System.Drawing.Size(183, 28);
+            this.validateButton.TabIndex = 19;
+            this.validateButton.Text = "Valider";
+            this.validateButton.UseVisualStyleBackColor = true;
+            this.validateButton.Click += new System.EventHandler(this.validateButton_Click);
+            // 
+            // nameTextBox
+            // 
+            this.nameTextBox.Location = new System.Drawing.Point(19, 36);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(100, 22);
+            this.nameTextBox.TabIndex = 20;
             // 
             // objectListView1
             // 
@@ -140,45 +150,36 @@
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
             // 
-            // validateButton
-            // 
-            this.validateButton.Location = new System.Drawing.Point(117, 92);
-            this.validateButton.Name = "validateButton";
-            this.validateButton.Size = new System.Drawing.Size(183, 28);
-            this.validateButton.TabIndex = 19;
-            this.validateButton.Text = "Valider";
-            this.validateButton.UseVisualStyleBackColor = true;
-            // 
             // nameColumn
             // 
-            this.nameColumn.AspectName = "name";
+            this.nameColumn.AspectName = "Name";
             this.nameColumn.Text = "Nom";
             // 
             // colorColumn
             // 
-            this.colorColumn.AspectName = "color";
+            this.colorColumn.AspectName = "Color";
             this.colorColumn.Text = "Couleur";
             // 
             // teacherColumn
             // 
-            this.teacherColumn.AspectName = "referentTeacher";
+            this.teacherColumn.AspectName = "ReferentTeacher.Name";
             this.teacherColumn.Text = "Professeur référent";
             // 
-            // UcManagementSubject
+            // UcMgtSubject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.validateButton);
             this.Controls.Add(label4);
             this.Controls.Add(this.objectListView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.manageTeachersLink);
             this.Controls.Add(this.teacherNameComboBox);
-            this.Controls.Add(this.subjectNameComboBox);
             this.Controls.Add(label3);
             this.Controls.Add(label2);
             this.Controls.Add(label1);
-            this.Name = "UcManagementSubject";
+            this.Name = "UcMgtSubject";
             this.Size = new System.Drawing.Size(409, 506);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);
@@ -188,7 +189,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox subjectNameComboBox;
         private System.Windows.Forms.ComboBox teacherNameComboBox;
         private System.Windows.Forms.LinkLabel manageTeachersLink;
         private System.Windows.Forms.Button button1;
@@ -198,6 +198,7 @@
         private BrightIdeasSoftware.OLVColumn nameColumn;
         private BrightIdeasSoftware.OLVColumn colorColumn;
         private BrightIdeasSoftware.OLVColumn teacherColumn;
+        private System.Windows.Forms.TextBox nameTextBox;
 
     }
 }

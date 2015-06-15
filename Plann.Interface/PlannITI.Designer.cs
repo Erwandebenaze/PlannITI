@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ucManagementSubject1 = new Plann.Interface.UcManagementSubject();
+            this.ucManagementSubject1 = new Plann.Interface.UcMgtSubject();
             this.SuspendLayout();
             // 
             // ucManagementSubject1
             // 
-            this.ucManagementSubject1.Location = new System.Drawing.Point(106, 12);
+            this.ucManagementSubject1.Location = new System.Drawing.Point(140, 1);
             this.ucManagementSubject1.Name = "ucManagementSubject1";
-            this.ucManagementSubject1.Size = new System.Drawing.Size(409, 506);
+            this.ucManagementSubject1.Size = new System.Drawing.Size(419, 493);
             this.ucManagementSubject1.TabIndex = 0;
             // 
             // PlannITI
@@ -45,14 +45,14 @@
             this.ClientSize = new System.Drawing.Size(787, 490);
             this.Controls.Add(this.ucManagementSubject1);
             this.Name = "PlannITI";
-            this.Text = "Form1";
+            this.Text = "Plann";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private UcManagementSubject ucManagementSubject1;
+        private UcMgtSubject ucManagementSubject1;
 
 
     }

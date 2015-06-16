@@ -9,6 +9,6 @@ namespace Plann.Interface
 {
     public interface IPlannContext
     {
-        Soft CurrentSoft { get; }
+        Period CurrentPeriod { get; }
     }
 }

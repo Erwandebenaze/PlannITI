@@ -35,5 +35,18 @@ namespace Plann.Core
 
         #endregion
 
+        public override bool Equals( object obj )
+        {
+            if( obj == null ) throw new ArgumentNullException( "obj == null" );
+            Room otherRoom = obj as Room;
+
+            if( otherRoom == null ) throw new ArgumentException( "obj != Room" );
+            return (this.Name == otherRoom.Name);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

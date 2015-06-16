@@ -31,7 +31,7 @@ namespace Plann.Interface
         {
             try
             {
-                this.objectListView1.SetObjects( SoftContext.CurrentSoft.ListTeachers );
+                this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListTeachers );
             }
             catch( NullReferenceException e )
             {
@@ -59,14 +59,13 @@ namespace Plann.Interface
                 if(!IsValidEmail(mailTextBox.Text))
                 {
                     MessageBox.Show( "L'adresse email n'est pas valide." );
-                }
-                if(SoftContext.CurrentSoft.ListTeachers.Contains(new Teacher(nameTextBox.Text, mailTextBox.Text)))
+                } else if(SoftContext.CurrentPeriod.ListTeachers.Contains(new Teacher(nameTextBox.Text, mailTextBox.Text)))
                 {
                     MessageBox.Show( "Ce professeur a déjà été créé" );
 
                 } else
                 {
-                    SoftContext.CurrentSoft.addTeacher( new Teacher( nameTextBox.Text, mailTextBox.Text ) );
+                    SoftContext.CurrentPeriod.addTeacher( new Teacher( nameTextBox.Text, mailTextBox.Text ) );
                     InitializeOlv();
                 }
             }

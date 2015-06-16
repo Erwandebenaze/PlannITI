@@ -83,6 +83,7 @@
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.objectListView1.Location = new System.Drawing.Point(0, 147);
             this.objectListView1.Name = "objectListView1";
+            this.objectListView1.ShowGroups = false;
             this.objectListView1.Size = new System.Drawing.Size(405, 280);
             this.objectListView1.TabIndex = 4;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
@@ -91,8 +92,6 @@
             // nameColumn
             // 
             this.nameColumn.AspectName = "Name";
-            this.nameColumn.CheckBoxes = true;
-            this.nameColumn.Groupable = false;
             this.nameColumn.Text = "Nom du professeur";
             this.nameColumn.Width = 147;
             // 

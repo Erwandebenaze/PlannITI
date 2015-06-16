@@ -17,6 +17,7 @@ namespace Plann.Interface
         public UcMgtSubject()
         {
             InitializeComponent();
+
             
         }
         IPlannContext SoftContext
@@ -34,12 +35,25 @@ namespace Plann.Interface
         {
             try
             {
-                this.objectListView1.SetObjects( SoftContext.CurrentSoft.ListSubjects );
+                this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListSubjects );
             }
             catch (NullReferenceException e) 
             {
                 Console.Write( e );
             }
+
+            try
+            {
+                foreach( Teacher t in SoftContext.CurrentPeriod.ListTeachers )
+                {
+                    teacherNameComboBox.Items.Add( t.Name );
+                }
+            }
+            catch (NullReferenceException e)
+            {
+                Console.Write( e );
+            }
+
         }
 
 
@@ -60,14 +74,14 @@ namespace Plann.Interface
 
         private void validateButton_Click( object sender, EventArgs e )
         {
-            if(nameTextBox == null && button1.BackColor != Color.White)
+            if(String.IsNullOrWhiteSpace(nameTextBox.Text)|| button1.BackColor == null)
             {
                 MessageBox.Show( "Vous ne pouvez pas valider le formulaire. Vous devez au moins entrer un intitulé et une couleur." );
             } else
             {
-                if (SoftContext.CurrentSoft.ListSubjects.Contains(new Subject(nameTextBox.Text, Color.Red)))
+                if (SoftContext.CurrentPeriod.ListSubjects.Contains(new Subject(nameTextBox.Text, Color.Red)))
                 {
-                    MessageBox.Show( "Cette matière a déjà était entrée." );
+                    MessageBox.Show( "Cette matière a déjà été entrée." );
                 } else
                 {
                     Subject tmpSubject = null;
@@ -79,11 +93,11 @@ namespace Plann.Interface
                     {
                         // Erreur probable sur la récupération du professeur
                         // Récupérer le professeur selon son nom.
-                        MessageBox.Show( teacherNameComboBox.SelectedItem.ToString() );
-                        tmpSubject = new Subject( nameTextBox.Text, (Teacher)teacherNameComboBox.SelectedItem, button1.BackColor );
+                        Teacher t = SoftContext.CurrentPeriod.ListTeachers.Where( th => th.Name == teacherNameComboBox.SelectedItem.ToString() ).Single();
+                        tmpSubject = new Subject( nameTextBox.Text, t, button1.BackColor );
                     }
 
-                    SoftContext.CurrentSoft.addSubject( tmpSubject );
+                    SoftContext.CurrentPeriod.addSubject( tmpSubject );
                     InitializeOlv();
                 }
 
@@ -92,16 +106,14 @@ namespace Plann.Interface
 
         private void objectListView1_FormatCell( object sender, BrightIdeasSoftware.FormatCellEventArgs e )
         {
-           try
+           if( e.Column.AspectName == "Color")
            {
                Color c = (Color)e.CellValue;
                e.SubItem.BackColor = c;
                e.SubItem.Text = "";
            }
-            catch
-           {
 
-           }
+
 
         }
     }

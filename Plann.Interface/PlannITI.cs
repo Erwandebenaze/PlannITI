@@ -20,9 +20,9 @@ namespace Plann.Interface
             InitializeComponent();
             
         }
-        public Soft CurrentSoft
+        public Period CurrentPeriod
         {
-            get { return _mySoft; }
+            get { return _mySoft.CurrentPeriod; }
         }
     }
 

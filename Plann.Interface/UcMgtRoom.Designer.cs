@@ -77,21 +77,23 @@
             // 
             this.objectListView1.AllColumns.Add(this.nameColumn);
             this.objectListView1.AllColumns.Add(this.mailColumn);
+            this.objectListView1.AlternateRowBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn,
             this.mailColumn});
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.objectListView1.Location = new System.Drawing.Point(0, 147);
             this.objectListView1.Name = "objectListView1";
+            this.objectListView1.ShowGroups = false;
             this.objectListView1.Size = new System.Drawing.Size(405, 280);
             this.objectListView1.TabIndex = 4;
+            this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
             // 
             // nameColumn
             // 
             this.nameColumn.AspectName = "Name";
-            this.nameColumn.Groupable = false;
             this.nameColumn.Text = "Nom de la salle";
             this.nameColumn.Width = 147;
             // 

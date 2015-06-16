@@ -145,6 +145,7 @@
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.objectListView1.Location = new System.Drawing.Point(0, 126);
             this.objectListView1.Name = "objectListView1";
+            this.objectListView1.ShowGroups = false;
             this.objectListView1.Size = new System.Drawing.Size(409, 380);
             this.objectListView1.TabIndex = 17;
             this.objectListView1.UseCellFormatEvents = true;
@@ -155,18 +156,22 @@
             // nameColumn
             // 
             this.nameColumn.AspectName = "Name";
-            this.nameColumn.Groupable = false;
+            this.nameColumn.MinimumWidth = 100;
             this.nameColumn.Text = "Nom";
+            this.nameColumn.Width = 100;
             // 
             // colorColumn
             // 
             this.colorColumn.AspectName = "Color";
+            this.colorColumn.MinimumWidth = 20;
             this.colorColumn.Text = "Couleur";
             // 
             // teacherColumn
             // 
             this.teacherColumn.AspectName = "ReferentTeacher.Name";
+            this.teacherColumn.MinimumWidth = 150;
             this.teacherColumn.Text = "Professeur référent";
+            this.teacherColumn.Width = 150;
             // 
             // UcMgtSubject
             // 

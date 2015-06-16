@@ -31,7 +31,7 @@ namespace Plann.Interface
         {
             try
             {
-                this.objectListView1.SetObjects( SoftContext.CurrentSoft.ListRooms );
+                this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListRooms );
             }
             catch( NullReferenceException e )
             {
@@ -56,7 +56,7 @@ namespace Plann.Interface
         {
             if( !String.IsNullOrWhiteSpace( nameTextBox.Text ) && !String.IsNullOrWhiteSpace( numberOfSeatsTextBox.Text ) )
             {
-                if( SoftContext.CurrentSoft.ListRooms.Contains( new Room( nameTextBox.Text,5) ) )
+                if( SoftContext.CurrentPeriod.ListRooms.Contains( new Room( nameTextBox.Text,5) ) )
                 {
                     MessageBox.Show( "Cette salle a déjà été créée." );
 
@@ -65,7 +65,7 @@ namespace Plann.Interface
                     int numberOfSeats;
                     if (int.TryParse(numberOfSeatsTextBox.Text, out numberOfSeats))
                     {
-                        SoftContext.CurrentSoft.addRoom( new Room( nameTextBox.Text, numberOfSeats ) );
+                        SoftContext.CurrentPeriod.addRoom( new Room( nameTextBox.Text, numberOfSeats ) );
                         InitializeOlv();
                     } else
                     {

@@ -147,6 +147,7 @@
             this.objectListView1.Name = "objectListView1";
             this.objectListView1.Size = new System.Drawing.Size(409, 380);
             this.objectListView1.TabIndex = 17;
+            this.objectListView1.UseCellFormatEvents = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
             this.objectListView1.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.objectListView1_FormatCell);
@@ -154,6 +155,7 @@
             // nameColumn
             // 
             this.nameColumn.AspectName = "Name";
+            this.nameColumn.Groupable = false;
             this.nameColumn.Text = "Nom";
             // 
             // colorColumn

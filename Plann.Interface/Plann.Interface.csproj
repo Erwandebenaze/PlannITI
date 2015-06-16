@@ -65,6 +65,18 @@
     <Compile Include="UcMgtSubject.designer.cs">
       <DependentUpon>UcMgtSubject.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcMgtRoom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMgtRoom.Designer.cs">
+      <DependentUpon>UcMgtRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMgtTeacher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMgtTeacher.Designer.cs">
+      <DependentUpon>UcMgtTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcTeacher.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +109,12 @@
     </Compile>
     <EmbeddedResource Include="UcMgtSubject.resx">
       <DependentUpon>UcMgtSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMgtRoom.resx">
+      <DependentUpon>UcMgtRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMgtTeacher.resx">
+      <DependentUpon>UcMgtTeacher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcTeacher.resx">
       <DependentUpon>UcTeacher.cs</DependentUpon>

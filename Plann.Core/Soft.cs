@@ -48,10 +48,7 @@ namespace Plann.Core
         {
             get { return _listSubjects; }
         }
-        public List<Subject> GetSubjects()
-        {
-            return _listSubjects;
-        }
+
         public List<Room> ListRooms
         {
             get { return _listRooms; }

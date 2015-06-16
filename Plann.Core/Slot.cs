@@ -12,7 +12,20 @@ namespace Plann.Core
         DateTime _date;
         bool _morning;
         Subject _associatedSubject;
+        Teacher _associatedTeacher;
+
         List<Promotion> _associatedPromotionList;
+
+        public Slot(DateTime date, bool morning, Room associatedRoom, Subject associatedSubject, Teacher associatedTeacher, List<Promotion> promotionAssociatedList)
+        {
+            if( date == null || associatedRoom == null || associatedSubject == null ) throw new ArgumentNullException();
+            _date = date;
+            _morning = morning;
+            _associatedRoom = associatedRoom;
+            _associatedSubject = associatedSubject;
+            _associatedTeacher = associatedTeacher;
+            _associatedPromotionList = promotionAssociatedList;
+        }
 
         #region Properties
 
@@ -24,6 +37,10 @@ namespace Plann.Core
         {
             get { return _associatedSubject; }
         }
+        public Teacher AssociatedTeacher
+        {
+            get { return _associatedTeacher; }
+        }
         public bool Morning
         {
             get { return _morning; }
@@ -31,18 +48,8 @@ namespace Plann.Core
         public DateTime Date
         {
             get { return _date; }
-        } 
+        }
 
         #endregion
-
-        public Slot(DateTime date, bool morning, Room associatedRoom, Subject associatedSubject, List<Promotion> promotionAssociatedList)
-        {
-            if( date == null || associatedRoom == null || associatedSubject == null ) throw new ArgumentNullException();
-            _date = date;
-            _morning = morning;
-            _associatedRoom = associatedRoom;
-            _associatedSubject = associatedSubject;
-            _associatedPromotionList = promotionAssociatedList;
-        }
     }
 }

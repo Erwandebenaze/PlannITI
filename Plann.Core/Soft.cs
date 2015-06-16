@@ -9,6 +9,23 @@ namespace Plann.Core
 {
     public class Soft
     {
+        List<Promotion> _listPromotion;
+            _listPromotion = new List<Promotion>();
+            
+            // Test objects TO REMOVE
+            Room e5 = new Room( "E01", 40 );
+            Promotion iti = new Promotion( "ItiTruc", "iti@intech.fr", 20 );
+
+            addTeacher( spi );
+            addRoom( e5 );
+            addPromotion( iti );
+
+        #region Properties
+
+        public List<Promotion> ListPromotion
+        {
+            get { return _listPromotion; }
+        }
 
         Period _currentPeriod;
 
@@ -27,6 +44,26 @@ namespace Plann.Core
         {
             get { return _currentPeriod; }
         }
+            return true;
+        }
+        public bool addPromotion( Promotion promotion )
+        {
+            if( promotion == null ) throw new ArgumentNullException();
+            _listPromotion.Add( promotion );
+            return true;
+        }
+        public bool removePromotion( Promotion promotion )
+        {
+            if( !_listPromotion.Contains( promotion ) ) throw new ArgumentException( "La promotion n'est pas dans la liste des promotions." );
+            _listPromotion.Remove( promotion );
+            return true;
+        }
+        public bool editPromotion( Promotion promotionToEdit, Promotion newPromotion )
+        {
+            if( !_listPromotion.Contains( promotionToEdit ) ) throw new ArgumentException( "La promotion n'est pas dans la liste des promotions." );
 
+            int index = _listPromotion.FindIndex( s => s == promotionToEdit );
+            removePromotion( promotionToEdit );
+            _listPromotion.Insert( index, newPromotion );
     }
 }

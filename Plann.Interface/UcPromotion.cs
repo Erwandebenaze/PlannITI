@@ -16,5 +16,10 @@ namespace Plann.Interface
         {
             InitializeComponent();
         }
+
+        private void manageSubjectsLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+
+        }
     }
 }

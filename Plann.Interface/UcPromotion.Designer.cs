@@ -186,6 +186,7 @@
             this.manageSubjectsLink.TabIndex = 12;
             this.manageSubjectsLink.TabStop = true;
             this.manageSubjectsLink.Text = "Gérer les matières";
+            this.manageSubjectsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.manageSubjectsLink_LinkClicked);
             // 
             // manageRoomsLink
             // 

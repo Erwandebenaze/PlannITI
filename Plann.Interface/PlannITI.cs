@@ -59,6 +59,9 @@ namespace Plann.Interface
 
             // calendar.Items.Add( getCalendarItemFromSlot( newSlot ) );
             e.Item.Text = "Test" + Environment.NewLine + "Test 2" + Environment.NewLine + "Test 3";
+
+            CalendarRenderer cr = new CalendarRenderer( calendar );
+            cr.ItemTextMargin = new Padding( 100 );
         }
 
         void calendar_ItemCreated( object sender, CalendarItemCancelEventArgs e )

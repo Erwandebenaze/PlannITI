@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Plann.Core;
 using System.Windows.Forms.Calendar;
+using System.IO;
 
 namespace Plann.Interface
 {
@@ -92,6 +93,44 @@ namespace Plann.Interface
             
             CalendarItem ci = new CalendarItem( calendar, startDate, new TimeSpan(3, 30, 0 ), slotFormattedText );
             return ci;
+        }
+
+        private void savePeriod_Click( object sender, EventArgs e )
+        {
+            CurrentPeriod.SavePeriod();
+        }
+
+        private void loadPeriod_Click( object sender, EventArgs e )
+        {
+           // System.Diagnostics.Process.Start( @"..\..\..\Sauvegardes" );
+            OpenFileDialog d = new OpenFileDialog();
+            Stream myStream = null;
+            //MessageBox.Show( Environment.CurrentDirectory.ToString() );
+            
+            d.InitialDirectory = @"C:\Dev\PlannITI\Sauvegardes"; // CHANGER LE REPERTOIRE EN CAS DE CHANGEMENT DE PC
+            MessageBox.Show( d.InitialDirectory ); 
+            d.Filter = "bin files (*.bin)|*.bin";
+            // d.ShowDialog();
+
+            if( d.ShowDialog() == DialogResult.OK )
+            {
+                try
+                {
+
+                    if( (myStream = d.OpenFile()) != null )
+                    {
+                        using( myStream )
+                        {
+                            PeriodLoader.Load( d.FileName );
+                            MessageBox.Show( "La partie a été chargée." );
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    MessageBox.Show( "Error: Could not read file from disk. Original error: " + ex.Message );
+                }
+            }
         }
 
         //Slot getSlotFromCalendarItem( CalendarItem ci)

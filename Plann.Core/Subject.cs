@@ -9,6 +9,7 @@ using System.Windows;
 
 namespace Plann.Core
 {
+    [Serializable]
     public class Subject
     {
         readonly string _name;

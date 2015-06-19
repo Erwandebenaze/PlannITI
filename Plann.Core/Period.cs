@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Plann.Core
 {
+    [Serializable]
     public class Period
     {
         string _name;
@@ -211,6 +215,14 @@ namespace Plann.Core
         } 
         #endregion
         #endregion
-    
+
+        public void SavePeriod()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream( @"..\..\..\Sauvegardes\" + this.Name + ".bin", FileMode.Create, FileAccess.Write, FileShare.None );
+            formatter.Serialize( stream, this );
+
+            stream.Close();
+        }
     }
 }

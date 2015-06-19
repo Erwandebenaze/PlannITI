@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Plann.Core
 {
+    [Serializable]
     public class Room
     {
         int _numberOfSeats;

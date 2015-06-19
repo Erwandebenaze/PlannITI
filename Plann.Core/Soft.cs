@@ -9,6 +9,7 @@ using System.Xml.Linq;
 
 namespace Plann.Core
 {
+    [Serializable]
     public class Soft
     {
         Period _currentPeriod;

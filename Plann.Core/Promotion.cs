@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Plann.Core
 {
+    [Serializable]
     public class Promotion
     {
         readonly string _name;

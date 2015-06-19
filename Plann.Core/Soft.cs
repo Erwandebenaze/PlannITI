@@ -25,11 +25,7 @@ namespace Plann.Core
             _currentPeriod = new Period( "2015M", new DateTime( 2015, 03, 10 ), new DateTime( 2015, 07, 10 ), listDateTime );
         }
 
-        public String CurrentUcFilter
-        {
-            get { return _currentUcFilter; }
-            set { _currentUcFilter = value; }
-        }
+
         public Period CurrentPeriod
         {
             get { return _currentPeriod; }

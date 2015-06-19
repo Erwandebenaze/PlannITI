@@ -20,18 +20,13 @@ namespace Plann.Interface
         public PlannITI()
         {
             _mySoft = new Soft();
-            _mySoft.CurrentUcFilter = "ucPromotion1";
+            CurrentPeriod.CurrentUcFilter = "ucPromotion1";
             InitializeComponent();
             fillCalendarFromSlots();
 
             calendar.ItemCreating += calendar_ItemCreating;
             calendar.ItemCreated += calendar_ItemCreated;
             calendar.ItemClick += calendar_ItemClick;
-        }
-
-        public Soft CurrentSoft
-        {
-            get { return _mySoft; }
         }
 
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
@@ -43,7 +38,10 @@ namespace Plann.Interface
             }
         }
         public Period CurrentPeriod
+        {
             get { return _mySoft.CurrentPeriod; }
+
+        }
 
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )
         {
@@ -136,6 +134,11 @@ namespace Plann.Interface
                     MessageBox.Show( "Error: Could not read file from disk. Original error: " + ex.Message );
                 }
             }
+        }
+
+        private void parProfesseurToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+
         }
 
         //Slot getSlotFromCalendarItem( CalendarItem ci)

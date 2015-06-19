@@ -22,7 +22,7 @@ namespace Plann.Core
         List<Subject> _listSubjects;
         List<Teacher> _listTeachers;
         List<Promotion> _listPromotion;
-
+        string _currentUcFilter;
         public Period( string name, DateTime begginningDate, DateTime endingDate, List<DateTime> listOfHolidays)
         {
             if( String.IsNullOrWhiteSpace( name ) ) throw new ArgumentException( "Name est null ou vide" );
@@ -56,7 +56,11 @@ namespace Plann.Core
         }
 
         #region Properties
-
+        public String CurrentUcFilter
+        {
+            get { return _currentUcFilter; }
+            set { _currentUcFilter = value; }
+        }
         public string Name
         {
             get { return _name; }

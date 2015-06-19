@@ -24,6 +24,11 @@ namespace Plann.Interface
             get { return (IPlannContext)TopLevelControl; }
         }
 
+        //String CurrentFilter
+        //{
+        //    get { return TopLevelControl }
+        //}
+
         protected override void OnLoad( EventArgs e )
         {
             base.OnLoad( e );
@@ -103,6 +108,12 @@ namespace Plann.Interface
 
            }
 
+        }
+
+        private void returnLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            this.Visible = false;
+            Parent.Controls[ "ucPromotion1" ].Visible = true;
         }
     }
 }

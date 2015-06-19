@@ -28,17 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.calendar = new System.Windows.Forms.Calendar.Calendar();
-            this.ucMgtRoom1 = new Plann.Interface.UcMgtRoom();
-            this.ucMgtTeacher1 = new Plann.Interface.UcMgtTeacher();
             this.ucMgtSubject1 = new Plann.Interface.UcMgtSubject();
             this.ucPromotion1 = new Plann.Interface.UcPromotion();
+            this.ucMgtRoom1 = new Plann.Interface.UcMgtRoom();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -53,6 +52,9 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.AccessibleName = "Sc1.Panel1";
+            this.splitContainer1.Panel1.Controls.Add(this.ucMgtRoom1);
+            this.splitContainer1.Panel1.Controls.Add(this.ucMgtSubject1);
             this.splitContainer1.Panel1.Controls.Add(this.ucPromotion1);
             // 
             // splitContainer1.Panel2
@@ -64,30 +66,29 @@
             // 
             // calendar
             // 
-            this.calendar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.calendar.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.calendar.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("08:00:00");
             this.calendar.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
+        calendarHighlightRange6,
+        calendarHighlightRange7,
+        calendarHighlightRange8,
+        calendarHighlightRange9,
+        calendarHighlightRange10};
             this.calendar.Location = new System.Drawing.Point(0, 0);
             this.calendar.MaximumFullDays = 0;
             this.calendar.Name = "calendar";
@@ -95,29 +96,14 @@
             this.calendar.TabIndex = 0;
             this.calendar.Text = "calendar1";
             // 
-            // ucMgtRoom1
-            // 
-            this.ucMgtRoom1.Location = new System.Drawing.Point(301, 226);
-            this.ucMgtRoom1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ucMgtRoom1.Name = "ucMgtRoom1";
-            this.ucMgtRoom1.Size = new System.Drawing.Size(405, 427);
-            this.ucMgtRoom1.TabIndex = 2;
-            // 
-            // ucMgtTeacher1
-            // 
-            this.ucMgtTeacher1.Location = new System.Drawing.Point(399, -27);
-            this.ucMgtTeacher1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ucMgtTeacher1.Name = "ucMgtTeacher1";
-            this.ucMgtTeacher1.Size = new System.Drawing.Size(405, 427);
-            this.ucMgtTeacher1.TabIndex = 1;
-            // 
             // ucMgtSubject1
             // 
-            this.ucMgtSubject1.Location = new System.Drawing.Point(-16, -10);
-            this.ucMgtSubject1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ucMgtSubject1.Location = new System.Drawing.Point(11, 35);
+            this.ucMgtSubject1.Margin = new System.Windows.Forms.Padding(2);
             this.ucMgtSubject1.Name = "ucMgtSubject1";
-            this.ucMgtSubject1.Size = new System.Drawing.Size(409, 506);
-            this.ucMgtSubject1.TabIndex = 0;
+            this.ucMgtSubject1.Size = new System.Drawing.Size(307, 411);
+            this.ucMgtSubject1.TabIndex = 1;
+            this.ucMgtSubject1.Visible = false;
             // 
             // ucPromotion1
             // 
@@ -127,15 +113,21 @@
             this.ucPromotion1.Size = new System.Drawing.Size(312, 431);
             this.ucPromotion1.TabIndex = 0;
             // 
+            // ucMgtRoom1
+            // 
+            this.ucMgtRoom1.Location = new System.Drawing.Point(11, 35);
+            this.ucMgtRoom1.Margin = new System.Windows.Forms.Padding(2);
+            this.ucMgtRoom1.Name = "ucMgtRoom1";
+            this.ucMgtRoom1.Size = new System.Drawing.Size(304, 347);
+            this.ucMgtRoom1.TabIndex = 2;
+            this.ucMgtRoom1.Visible = false;
+            // 
             // PlannITI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 665);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.ucMgtRoom1);
-            this.Controls.Add(this.ucMgtTeacher1);
-            this.Controls.Add(this.ucMgtSubject1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PlannITI";
             this.Text = "Plann";
@@ -151,10 +143,9 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Calendar.Calendar calendar;
-        private UcMgtSubject ucMgtSubject1;
-        private UcMgtTeacher ucMgtTeacher1;
-        private UcMgtRoom ucMgtRoom1;
         private UcPromotion ucPromotion1;
+        private UcMgtSubject ucMgtSubject1;
+        private UcMgtRoom ucMgtRoom1;
 
 
 

@@ -12,6 +12,7 @@ namespace Plann.Interface
 {
     public partial class UcPromotion : UserControl
     {
+
         public UcPromotion()
         {
             InitializeComponent();
@@ -19,7 +20,15 @@ namespace Plann.Interface
 
         private void manageSubjectsLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
+            Console.WriteLine( ParentForm );
+            this.Visible = false;
+            Parent.Controls[ "ucMgtSubject1" ].Visible = true;
+        }
 
+        private void manageRoomsLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            this.Visible = false;
+            Parent.Controls[ "ucMgtRoom1" ].Visible = true;
         }
     }
 }

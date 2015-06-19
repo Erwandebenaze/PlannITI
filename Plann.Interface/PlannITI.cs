@@ -15,15 +15,28 @@ namespace Plann.Interface
     public partial class PlannITI : Form, IPlannContext
     {
         Soft _mySoft;
+        String _currentFilter;
+
         public PlannITI()
         {
             _mySoft = new Soft();
+            _currentFilter = "ucPromotion1";
             InitializeComponent();
             fillCalendarFromSlots();
 
             calendar.ItemCreating += calendar_ItemCreating;
             calendar.ItemCreated += calendar_ItemCreated;
             calendar.ItemClick += calendar_ItemClick;
+        }
+
+        public Soft CurrentSoft
+        {
+            get { return _mySoft; }
+        }
+        public String CurrentFilter
+        {
+            get { return _currentFilter; }
+            set { _currentFilter = value; }
         }
 
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
@@ -33,10 +46,6 @@ namespace Plann.Interface
             {
                 Console.WriteLine( slot.Date + " " + slot.AssociatedSubject + " " + slot.AssociatedTeacher + " " + slot.AssociatedRoom + " " + slot.Morning );
             }
-        }
-        public Soft CurrentSoft
-        {
-            get { return _mySoft; }
         }
 
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )

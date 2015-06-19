@@ -198,6 +198,7 @@
             this.manageRoomsLink.TabIndex = 13;
             this.manageRoomsLink.TabStop = true;
             this.manageRoomsLink.Text = "Gérer les salles";
+            this.manageRoomsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.manageRoomsLink_LinkClicked);
             // 
             // manageTeachersLink
             // 

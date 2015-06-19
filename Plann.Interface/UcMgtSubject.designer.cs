@@ -42,6 +42,7 @@
             this.nameColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colorColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.teacherColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.returnLink = new System.Windows.Forms.LinkLabel();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -53,9 +54,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(16, 7);
+            label1.Location = new System.Drawing.Point(12, 6);
+            label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(49, 18);
+            label1.Size = new System.Drawing.Size(43, 15);
             label1.TabIndex = 0;
             label1.Text = "Intitulé";
             // 
@@ -63,9 +65,10 @@
             // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label2.Location = new System.Drawing.Point(145, 7);
+            label2.Location = new System.Drawing.Point(109, 6);
+            label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(60, 18);
+            label2.Size = new System.Drawing.Size(50, 15);
             label2.TabIndex = 1;
             label2.Text = "Couleur";
             // 
@@ -73,9 +76,10 @@
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label3.Location = new System.Drawing.Point(239, 7);
+            label3.Location = new System.Drawing.Point(179, 6);
+            label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(135, 18);
+            label3.Size = new System.Drawing.Size(111, 15);
             label3.TabIndex = 2;
             label3.Text = "Professeur référent";
             // 
@@ -83,25 +87,28 @@
             // 
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label4.Location = new System.Drawing.Point(204, 7);
+            label4.Location = new System.Drawing.Point(153, 6);
+            label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(0, 18);
+            label4.Size = new System.Drawing.Size(0, 15);
             label4.TabIndex = 18;
             // 
             // teacherNameComboBox
             // 
             this.teacherNameComboBox.FormattingEnabled = true;
-            this.teacherNameComboBox.Location = new System.Drawing.Point(242, 36);
+            this.teacherNameComboBox.Location = new System.Drawing.Point(182, 29);
+            this.teacherNameComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.teacherNameComboBox.Name = "teacherNameComboBox";
-            this.teacherNameComboBox.Size = new System.Drawing.Size(143, 24);
+            this.teacherNameComboBox.Size = new System.Drawing.Size(108, 21);
             this.teacherNameComboBox.TabIndex = 4;
             // 
             // manageTeachersLink
             // 
             this.manageTeachersLink.AutoSize = true;
-            this.manageTeachersLink.Location = new System.Drawing.Point(239, 63);
+            this.manageTeachersLink.Location = new System.Drawing.Point(179, 51);
+            this.manageTeachersLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.manageTeachersLink.Name = "manageTeachersLink";
-            this.manageTeachersLink.Size = new System.Drawing.Size(146, 17);
+            this.manageTeachersLink.Size = new System.Drawing.Size(106, 13);
             this.manageTeachersLink.TabIndex = 15;
             this.manageTeachersLink.TabStop = true;
             this.manageTeachersLink.Text = "Gérer les professeurs";
@@ -109,18 +116,20 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(147, 36);
+            this.button1.Location = new System.Drawing.Point(110, 29);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(57, 24);
+            this.button1.Size = new System.Drawing.Size(43, 20);
             this.button1.TabIndex = 16;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // validateButton
             // 
-            this.validateButton.Location = new System.Drawing.Point(117, 92);
+            this.validateButton.Location = new System.Drawing.Point(88, 75);
+            this.validateButton.Margin = new System.Windows.Forms.Padding(2);
             this.validateButton.Name = "validateButton";
-            this.validateButton.Size = new System.Drawing.Size(183, 28);
+            this.validateButton.Size = new System.Drawing.Size(137, 23);
             this.validateButton.TabIndex = 19;
             this.validateButton.Text = "Valider";
             this.validateButton.UseVisualStyleBackColor = true;
@@ -128,9 +137,10 @@
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(19, 36);
+            this.nameTextBox.Location = new System.Drawing.Point(14, 29);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(100, 22);
+            this.nameTextBox.Size = new System.Drawing.Size(76, 20);
             this.nameTextBox.TabIndex = 20;
             // 
             // objectListView1
@@ -143,9 +153,10 @@
             this.colorColumn,
             this.teacherColumn});
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.objectListView1.Location = new System.Drawing.Point(0, 126);
+            this.objectListView1.Location = new System.Drawing.Point(0, 101);
+            this.objectListView1.Margin = new System.Windows.Forms.Padding(2);
             this.objectListView1.Name = "objectListView1";
-            this.objectListView1.Size = new System.Drawing.Size(409, 380);
+            this.objectListView1.Size = new System.Drawing.Size(307, 310);
             this.objectListView1.TabIndex = 17;
             this.objectListView1.UseCellFormatEvents = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
@@ -168,10 +179,22 @@
             this.teacherColumn.AspectName = "ReferentTeacher.Name";
             this.teacherColumn.Text = "Professeur référent";
             // 
+            // returnLink
+            // 
+            this.returnLink.AutoSize = true;
+            this.returnLink.Location = new System.Drawing.Point(265, 80);
+            this.returnLink.Name = "returnLink";
+            this.returnLink.Size = new System.Drawing.Size(39, 13);
+            this.returnLink.TabIndex = 21;
+            this.returnLink.TabStop = true;
+            this.returnLink.Text = "Retour";
+            this.returnLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.returnLink_LinkClicked);
+            // 
             // UcMgtSubject
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.returnLink);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.validateButton);
             this.Controls.Add(label4);
@@ -182,8 +205,9 @@
             this.Controls.Add(label3);
             this.Controls.Add(label2);
             this.Controls.Add(label1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UcMgtSubject";
-            this.Size = new System.Drawing.Size(409, 506);
+            this.Size = new System.Drawing.Size(307, 411);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,6 +226,7 @@
         private BrightIdeasSoftware.OLVColumn colorColumn;
         private BrightIdeasSoftware.OLVColumn teacherColumn;
         private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.LinkLabel returnLink;
 
     }
 }

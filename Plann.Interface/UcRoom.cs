@@ -16,5 +16,23 @@ namespace Plann.Interface
         {
             InitializeComponent();
         }
+
+        private void manageRoomsLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            this.Visible = false;
+            Parent.Controls[ "ucMgtRoom1" ].Visible = true;
+        }
+
+        private void manageSubjectsLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            this.Visible = false;
+            Parent.Controls[ "ucMgtSubject1" ].Visible = true;
+        }
+
+        private void manageTeachersLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            this.Visible = false;
+            Parent.Controls[ "ucMgtRoom1" ].Visible = true;
+        }
     }
 }

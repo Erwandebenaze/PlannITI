@@ -90,7 +90,12 @@
             this.objectListView1.Location = new System.Drawing.Point(0, 119);
             this.objectListView1.Margin = new System.Windows.Forms.Padding(2);
             this.objectListView1.Name = "objectListView1";
+<<<<<<< HEAD
             this.objectListView1.ShowGroups = false;
+            this.objectListView1.Size = new System.Drawing.Size(405, 280);
+=======
+            this.objectListView1.Size = new System.Drawing.Size(304, 228);
+>>>>>>> origin/dev
             this.objectListView1.TabIndex = 4;
             this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;

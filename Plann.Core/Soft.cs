@@ -13,6 +13,7 @@ namespace Plann.Core
     public class Soft
     {
         Period _currentPeriod;
+        String _currentUcFilter;
         public Soft()
         {
             List<DateTime> listDateTime= new List<DateTime>();
@@ -22,6 +23,12 @@ namespace Plann.Core
             listDateTime.Add( new DateTime( 2015, 05, 14 ) );
             listDateTime.Add( new DateTime( 2015, 05, 15 ) );
             _currentPeriod = new Period( "2015M", new DateTime( 2015, 03, 10 ), new DateTime( 2015, 07, 10 ), listDateTime );
+        }
+
+        public String CurrentUcFilter
+        {
+            get { return _currentUcFilter; }
+            set { _currentUcFilter = value; }
         }
         public Period CurrentPeriod
         {

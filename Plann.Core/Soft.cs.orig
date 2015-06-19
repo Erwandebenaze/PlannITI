@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Xml.Linq;
 
 
 namespace Plann.Core
 {
+    [Serializable]
     public class Soft
     {
 <<<<<<< HEAD
-
         Period _currentPeriod;
-
         public Soft()
+        {
+            List<DateTime> listDateTime= new List<DateTime>();
+            listDateTime.Add( new DateTime( 2015, 05, 08 ) );
+            listDateTime.Add( new DateTime( 2015, 05, 09 ) );
+            listDateTime.Add( new DateTime( 2015, 05, 01 ) );
+            listDateTime.Add( new DateTime( 2015, 05, 14 ) );
+            listDateTime.Add( new DateTime( 2015, 05, 15 ) );
+            _currentPeriod = new Period( "2015M", new DateTime( 2015, 03, 10 ), new DateTime( 2015, 07, 10 ), listDateTime );
 =======
         List<Room> _listRooms;
         List<Subject> _listSubjects;
@@ -21,6 +30,7 @@ namespace Plann.Core
         List<Period> _listPeriods;
         List<Slot> _listSlots;
         List<Promotion> _listPromotion;
+        String _currentUcFilter;
 
         public Soft()
         {
@@ -72,6 +82,12 @@ namespace Plann.Core
             get { return _listPromotion; }
         }
 
+        public String CurrentUcFilter
+        {
+            get { return _currentUcFilter; }
+            set { _currentUcFilter = value; }
+        }
+
         #endregion
 
         public bool addRoom(Room room)
@@ -108,103 +124,12 @@ namespace Plann.Core
             if( !_listTeachers.Contains( teacher ) ) throw new ArgumentException( "Le prof n'est pas dans la liste des profs." );
             _listTeachers.Remove( teacher );
             return true;
-        }
-
-        public bool editTeacher( Teacher teacherToEdit, Teacher newTeacher )
-        {
-            if( !_listTeachers.Contains( teacherToEdit ) ) throw new ArgumentException( "La salle n'est pas dans la liste des salles." );
-
-            int index = _listTeachers.FindIndex( t => t == teacherToEdit );
-            removeTeacher( teacherToEdit );
-            _listTeachers.Insert( index, newTeacher );
-            return true;
-        }
-
-        public bool addSubject( Subject subject )
-        {
-            if( subject == null ) throw new ArgumentNullException();
-            _listSubjects.Add( subject );
-            return true;
-        }
-        public bool removeSubject( Subject subject )
-        {
-            if( !_listSubjects.Contains( subject ) ) throw new ArgumentException( "La période  n'est pas dans la liste des périodes." );
-            _listSubjects.Remove( subject );
-            return true;
-        }
-
-        public bool editSubject( Subject subjectToEdit, Subject newSubject )
-        {
-            if( !_listSubjects.Contains( subjectToEdit ) ) throw new ArgumentException( "La salle n'est pas dans la liste des salles." );
-
-            int index = _listSubjects.FindIndex( s => s == subjectToEdit );
-            removeSubject( subjectToEdit );
-            _listSubjects.Insert( index, newSubject );
-            return true;
-        }
-
-        public bool addPeriod( Period period )
-        {
-            if( period == null ) throw new ArgumentNullException();
-            _listPeriods.Add( period );
-            return true;
-        }
-        public bool removePeriod( Period period )
-        {
-            if( !_listPeriods.Contains( period ) ) throw new ArgumentException( "Le créneau  n'est pas dans la liste des créneaux." );
-            _listPeriods.Remove( period );
-            return true;
-        }
-
-        public bool editPeriod( Period periodToEdit, Period newPeriod )
 >>>>>>> origin/dev
-        {
-            List<DateTime> listDateTime= new List<DateTime>();
-            listDateTime.Add(new DateTime(2015,05,08));
-            listDateTime.Add(new DateTime(2015,05,09));
-            listDateTime.Add(new DateTime(2015,05,01));
-            listDateTime.Add(new DateTime(2015,05,14));
-            listDateTime.Add(new DateTime(2015,05,15));
-            _currentPeriod = new Period( "2015M", new DateTime( 2015, 03, 10 ), new DateTime( 2015, 07, 10 ), listDateTime );
         }
-
         public Period CurrentPeriod
         {
             get { return _currentPeriod; }
         }
-<<<<<<< HEAD
 
-=======
-        public bool editSlot( Slot slotToEdit, Slot newSlot )
-        {
-            if( !_listSlots.Contains( slotToEdit ) ) throw new ArgumentException( "La salle n'est pas dans la liste des salles." );
-
-            int index = _listSlots.FindIndex( s => s == slotToEdit );
-            removeSlot( slotToEdit );
-            _listSlots.Insert( index, newSlot );
-            return true;
-        }
-        public bool addPromotion( Promotion promotion )
-        {
-            if( promotion == null ) throw new ArgumentNullException();
-            _listPromotion.Add( promotion );
-            return true;
-        }
-        public bool removePromotion( Promotion promotion )
-        {
-            if( !_listPromotion.Contains( promotion ) ) throw new ArgumentException( "La promotion n'est pas dans la liste des promotions." );
-            _listPromotion.Remove( promotion );
-            return true;
-        }
-        public bool editPromotion( Promotion promotionToEdit, Promotion newPromotion )
-        {
-            if( !_listPromotion.Contains( promotionToEdit ) ) throw new ArgumentException( "La promotion n'est pas dans la liste des promotions." );
-
-            int index = _listPromotion.FindIndex( s => s == promotionToEdit );
-            removePromotion( promotionToEdit );
-            _listPromotion.Insert( index, newPromotion );
-            return true;
-        }
->>>>>>> origin/dev
     }
 }

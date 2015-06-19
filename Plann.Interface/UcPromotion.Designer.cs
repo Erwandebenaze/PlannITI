@@ -198,6 +198,7 @@
             this.manageRoomsLink.TabIndex = 13;
             this.manageRoomsLink.TabStop = true;
             this.manageRoomsLink.Text = "Gérer les salles";
+            this.manageRoomsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.manageRoomsLink_LinkClicked);
             // 
             // manageTeachersLink
             // 
@@ -209,6 +210,7 @@
             this.manageTeachersLink.TabIndex = 14;
             this.manageTeachersLink.TabStop = true;
             this.manageTeachersLink.Text = "Gérer les professeurs";
+            this.manageTeachersLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.manageTeachersLink_LinkClicked);
             // 
             // UcPromotion
             // 

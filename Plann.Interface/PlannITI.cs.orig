@@ -42,8 +42,13 @@ namespace Plann.Interface
                 Console.WriteLine( slot.Date + " " + slot.AssociatedSubject + " " + slot.AssociatedTeacher + " " + slot.AssociatedRoom + " " + slot.Morning );
             }
         }
+<<<<<<< HEAD
         public Period CurrentPeriod
+        {
             get { return _mySoft.CurrentPeriod; }
+        }
+=======
+>>>>>>> origin/dev
 
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )
         {
@@ -100,7 +105,8 @@ namespace Plann.Interface
             return ci;
         }
 
-        private void parPromotionToolStripMenuItem_Click( object sender, EventArgs e )
+<<<<<<< HEAD
+        private void savePeriod_Click( object sender, EventArgs e )
         {
             CurrentPeriod.SavePeriod();
         }
@@ -136,6 +142,30 @@ namespace Plann.Interface
                     MessageBox.Show( "Error: Could not read file from disk. Original error: " + ex.Message );
                 }
             }
+=======
+        private void parPromotionToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            _mySoft.CurrentUcFilter = "ucPromotion1";
+            ucRoom1.Visible = false;
+            ucTeacher1.Visible = false;
+            ucPromotion1.Visible = true;
+        }
+
+        private void parSalleToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            _mySoft.CurrentUcFilter = "ucRoom1";
+            ucTeacher1.Visible = false;
+            ucPromotion1.Visible = false;
+            ucRoom1.Visible = true;
+        }
+
+        private void parProfesseurToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            _mySoft.CurrentUcFilter = "ucTeacher1";
+            ucPromotion1.Visible = false;
+            ucRoom1.Visible = false;
+            ucTeacher1.Visible = true;
+>>>>>>> origin/dev
         }
 
         //Slot getSlotFromCalendarItem( CalendarItem ci)

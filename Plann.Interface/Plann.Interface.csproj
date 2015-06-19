@@ -37,9 +37,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms.Calendar">
-      <HintPath>..\..\ProfessionalCalendarTests\System.Windows.Forms.Calendar\bin\Debug\System.Windows.Forms.Calendar.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -146,6 +143,10 @@
     <ProjectReference Include="..\Plann.Core\Plann.Core.csproj">
       <Project>{6ef3629d-6352-40c0-b39c-165a7731f7b8}</Project>
       <Name>Plann.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\System.Windows.Forms.Calendar\System.Windows.Forms.Calendar.csproj">
+      <Project>{25649f08-3046-4891-adb8-7ea787b57063}</Project>
+      <Name>System.Windows.Forms.Calendar</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

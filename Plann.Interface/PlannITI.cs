@@ -29,7 +29,7 @@ namespace Plann.Interface
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
         {
             Console.WriteLine( e.Item.Text );
-            foreach( Slot slot in _mySoft.ListSlots )
+            foreach( Slot slot in CurrentPeriod.ListSlots )
             {
                 Console.WriteLine( slot.Date + " " + slot.AssociatedSubject + " " + slot.AssociatedTeacher + " " + slot.AssociatedRoom + " " + slot.Morning );
             }
@@ -71,7 +71,7 @@ namespace Plann.Interface
 
         void fillCalendarFromSlots()
         {
-            foreach( Slot slot in _mySoft.ListSlots )
+            foreach( Slot slot in CurrentPeriod.ListSlots )
             {
                 CalendarItem ci = getCalendarItemFromSlot( slot );
                 calendar.Items.Add( ci );

@@ -17,6 +17,7 @@ namespace Plann.Core
         List<Room> _listRooms;
         List<Subject> _listSubjects;
         List<Teacher> _listTeachers;
+        List<Promotion> _listPromotion;
 
         public Period( string name, DateTime begginningDate, DateTime endingDate, List<DateTime> listOfHolidays)
         {
@@ -31,9 +32,16 @@ namespace Plann.Core
             _listSubjects = new List<Subject>();
             _listTeachers = new List<Teacher>();
             _listSlots = new List<Slot>();
+            _listPromotion = new List<Promotion>();
             Teacher spi = new Teacher( "Spi", "spi@gmail.com" );
             Subject pi = new Subject( "PI", spi, Color.Red );
             addSubject( pi );
+            Room e5 = new Room( "E01", 40 );
+            Promotion iti = new Promotion( "ItiTruc", "iti@intech.fr", 20 );
+
+            addTeacher( spi );
+            addRoom( e5 );
+            addPromotion( iti );
         }
 
         public bool addHoliday(DateTime date)
@@ -83,7 +91,6 @@ namespace Plann.Core
         #endregion
 
         #region Actions sur listes
-
         #region Slot
         public bool addSlot( Slot slot )
         {
@@ -177,6 +184,29 @@ namespace Plann.Core
             int index = _listSubjects.FindIndex( s => s == subjectToEdit );
             removeSubject( subjectToEdit );
             _listSubjects.Insert( index, newSubject );
+            return true;
+        } 
+        #endregion
+        #region Promotion
+        public bool addPromotion( Promotion promotion )
+        {
+            if( promotion == null ) throw new ArgumentNullException();
+            _listPromotion.Add( promotion );
+            return true;
+        }
+        public bool removePromotion( Promotion promotion )
+        {
+            if( !_listPromotion.Contains( promotion ) ) throw new ArgumentException( "La promotion n'est pas dans la liste des promotions." );
+            _listPromotion.Remove( promotion );
+            return true;
+        }
+        public bool editPromotion( Promotion promotionToEdit, Promotion newPromotion )
+        {
+            if( !_listPromotion.Contains( promotionToEdit ) ) throw new ArgumentException( "La promotion n'est pas dans la liste des promotions." );
+
+            int index = _listPromotion.FindIndex( s => s == promotionToEdit );
+            removePromotion( promotionToEdit );
+            _listPromotion.Insert( index, newPromotion );
             return true;
         } 
         #endregion

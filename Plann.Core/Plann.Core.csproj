@@ -49,6 +49,8 @@
     <Compile Include="Slot.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="Teacher.cs" />
+    <Compile Include="test.cs" />
+    <Compile Include="test2.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

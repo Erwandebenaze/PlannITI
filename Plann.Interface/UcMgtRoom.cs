@@ -81,7 +81,7 @@ namespace Plann.Interface
         private void returnLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
             this.Visible = false;
-            Parent.Controls[ "ucPromotion1" ].Visible = true;
+            Parent.Controls[ SoftContext.CurrentSoft.CurrentUcFilter ].Visible = true;
         }
     }
 }

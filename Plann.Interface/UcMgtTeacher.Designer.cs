@@ -65,7 +65,7 @@
             // nameTextBox
             // 
             this.nameTextBox.Location = new System.Drawing.Point(29, 58);
-            this.nameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(76, 20);
             this.nameTextBox.TabIndex = 2;
@@ -73,7 +73,7 @@
             // mailTextBox
             // 
             this.mailTextBox.Location = new System.Drawing.Point(141, 58);
-            this.mailTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mailTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.mailTextBox.Name = "mailTextBox";
             this.mailTextBox.Size = new System.Drawing.Size(76, 20);
             this.mailTextBox.TabIndex = 3;
@@ -87,7 +87,7 @@
             this.mailColumn});
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.objectListView1.Location = new System.Drawing.Point(0, 119);
-            this.objectListView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.objectListView1.Margin = new System.Windows.Forms.Padding(2);
             this.objectListView1.Name = "objectListView1";
             this.objectListView1.Size = new System.Drawing.Size(304, 228);
             this.objectListView1.TabIndex = 4;
@@ -112,7 +112,7 @@
             // validateButton
             // 
             this.validateButton.Location = new System.Drawing.Point(97, 96);
-            this.validateButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.validateButton.Margin = new System.Windows.Forms.Padding(2);
             this.validateButton.Name = "validateButton";
             this.validateButton.Size = new System.Drawing.Size(56, 19);
             this.validateButton.TabIndex = 5;
@@ -129,6 +129,7 @@
             this.returnLink.TabIndex = 7;
             this.returnLink.TabStop = true;
             this.returnLink.Text = "Retour";
+            this.returnLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.returnLink_LinkClicked);
             // 
             // UcMgtTeacher
             // 
@@ -141,7 +142,7 @@
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(label2);
             this.Controls.Add(label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UcMgtTeacher";
             this.Size = new System.Drawing.Size(304, 347);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();

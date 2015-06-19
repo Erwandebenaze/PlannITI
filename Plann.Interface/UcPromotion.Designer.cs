@@ -210,6 +210,7 @@
             this.manageTeachersLink.TabIndex = 14;
             this.manageTeachersLink.TabStop = true;
             this.manageTeachersLink.Text = "Gérer les professeurs";
+            this.manageTeachersLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.manageTeachersLink_LinkClicked);
             // 
             // UcPromotion
             // 

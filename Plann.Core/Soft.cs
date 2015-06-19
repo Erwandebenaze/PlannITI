@@ -15,6 +15,7 @@ namespace Plann.Core
         List<Period> _listPeriods;
         List<Slot> _listSlots;
         List<Promotion> _listPromotion;
+        String _currentUcFilter;
 
         public Soft()
         {
@@ -64,6 +65,12 @@ namespace Plann.Core
         public List<Promotion> ListPromotion
         {
             get { return _listPromotion; }
+        }
+
+        public String CurrentUcFilter
+        {
+            get { return _currentUcFilter; }
+            set { _currentUcFilter = value; }
         }
 
         #endregion

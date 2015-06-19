@@ -15,12 +15,11 @@ namespace Plann.Interface
     public partial class PlannITI : Form, IPlannContext
     {
         Soft _mySoft;
-        String _currentFilter;
 
         public PlannITI()
         {
             _mySoft = new Soft();
-            _currentFilter = "ucPromotion1";
+            _mySoft.CurrentUcFilter = "ucPromotion1";
             InitializeComponent();
             fillCalendarFromSlots();
 
@@ -32,11 +31,6 @@ namespace Plann.Interface
         public Soft CurrentSoft
         {
             get { return _mySoft; }
-        }
-        public String CurrentFilter
-        {
-            get { return _currentFilter; }
-            set { _currentFilter = value; }
         }
 
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
@@ -101,6 +95,30 @@ namespace Plann.Interface
             
             CalendarItem ci = new CalendarItem( calendar, startDate, new TimeSpan(3, 30, 0 ), slotFormattedText );
             return ci;
+        }
+
+        private void parPromotionToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            _mySoft.CurrentUcFilter = "ucPromotion1";
+            ucRoom1.Visible = false;
+            ucTeacher1.Visible = false;
+            ucPromotion1.Visible = true;
+        }
+
+        private void parSalleToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            _mySoft.CurrentUcFilter = "ucRoom1";
+            ucTeacher1.Visible = false;
+            ucPromotion1.Visible = false;
+            ucRoom1.Visible = true;
+        }
+
+        private void parProfesseurToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            _mySoft.CurrentUcFilter = "ucTeacher1";
+            ucPromotion1.Visible = false;
+            ucRoom1.Visible = false;
+            ucTeacher1.Visible = true;
         }
 
         //Slot getSlotFromCalendarItem( CalendarItem ci)

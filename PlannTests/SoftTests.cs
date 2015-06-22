@@ -15,7 +15,7 @@ namespace PlannTests
         [Test]
         public void edit_room_works()
         {
-            Period plann = new Period( "ITI2013S", new DateTime( 2015, 06, 02 ), new DateTime( 2015, 06, 31 ), new List<DateTime>() );
+            Period plann = new Period( "ITI2013S", new DateTime( 2015, 06, 02 ), new DateTime( 2015, 06, 30 ), new List<DateTime>() );
             Room room = new Room( "E01", 40 );
 
             plann.addRoom( room );

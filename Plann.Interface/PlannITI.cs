@@ -22,11 +22,17 @@ namespace Plann.Interface
             _mySoft = new Soft();
             CurrentPeriod.CurrentUcFilter = "ucPromotion1";
             InitializeComponent();
+
+            DateTime nextMonth = CurrentPeriod.BegginningDate.AddMonths( 1  );
+            calendar.SetViewRange( CurrentPeriod.BegginningDate, nextMonth );
+
+            Console.WriteLine( calendar.ViewStart + " " + calendar.ViewEnd );
             fillCalendarFromSlots();
 
             calendar.ItemCreating += calendar_ItemCreating;
             calendar.ItemCreated += calendar_ItemCreated;
             calendar.ItemClick += calendar_ItemClick;
+
         }
 
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
@@ -61,12 +67,9 @@ namespace Plann.Interface
             //bool morning = true;
             //Slot newSlot = new Slot( date, morning, room, subject, teacher, promotions);
 
-            // calendar.Items.Add( getCalendarItemFromSlot( newSlot ) );
+            calendar.Items.Add( getCalendarItemFromSlot( CurrentPeriod.ListSlots[0] ) );
             e.Item.Text = "Test" + Environment.NewLine + "Test 2" + Environment.NewLine + "Test 3";
-
-            CalendarRenderer cl = calendar.Renderer;
             
-
         }
 
         void calendar_ItemCreated( object sender, CalendarItemCancelEventArgs e )
@@ -78,24 +81,29 @@ namespace Plann.Interface
         {
             foreach( Slot slot in CurrentPeriod.ListSlots )
             {
-                CalendarItem ci = getCalendarItemFromSlot( slot );
-                calendar.Items.Add( ci );
+                if( slot.Date > calendar.ViewStart && slot.Date < calendar.ViewEnd )
+                {
+                    CalendarItem ci = getCalendarItemFromSlot( slot );
+                    calendar.Items.Add( ci );
+                }
             }
         }
 
         CalendarItem getCalendarItemFromSlot( Slot slot )
         {
             DateTime startDate = slot.Date.Date;
+            DateTime endDate = new DateTime();
             string slotFormattedText = slot.AssociatedSubject.Name + Environment.NewLine
                 + slot.AssociatedTeacher.Name + Environment.NewLine
                 + slot.AssociatedRoom.Name;
 
             if( slot.Morning )
-                startDate.AddHours( 9 );
+                startDate = startDate.AddHours( 9 );
             else
-                startDate.AddHours( 13.5 );
-            
-            CalendarItem ci = new CalendarItem( calendar, startDate, new TimeSpan(3, 30, 0 ), slotFormattedText );
+                startDate = startDate.AddHours( 13.5 );
+            endDate = startDate.AddHours( 3 );
+
+            CalendarItem ci = new CalendarItem( calendar, startDate, endDate, slotFormattedText );
             return ci;
         }
 
@@ -147,11 +155,6 @@ namespace Plann.Interface
             ucPromotion1.Visible = false;
             ucRoom1.Visible = false;
             ucTeacher1.Visible = true;
-        }
-
-        private void ucPromotion1_Load( object sender, EventArgs e )
-        {
-
         }
 
         private void parSalleToolStripMenuItem_Click( object sender, EventArgs e )

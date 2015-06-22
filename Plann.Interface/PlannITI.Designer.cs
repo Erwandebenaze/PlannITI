@@ -34,13 +34,13 @@
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.calendar = new System.Windows.Forms.Calendar.Calendar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.périodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parPromotionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parSalleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parProfesseurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.calendar = new System.Windows.Forms.Calendar.Calendar();
             this.ucTeacher1 = new Plann.Interface.UcTeacher();
             this.ucRoom1 = new Plann.Interface.UcRoom();
             this.ucMgtTeacher1 = new Plann.Interface.UcMgtTeacher();
@@ -76,39 +76,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(950, 641);
             this.splitContainer1.SplitterDistance = 434;
             this.splitContainer1.TabIndex = 1;
-            // 
-            // calendar
-            // 
-            this.calendar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.calendar.FirstDayOfWeek = System.DayOfWeek.Monday;
-            this.calendar.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
-            this.calendar.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
-            this.calendar.Location = new System.Drawing.Point(0, 0);
-            this.calendar.MaximumFullDays = 0;
-            this.calendar.Name = "calendar";
-            this.calendar.Size = new System.Drawing.Size(512, 641);
-            this.calendar.TabIndex = 0;
-            this.calendar.Text = "calendar1";
             // 
             // menuStrip1
             // 
@@ -159,6 +126,39 @@
             this.parProfesseurToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.parProfesseurToolStripMenuItem.Text = "Par professeur";
             this.parProfesseurToolStripMenuItem.Click += new System.EventHandler(this.parProfesseurToolStripMenuItem_Click);
+            // 
+            // calendar
+            // 
+            this.calendar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.calendar.FirstDayOfWeek = System.DayOfWeek.Monday;
+            this.calendar.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
+            this.calendar.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5};
+            this.calendar.Location = new System.Drawing.Point(0, 0);
+            this.calendar.MaximumFullDays = 0;
+            this.calendar.Name = "calendar";
+            this.calendar.Size = new System.Drawing.Size(512, 641);
+            this.calendar.TabIndex = 0;
+            this.calendar.Text = "calendar1";
             // 
             // ucTeacher1
             // 
@@ -238,7 +238,6 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Calendar.Calendar calendar;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem périodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vueToolStripMenuItem;
@@ -251,6 +250,7 @@
         internal UcMgtTeacher ucMgtTeacher1;
         internal UcRoom ucRoom1;
         internal UcTeacher ucTeacher1;
+        private System.Windows.Forms.Calendar.Calendar calendar;
 
 
 

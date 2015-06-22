@@ -67,7 +67,10 @@ namespace Plann.Core
         {
             get { return _name; }
         }
-
+        public List<Promotion> ListPromotion
+        {
+            get { return _listPromotion; }
+        }
         public DateTime BegginningDate
         {
             get { return _begginningDate; }

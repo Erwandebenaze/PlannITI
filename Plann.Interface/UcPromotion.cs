@@ -35,5 +35,11 @@ namespace Plann.Interface
             this.Visible = false;
             Parent.Controls[ "ucMgtRoom1" ].Visible = true;
         }
+
+        private void managePromotionsLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            this.Visible = false;
+            Parent.Controls["ucMgtPromotion1"].Visible = true;
+        }
     }
 }

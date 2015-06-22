@@ -109,7 +109,6 @@ namespace Plann.Interface
 
         private void parPromotionToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            CurrentPeriod.SavePeriod();
             CurrentPeriod.CurrentUcFilter = "ucPromotion1";
             ucRoom1.Visible = false;
             ucTeacher1.Visible = false;

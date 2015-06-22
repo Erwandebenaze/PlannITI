@@ -46,6 +46,8 @@ namespace Plann.Core
             addTeacher( spi );
             addRoom( e5 );
             addPromotion( iti );
+            addSlot( new Slot( new DateTime( 2015, 06, 22 ), true, e5, pi, spi, _listPromotion ) );
+            addSlot( new Slot( new DateTime( 2015, 06, 22 ), false, e5, pi, spi, _listPromotion ) );
         }
 
         public bool addHoliday(DateTime date)

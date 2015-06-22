@@ -13,7 +13,7 @@ namespace Plann.Core
     public class Soft
     {
         Period _currentPeriod;
-        String _currentUcFilter;
+
         public Soft()
         {
             List<DateTime> listDateTime= new List<DateTime>();

@@ -64,8 +64,9 @@ namespace Plann.Interface
             // calendar.Items.Add( getCalendarItemFromSlot( newSlot ) );
             e.Item.Text = "Test" + Environment.NewLine + "Test 2" + Environment.NewLine + "Test 3";
 
-            CalendarRenderer cr = new CalendarRenderer( calendar );
-            cr.ItemTextMargin = new Padding( 100 );
+            CalendarRenderer cl = calendar.Renderer;
+            
+
         }
 
         void calendar_ItemCreated( object sender, CalendarItemCancelEventArgs e )
@@ -101,6 +102,10 @@ namespace Plann.Interface
         private void parPromotionToolStripMenuItem_Click( object sender, EventArgs e )
         {
             CurrentPeriod.SavePeriod();
+            CurrentPeriod.CurrentUcFilter = "ucPromotion1";
+            ucRoom1.Visible = false;
+            ucTeacher1.Visible = false;
+            ucPromotion1.Visible = true;
         }
 
         private void loadPeriod_Click( object sender, EventArgs e )
@@ -138,7 +143,23 @@ namespace Plann.Interface
 
         private void parProfesseurToolStripMenuItem_Click( object sender, EventArgs e )
         {
+            CurrentPeriod.CurrentUcFilter = "ucTeacher1";
+            ucPromotion1.Visible = false;
+            ucRoom1.Visible = false;
+            ucTeacher1.Visible = true;
+        }
 
+        private void ucPromotion1_Load( object sender, EventArgs e )
+        {
+
+        }
+
+        private void parSalleToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            CurrentPeriod.CurrentUcFilter = "ucRoom1";
+            ucTeacher1.Visible = false;
+            ucPromotion1.Visible = false;
+            ucRoom1.Visible = true;
         }
 
         //Slot getSlotFromCalendarItem( CalendarItem ci)

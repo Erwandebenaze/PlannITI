@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Plann.Core;
 using System.Windows.Forms.Calendar;
@@ -16,7 +10,6 @@ namespace Plann.Interface
     public partial class PlannITI : Form, IPlannContext
     {
         Soft _mySoft;
-
         public PlannITI()
         {
             _mySoft = new Soft();
@@ -36,12 +29,24 @@ namespace Plann.Interface
             calendar.ItemCreated += calendar_ItemCreated;
             calendar.ItemClick += calendar_ItemClick;
         }
-
+            ucMgtSubject1.reload += callReload;
+            ucMgtRoom1.reload += callReload;
         private void ReloadItems( object sender, MouseEventArgs e )
+            ucMgtTeacher1.reload += callReload;
         {
             fillCalendarFromSlots();
         }
-
+        public Period CurrentPeriod
+        {
+            get { return _mySoft.CurrentPeriod; }
+        }
+        private void callReload()
+        {
+            ucPromotion1.InitializeComboBox();
+            ucRoom1.InitializeComboBox();
+            ucTeacher1.InitializeComboBox();
+        }
+        #region Calendar
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
         {
             Console.WriteLine( e.Item.Text );
@@ -50,13 +55,7 @@ namespace Plann.Interface
             //{
             //    Console.WriteLine( slot.Date + " " + slot.AssociatedSubject + " " + slot.AssociatedTeacher + " " + slot.AssociatedRoom + " " + slot.Morning );
             //}
-        }
-        public Period CurrentPeriod
-        {
-            get { return _mySoft.CurrentPeriod; }
-
-        }
-
+        }   
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )
         {
             // Find a way to know if morning on click
@@ -112,12 +111,10 @@ namespace Plann.Interface
                 e.Item.BackgroundColor = subject.Color;
             }
         }
-
         void calendar_ItemCreated( object sender, CalendarItemCancelEventArgs e )
         {
             Console.WriteLine( "Item created" );
         }
-
         void fillCalendarFromSlots()
         {
             calendar.Items.Clear();
@@ -131,7 +128,6 @@ namespace Plann.Interface
             }
             calendar.Items.Reverse();
         }
-
         CalendarItem getCalendarItemFromSlot( Slot slot )
         {
             DateTime startDate = slot.Date.Date;
@@ -148,17 +144,24 @@ namespace Plann.Interface
 
             CalendarItem ci = new CalendarItem( calendar, startDate, endDate, slotFormattedText );
             return ci;
-        }
-
+        } 
+        #endregion
+        #region ToolStrip
         private void parPromotionToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            CurrentPeriod.SavePeriod();
             CurrentPeriod.CurrentUcFilter = "ucPromotion1";
             ucRoom1.Visible = false;
             ucTeacher1.Visible = false;
             ucPromotion1.Visible = true;
         }
-
+        private void parProfesseurToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            CurrentPeriod.CurrentUcFilter = "ucTeacher1";
+            ucPromotion1.Visible = false;
+            ucRoom1.Visible = false;
+            ucTeacher1.Visible = true;
+        } 
+        #endregion
         private void loadPeriod_Click( object sender, EventArgs e )
         {
            // System.Diagnostics.Process.Start( @"..\..\..\Sauvegardes" );
@@ -175,7 +178,6 @@ namespace Plann.Interface
             {
                 try
                 {
-
                     if( (myStream = d.OpenFile()) != null )
                     {
                         using( myStream )
@@ -191,15 +193,6 @@ namespace Plann.Interface
                 }
             }
         }
-
-        private void parProfesseurToolStripMenuItem_Click( object sender, EventArgs e )
-        {
-            CurrentPeriod.CurrentUcFilter = "ucTeacher1";
-            ucPromotion1.Visible = false;
-            ucRoom1.Visible = false;
-            ucTeacher1.Visible = true;
-        }
-
         private void parSalleToolStripMenuItem_Click( object sender, EventArgs e )
         {
             CurrentPeriod.CurrentUcFilter = "ucRoom1";
@@ -220,10 +213,17 @@ namespace Plann.Interface
             calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
         }
 
+        private void périodeToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            CurrentPeriod.CurrentUcFilter = "ucTeacher1";
+            ucPromotion1.Visible = false;
+            ucRoom1.Visible = false;
+            ucTeacher1.Visible = false;
+            ucMgtPeriod1.Visible = true;
+        }
         //Slot getSlotFromCalendarItem( CalendarItem ci)
         //{
         //    Teacher teacher = _mySoft.ListTeachers.Where(t => t.Name == ci.)
         //}
     }
-
 }

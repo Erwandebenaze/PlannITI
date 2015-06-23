@@ -1,6 +1,6 @@
 ﻿namespace Plann.Interface
 {
-    partial class UcTeacher
+    partial class UcRoom
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -91,7 +91,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(16, 306);
+            label5.Location = new System.Drawing.Point(16, 14);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(39, 17);
             label5.TabIndex = 8;
@@ -100,7 +100,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(19, 18);
+            label6.Location = new System.Drawing.Point(16, 321);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(77, 17);
             label6.TabIndex = 10;
@@ -109,8 +109,13 @@
             // promotionComboBox
             // 
             this.promotionComboBox.FormattingEnabled = true;
+<<<<<<< HEAD
+            this.promotionComboBox.Location = new System.Drawing.Point(15, 155);
+            this.promotionComboBox.Margin = new System.Windows.Forms.Padding(2);
+=======
             this.promotionComboBox.Location = new System.Drawing.Point(20, 191);
             this.promotionComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+>>>>>>> origin/dev
             this.promotionComboBox.Name = "promotionComboBox";
             this.promotionComboBox.Size = new System.Drawing.Size(121, 24);
             this.promotionComboBox.TabIndex = 2;
@@ -118,8 +123,13 @@
             // sectorComboBox
             // 
             this.sectorComboBox.FormattingEnabled = true;
+<<<<<<< HEAD
+            this.sectorComboBox.Location = new System.Drawing.Point(110, 155);
+            this.sectorComboBox.Margin = new System.Windows.Forms.Padding(2);
+=======
             this.sectorComboBox.Location = new System.Drawing.Point(147, 191);
             this.sectorComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+>>>>>>> origin/dev
             this.sectorComboBox.Name = "sectorComboBox";
             this.sectorComboBox.Size = new System.Drawing.Size(121, 24);
             this.sectorComboBox.TabIndex = 3;
@@ -138,17 +148,28 @@
             // subjectComboBox
             // 
             this.subjectComboBox.FormattingEnabled = true;
+<<<<<<< HEAD
+            this.subjectComboBox.Location = new System.Drawing.Point(13, 211);
+            this.subjectComboBox.Margin = new System.Windows.Forms.Padding(2);
+=======
             this.subjectComboBox.Location = new System.Drawing.Point(17, 260);
             this.subjectComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+>>>>>>> origin/dev
             this.subjectComboBox.Name = "subjectComboBox";
             this.subjectComboBox.Size = new System.Drawing.Size(121, 24);
             this.subjectComboBox.TabIndex = 7;
+            this.subjectComboBox.SelectedIndexChanged += new System.EventHandler(this.subjectComboBox_SelectedIndexChanged);
             // 
             // roomComboBox
             // 
             this.roomComboBox.FormattingEnabled = true;
-            this.roomComboBox.Location = new System.Drawing.Point(17, 326);
+<<<<<<< HEAD
+            this.roomComboBox.Location = new System.Drawing.Point(13, 27);
+            this.roomComboBox.Margin = new System.Windows.Forms.Padding(2);
+=======
+            this.roomComboBox.Location = new System.Drawing.Point(17, 33);
             this.roomComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+>>>>>>> origin/dev
             this.roomComboBox.Name = "roomComboBox";
             this.roomComboBox.Size = new System.Drawing.Size(121, 24);
             this.roomComboBox.TabIndex = 9;
@@ -156,8 +177,13 @@
             // teacherComboBox
             // 
             this.teacherComboBox.FormattingEnabled = true;
-            this.teacherComboBox.Location = new System.Drawing.Point(19, 39);
+<<<<<<< HEAD
+            this.teacherComboBox.Location = new System.Drawing.Point(13, 277);
+            this.teacherComboBox.Margin = new System.Windows.Forms.Padding(2);
+=======
+            this.teacherComboBox.Location = new System.Drawing.Point(17, 341);
             this.teacherComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+>>>>>>> origin/dev
             this.teacherComboBox.Name = "teacherComboBox";
             this.teacherComboBox.Size = new System.Drawing.Size(121, 24);
             this.teacherComboBox.TabIndex = 11;
@@ -176,7 +202,7 @@
             // manageRoomsLink
             // 
             this.manageRoomsLink.AutoSize = true;
-            this.manageRoomsLink.Location = new System.Drawing.Point(144, 329);
+            this.manageRoomsLink.Location = new System.Drawing.Point(144, 36);
             this.manageRoomsLink.Name = "manageRoomsLink";
             this.manageRoomsLink.Size = new System.Drawing.Size(107, 17);
             this.manageRoomsLink.TabIndex = 13;
@@ -187,7 +213,7 @@
             // manageTeachersLink
             // 
             this.manageTeachersLink.AutoSize = true;
-            this.manageTeachersLink.Location = new System.Drawing.Point(147, 46);
+            this.manageTeachersLink.Location = new System.Drawing.Point(144, 348);
             this.manageTeachersLink.Name = "manageTeachersLink";
             this.manageTeachersLink.Size = new System.Drawing.Size(146, 17);
             this.manageTeachersLink.TabIndex = 14;
@@ -195,7 +221,7 @@
             this.manageTeachersLink.Text = "Gérer les professeurs";
             this.manageTeachersLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.manageTeachersLink_LinkClicked);
             // 
-            // UcTeacher
+            // UcRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -214,8 +240,12 @@
             this.Controls.Add(this.promotionComboBox);
             this.Controls.Add(label2);
             this.Controls.Add(label1);
+<<<<<<< HEAD
+            this.Margin = new System.Windows.Forms.Padding(2);
+=======
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "UcTeacher";
+>>>>>>> origin/dev
+            this.Name = "UcRoom";
             this.Size = new System.Drawing.Size(409, 506);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -224,14 +254,14 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox promotionComboBox;
-        private System.Windows.Forms.ComboBox sectorComboBox;
         private System.Windows.Forms.LinkLabel managePromotionsLink;
-        private System.Windows.Forms.ComboBox subjectComboBox;
-        private System.Windows.Forms.ComboBox roomComboBox;
-        private System.Windows.Forms.ComboBox teacherComboBox;
         private System.Windows.Forms.LinkLabel manageSubjectsLink;
         private System.Windows.Forms.LinkLabel manageRoomsLink;
         private System.Windows.Forms.LinkLabel manageTeachersLink;
+        internal System.Windows.Forms.ComboBox promotionComboBox;
+        internal System.Windows.Forms.ComboBox sectorComboBox;
+        internal System.Windows.Forms.ComboBox subjectComboBox;
+        internal System.Windows.Forms.ComboBox teacherComboBox;
+        internal System.Windows.Forms.ComboBox roomComboBox;
     }
 }

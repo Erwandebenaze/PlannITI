@@ -20,6 +20,7 @@ namespace Plann.Core
             if( numberOfStudents < 4 ) throw new ArgumentException( "Il ne peut pas y avoir moins de 4 étudiants dans la promotion" );
             _name = name;
             _mail = mail;
+            _numberOfStudents = numberOfStudents;
 
         }
         private bool IsValidEmail( string email )
@@ -33,6 +34,20 @@ namespace Plann.Core
             {
                 return false;
             }
+        }
+
+        public override bool Equals( object obj )
+        {
+            if( obj == null ) throw new ArgumentNullException( "obj == null" );
+            Promotion otherPromotion = obj as Promotion;
+
+            if( otherPromotion == null ) throw new ArgumentException( "obj != Promotion" );
+            return (this.Name == otherPromotion.Name);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         #region Properties

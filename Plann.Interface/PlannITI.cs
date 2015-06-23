@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Plann.Core;
 using System.Windows.Forms.Calendar;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Plann.Interface
 {
@@ -28,14 +29,17 @@ namespace Plann.Interface
             calendar.ItemCreating += calendar_ItemCreating;
             calendar.ItemCreated += calendar_ItemCreated;
             calendar.ItemClick += calendar_ItemClick;
-        }
+
             ucMgtSubject1.reload += callReload;
             ucMgtRoom1.reload += callReload;
-        private void ReloadItems( object sender, MouseEventArgs e )
             ucMgtTeacher1.reload += callReload;
+        }
+
+        private void ReloadItems( object sender, MouseEventArgs e )
         {
             fillCalendarFromSlots();
         }
+
         public Period CurrentPeriod
         {
             get { return _mySoft.CurrentPeriod; }

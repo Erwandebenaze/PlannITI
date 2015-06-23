@@ -116,11 +116,6 @@ namespace Plann.Core
         {
             get { return _listSlots; }
         }
-        public List<Promotion> ListPromotion
-        {
-            get { return _listPromotion; }
-            set { _listPromotion = value; }
-        }
         public DateTime CurrentViewMonthEnd
         {
             get { return _currentViewMonthEnd; }

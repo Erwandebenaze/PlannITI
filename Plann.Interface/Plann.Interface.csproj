@@ -56,6 +56,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UcMgtPeriod.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMgtPeriod.Designer.cs">
+      <DependentUpon>UcMgtPeriod.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcMgtPromotion.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,6 +116,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UcMgtPeriod.resx">
+      <DependentUpon>UcMgtPeriod.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UcMgtPromotion.resx">
       <DependentUpon>UcMgtPromotion.cs</DependentUpon>
     </EmbeddedResource>

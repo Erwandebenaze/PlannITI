@@ -156,6 +156,15 @@ namespace Plann.Interface
             ucPromotion1.Visible = false;
             ucRoom1.Visible = true;
         }
+
+        private void périodeToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            CurrentPeriod.CurrentUcFilter = "ucTeacher1";
+            ucPromotion1.Visible = false;
+            ucRoom1.Visible = false;
+            ucTeacher1.Visible = false;
+            ucMgtPeriod1.Visible = true;
+        }
         //Slot getSlotFromCalendarItem( CalendarItem ci)
         //{
         //    Teacher teacher = _mySoft.ListTeachers.Where(t => t.Name == ci.)

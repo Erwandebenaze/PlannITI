@@ -29,6 +29,10 @@ namespace Plann.Interface
             ucMgtRoom1.reload += callReload;
             ucMgtTeacher1.reload += callReload;
         }
+        public Period CurrentPeriod
+        {
+            get { return _mySoft.CurrentPeriod; }
+        }
         private void callReload()
         {
             ucPromotion1.InitializeComboBox();
@@ -43,11 +47,7 @@ namespace Plann.Interface
             {
                 Console.WriteLine( slot.Date + " " + slot.AssociatedSubject + " " + slot.AssociatedTeacher + " " + slot.AssociatedRoom + " " + slot.Morning );
             }
-        }
-        internal Period CurrentPeriod
-        {
-            get { return _mySoft.CurrentPeriod; }
-        }
+        }   
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )
         {
             DateTime beg = e.Item.StartDate;

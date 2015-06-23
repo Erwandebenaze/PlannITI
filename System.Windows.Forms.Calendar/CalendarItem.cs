@@ -53,6 +53,7 @@ namespace System.Windows.Forms.Calendar
         private List<CalendarDayTop> _topsPassing;
         private object _tag;
         private string _text;
+        private bool _showStartTime = false;
         #endregion
 
         #region Ctor
@@ -86,7 +87,7 @@ namespace System.Windows.Forms.Calendar
             StartDate = startDate;
             EndDate = endDate;
             Text = text;
-        }
+         }
 
         /// <summary>
         /// Creates a new item with the specified date, duration and text
@@ -97,7 +98,8 @@ namespace System.Windows.Forms.Calendar
         /// <param name="text">Text of the item</param>
         public CalendarItem(Calendar calendar, DateTime startDate, TimeSpan duration, string text)
             : this(calendar, startDate, startDate.Add(duration), text)
-        { }
+        {
+        }
 
         #endregion
 
@@ -457,7 +459,11 @@ namespace System.Windows.Forms.Calendar
         {
             get
             {
-                return IsOpenStart || ((this.IsOnDayTop || Calendar.DaysMode == CalendarDaysMode.Short) && !StartDate.TimeOfDay.Equals(new TimeSpan(0, 0, 0)));
+                return _showStartTime;
+            }
+            set
+            {
+                _showStartTime = value;
             }
         }
 
@@ -825,6 +831,5 @@ namespace System.Windows.Forms.Calendar
         }
 
         #endregion
-
     }
 }

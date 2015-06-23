@@ -41,6 +41,8 @@
             this.parSalleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parProfesseurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calendar = new System.Windows.Forms.Calendar.Calendar();
+            this.nextMonthButton = new System.Windows.Forms.Button();
+            this.previousMonthButton = new System.Windows.Forms.Button();
             this.ucTeacher1 = new Plann.Interface.UcTeacher();
             this.ucRoom1 = new Plann.Interface.UcRoom();
             this.ucMgtTeacher1 = new Plann.Interface.UcMgtTeacher();
@@ -57,12 +59,15 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AccessibleName = "Sc1.Panel1";
+            this.splitContainer1.Panel1.Controls.Add(this.previousMonthButton);
+            this.splitContainer1.Panel1.Controls.Add(this.nextMonthButton);
             this.splitContainer1.Panel1.Controls.Add(this.ucTeacher1);
             this.splitContainer1.Panel1.Controls.Add(this.ucRoom1);
             this.splitContainer1.Panel1.Controls.Add(this.ucMgtTeacher1);
@@ -74,7 +79,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.calendar);
             this.splitContainer1.Size = new System.Drawing.Size(950, 641);
-            this.splitContainer1.SplitterDistance = 434;
+            this.splitContainer1.SplitterDistance = 323;
             this.splitContainer1.TabIndex = 1;
             // 
             // menuStrip1
@@ -156,9 +161,29 @@
             this.calendar.Location = new System.Drawing.Point(0, 0);
             this.calendar.MaximumFullDays = 0;
             this.calendar.Name = "calendar";
-            this.calendar.Size = new System.Drawing.Size(512, 641);
+            this.calendar.Size = new System.Drawing.Size(623, 641);
             this.calendar.TabIndex = 0;
             this.calendar.Text = "calendar1";
+            // 
+            // nextMonthButton
+            // 
+            this.nextMonthButton.Location = new System.Drawing.Point(147, 343);
+            this.nextMonthButton.Name = "nextMonthButton";
+            this.nextMonthButton.Size = new System.Drawing.Size(75, 23);
+            this.nextMonthButton.TabIndex = 6;
+            this.nextMonthButton.Text = "Mois suivant";
+            this.nextMonthButton.UseVisualStyleBackColor = true;
+            this.nextMonthButton.Click += new System.EventHandler(this.nextMonthButton_Click);
+            // 
+            // previousMonthButton
+            // 
+            this.previousMonthButton.Location = new System.Drawing.Point(21, 343);
+            this.previousMonthButton.Name = "previousMonthButton";
+            this.previousMonthButton.Size = new System.Drawing.Size(90, 23);
+            this.previousMonthButton.TabIndex = 7;
+            this.previousMonthButton.Text = "Mois précédent";
+            this.previousMonthButton.UseVisualStyleBackColor = true;
+            this.previousMonthButton.Click += new System.EventHandler(this.previousMonthButton_Click);
             // 
             // ucTeacher1
             // 
@@ -251,6 +276,8 @@
         internal UcRoom ucRoom1;
         internal UcTeacher ucTeacher1;
         private System.Windows.Forms.Calendar.Calendar calendar;
+        private System.Windows.Forms.Button nextMonthButton;
+        private System.Windows.Forms.Button previousMonthButton;
 
 
 

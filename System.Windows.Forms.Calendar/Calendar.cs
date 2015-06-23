@@ -988,6 +988,7 @@ namespace System.Windows.Forms.Calendar
         public bool ViewIntersects(DateTime dateStart, DateTime dateEnd)
         {
             return DateIntersects(ViewStart, ViewEnd, dateStart, dateEnd);
+            //return DateIntersects( this.Days[ 0 ], this.Days[ this.Days.Length - 1 ].Date.AddHours( 12 ).AddSeconds( -1 ), dateStart, dateEnd ); 
         }
 
         /// <summary>

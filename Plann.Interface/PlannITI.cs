@@ -22,9 +22,12 @@ namespace Plann.Interface
             _mySoft = new Soft();
             CurrentPeriod.CurrentUcFilter = "ucPromotion1";
             InitializeComponent();
+            // Reloads items when scrolling
+            this.MouseWheel += new MouseEventHandler( ReloadItems );
+            calendar.ItemsTimeFormat = "HH : mm";
+            calendar.Renderer.StandardItemHeight = calendar.Renderer.StandardItemHeight + 30;
 
-            DateTime nextMonth = CurrentPeriod.BegginningDate.AddMonths( 1  );
-            calendar.SetViewRange( CurrentPeriod.BegginningDate, nextMonth );
+            calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
 
             Console.WriteLine( calendar.ViewStart + " " + calendar.ViewEnd );
             fillCalendarFromSlots();
@@ -32,16 +35,21 @@ namespace Plann.Interface
             calendar.ItemCreating += calendar_ItemCreating;
             calendar.ItemCreated += calendar_ItemCreated;
             calendar.ItemClick += calendar_ItemClick;
+        }
 
+        private void ReloadItems( object sender, MouseEventArgs e )
+        {
+            fillCalendarFromSlots();
         }
 
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
         {
             Console.WriteLine( e.Item.Text );
-            foreach( Slot slot in CurrentPeriod.ListSlots )
-            {
-                Console.WriteLine( slot.Date + " " + slot.AssociatedSubject + " " + slot.AssociatedTeacher + " " + slot.AssociatedRoom + " " + slot.Morning );
-            }
+            Console.WriteLine( e.Item.Date );
+            //foreach( Slot slot in CurrentPeriod.ListSlots )
+            //{
+            //    Console.WriteLine( slot.Date + " " + slot.AssociatedSubject + " " + slot.AssociatedTeacher + " " + slot.AssociatedRoom + " " + slot.Morning );
+            //}
         }
         public Period CurrentPeriod
         {
@@ -51,25 +59,58 @@ namespace Plann.Interface
 
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )
         {
-            DateTime beg = e.Item.StartDate;
-            e.Item.EndDate = beg + TimeSpan.FromHours( 3.5 );
+            // Find a way to know if morning on click
+            bool morning = true;
+            string teacherText;
+            string subjectText;
+            string roomText;
+            string promotionText;
 
-            DateTime day = beg.Date;
+            switch( CurrentPeriod.CurrentUcFilter )
+            {
+                case "ucPromotion1":
+                    teacherText = ucPromotion1.teacherComboBox.Text;
+                    subjectText = ucPromotion1.subjectComboBox.Text;
+                    roomText = ucPromotion1.roomComboBox.Text;
+                    promotionText = ucPromotion1.promotionComboBox.Text;
+                    break;
+                case "ucRoom1":
+                    teacherText = ucRoom1.teacherComboBox.Text;
+                    subjectText = ucRoom1.subjectComboBox.Text;
+                    roomText = ucRoom1.roomComboBox.Text;
+                    promotionText = ucRoom1.promotionComboBox.Text;
+                    break;
+                case "ucTeacher1":
+                    teacherText = ucTeacher1.teacherComboBox.Text;
+                    subjectText = ucTeacher1.subjectComboBox.Text;
+                    roomText = ucTeacher1.roomComboBox.Text;
+                    promotionText = ucTeacher1.promotionComboBox.Text;
+                    break;
+                default:
+                    throw new ArgumentException( "Current filter is not set up properly" );
+            }
+
+            DateTime day = e.Item.StartDate.Date;
             int nb = calendar.Items.Count( i => i.StartDate.Date == day );
+            if( nb > 1 || subjectText == String.Empty || roomText == String.Empty || promotionText == String.Empty )
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                Teacher teacher = CurrentPeriod.ListTeachers.Where( t => t.Name == teacherText ).SingleOrDefault();
+                Subject subject = CurrentPeriod.ListSubjects.Where( s => s.Name == subjectText ).Single();
+                Room room = CurrentPeriod.ListRooms.Where( r => r.Name == roomText ).Single();
+                List<Promotion> promotions = CurrentPeriod.ListPromotion.Where( p => p.Name == promotionText ).ToList();
 
-            if( nb > 1 ) e.Cancel = true;
+                Slot newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions );
+                CurrentPeriod.addSlot( newSlot );
 
-            //Teacher teacher = _mySoft.ListTeachers.Where( t => t.Name == ucPromotion1.teacherComboBox.Text ).SingleOrDefault();
-            //Subject subject = _mySoft.ListSubjects.Where(s => s.Name == ucPromotion1.subjectComboBox.Text).Single();
-            //Room room = _mySoft.ListRooms.Where( r => r.Name == ucPromotion1.roomComboBox.Text ).Single();
-            //List<Promotion> promotions = _mySoft.ListPromotion.Where( p => p.Name == ucPromotion1.promotionComboBox.Text ).ToList();
-            //DateTime date = e.Item.StartDate;
-            //bool morning = true;
-            //Slot newSlot = new Slot( date, morning, room, subject, teacher, promotions);
-
-            calendar.Items.Add( getCalendarItemFromSlot( CurrentPeriod.ListSlots[0] ) );
-            e.Item.Text = "Test" + Environment.NewLine + "Test 2" + Environment.NewLine + "Test 3";
-            
+                e.Item.StartDate = morning ? e.Item.StartDate.AddHours( 9 ) : e.Item.StartDate.AddHours( 13.5 );
+                e.Item.EndDate = e.Item.StartDate + TimeSpan.FromHours( 3.5 );
+                e.Item.Text = subjectText + Environment.NewLine + teacherText + Environment.NewLine + roomText;
+                e.Item.BackgroundColor = subject.Color;
+            }
         }
 
         void calendar_ItemCreated( object sender, CalendarItemCancelEventArgs e )
@@ -79,6 +120,7 @@ namespace Plann.Interface
 
         void fillCalendarFromSlots()
         {
+            calendar.Items.Clear();
             foreach( Slot slot in CurrentPeriod.ListSlots )
             {
                 if( slot.Date > calendar.ViewStart && slot.Date < calendar.ViewEnd )
@@ -87,6 +129,7 @@ namespace Plann.Interface
                     calendar.Items.Add( ci );
                 }
             }
+            calendar.Items.Reverse();
         }
 
         CalendarItem getCalendarItemFromSlot( Slot slot )
@@ -163,6 +206,18 @@ namespace Plann.Interface
             ucTeacher1.Visible = false;
             ucPromotion1.Visible = false;
             ucRoom1.Visible = true;
+        }
+
+        private void nextMonthButton_Click( object sender, EventArgs e )
+        {
+            CurrentPeriod.SetNextMonthView();
+            calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
+        }
+
+        private void previousMonthButton_Click( object sender, EventArgs e )
+        {
+            CurrentPeriod.SetPreviousMonthView();
+            calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
         }
 
         //Slot getSlotFromCalendarItem( CalendarItem ci)

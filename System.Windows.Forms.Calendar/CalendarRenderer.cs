@@ -196,7 +196,7 @@ namespace System.Windows.Forms.Calendar
         }
 
         /// <summary>
-        /// Gets the current height of the all day items area
+        /// Gets or sets the current height of the all day items area
         /// </summary>
         public virtual int DayTopHeight
         {
@@ -215,7 +215,7 @@ namespace System.Windows.Forms.Calendar
         }
 
         /// <summary>
-        /// Gets the height of items on day tops
+        /// Gets or sets the height of items on day tops
         /// </summary>
         public virtual int StandardItemHeight
         {
@@ -226,8 +226,10 @@ namespace System.Windows.Forms.Calendar
                     _standardItemHeight = TextRenderer.MeasureText("Ag", Calendar.Font).Height;
                 }
 
-                return _standardItemHeight + ItemTextMargin.Vertical; 
+                return _standardItemHeight + ItemTextMargin.Vertical;
             }
+            set
+            { _standardItemHeight = value; }
         }
 
         /// <summary>

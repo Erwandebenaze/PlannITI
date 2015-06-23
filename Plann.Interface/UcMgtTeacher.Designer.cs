@@ -45,52 +45,53 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(27, 22);
-            label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label1.Location = new System.Drawing.Point(36, 27);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(29, 13);
+            label1.Size = new System.Drawing.Size(37, 17);
             label1.TabIndex = 0;
             label1.Text = "Nom";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(139, 22);
-            label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label2.Location = new System.Drawing.Point(185, 27);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(66, 13);
+            label2.Size = new System.Drawing.Size(89, 17);
             label2.TabIndex = 1;
             label2.Text = "Adresse mail";
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(29, 58);
-            this.nameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.nameTextBox.Location = new System.Drawing.Point(39, 71);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(76, 20);
+            this.nameTextBox.Size = new System.Drawing.Size(100, 22);
             this.nameTextBox.TabIndex = 2;
             // 
             // mailTextBox
             // 
-            this.mailTextBox.Location = new System.Drawing.Point(141, 58);
-            this.mailTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.mailTextBox.Location = new System.Drawing.Point(188, 71);
+            this.mailTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mailTextBox.Name = "mailTextBox";
-            this.mailTextBox.Size = new System.Drawing.Size(76, 20);
+            this.mailTextBox.Size = new System.Drawing.Size(100, 22);
             this.mailTextBox.TabIndex = 3;
             // 
             // objectListView1
             // 
             this.objectListView1.AllColumns.Add(this.nameColumn);
             this.objectListView1.AllColumns.Add(this.mailColumn);
+            this.objectListView1.AlternateRowBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn,
             this.mailColumn});
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.objectListView1.Location = new System.Drawing.Point(0, 119);
-            this.objectListView1.Margin = new System.Windows.Forms.Padding(2);
+            this.objectListView1.Location = new System.Drawing.Point(0, 172);
+            this.objectListView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.objectListView1.Name = "objectListView1";
             this.objectListView1.ShowGroups = false;
+            this.objectListView1.Size = new System.Drawing.Size(405, 255);
             this.objectListView1.TabIndex = 4;
+            this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
             // 
@@ -109,10 +110,10 @@
             // 
             // validateButton
             // 
-            this.validateButton.Location = new System.Drawing.Point(97, 96);
-            this.validateButton.Margin = new System.Windows.Forms.Padding(2);
+            this.validateButton.Location = new System.Drawing.Point(129, 118);
+            this.validateButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.validateButton.Name = "validateButton";
-            this.validateButton.Size = new System.Drawing.Size(56, 19);
+            this.validateButton.Size = new System.Drawing.Size(75, 23);
             this.validateButton.TabIndex = 5;
             this.validateButton.Text = "Valider";
             this.validateButton.UseVisualStyleBackColor = true;
@@ -121,9 +122,10 @@
             // returnLink
             // 
             this.returnLink.AutoSize = true;
-            this.returnLink.Location = new System.Drawing.Point(245, 99);
+            this.returnLink.Location = new System.Drawing.Point(327, 122);
+            this.returnLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.returnLink.Name = "returnLink";
-            this.returnLink.Size = new System.Drawing.Size(39, 13);
+            this.returnLink.Size = new System.Drawing.Size(51, 17);
             this.returnLink.TabIndex = 7;
             this.returnLink.TabStop = true;
             this.returnLink.Text = "Retour";
@@ -131,7 +133,7 @@
             // 
             // UcMgtTeacher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.returnLink);
             this.Controls.Add(this.validateButton);
@@ -140,9 +142,9 @@
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(label2);
             this.Controls.Add(label1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UcMgtTeacher";
-            this.Size = new System.Drawing.Size(304, 347);
+            this.Size = new System.Drawing.Size(405, 427);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

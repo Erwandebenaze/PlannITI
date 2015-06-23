@@ -143,6 +143,7 @@
             this.subjectComboBox.Name = "subjectComboBox";
             this.subjectComboBox.Size = new System.Drawing.Size(121, 24);
             this.subjectComboBox.TabIndex = 7;
+            this.subjectComboBox.SelectedIndexChanged += new System.EventHandler(this.subjectComboBox_SelectedIndexChanged);
             // 
             // roomComboBox
             // 

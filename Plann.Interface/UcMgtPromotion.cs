@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Plann.Core;
 
@@ -38,7 +31,6 @@ namespace Plann.Interface
             base.OnLoad( e );
             InitializeOlv();
         }
-
         private void InitializeOlv()
         {
             try
@@ -49,9 +41,7 @@ namespace Plann.Interface
             {
                 Console.Write( e );
             }
-
         }
-
         private void validate_Click( object sender, EventArgs e )
         {
             if( !String.IsNullOrWhiteSpace( nameTextBox.Text ) && !String.IsNullOrWhiteSpace( mailTextBox.Text ) )
@@ -63,11 +53,10 @@ namespace Plann.Interface
                 else if( SoftContext.CurrentPeriod.ListPromotion.Contains( new Promotion( nameTextBox.Text, mailTextBox.Text, 5 ) ) )
                 {
                     MessageBox.Show( "Cette promotion a déjà été créée" );
-
                 }
                 else
                 {
-                     int numberOfStudents;
+                    int numberOfStudents;
                     if (int.TryParse(numberOfStudentsTextBox.Text, out numberOfStudents))
                     {
                         SoftContext.CurrentPeriod.addPromotion( new Promotion( nameTextBox.Text,mailTextBox.Text , numberOfStudents ) );
@@ -78,15 +67,7 @@ namespace Plann.Interface
                     }
                 }
             }
-
         }
-
-        private void returnLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
-        {
-            this.Visible = false;
-            Parent.Controls[SoftContext.CurrentPeriod.CurrentUcFilter].Visible = true;
-        }
-
         private void retour_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
             this.Visible = false;

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Plann.Core;
 
@@ -17,6 +10,13 @@ namespace Plann.Interface
         {
             InitializeComponent();
         }
+        internal delegate void MyEventHandler();
+        internal event MyEventHandler reload;
+        internal void OnReload()
+        {
+            if( reload != null )
+                reload();
+        }
         IPlannContext SoftContext
         {
             get { return (IPlannContext)TopLevelControl; }
@@ -26,7 +26,6 @@ namespace Plann.Interface
             base.OnLoad( e );
             InitializeOlv();
         }
-
         private void InitializeOlv()
         {
             try
@@ -37,20 +36,6 @@ namespace Plann.Interface
             {
                 Console.Write( e );
             }
-        
-        }
-
-        private bool IsValidEmail( string email )
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress( email );
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
         }
         private void validateButton_Click( object sender, EventArgs e )
         {
@@ -59,7 +44,6 @@ namespace Plann.Interface
                 if( SoftContext.CurrentPeriod.ListRooms.Contains( new Room( nameTextBox.Text,5) ) )
                 {
                     MessageBox.Show( "Cette salle a déjà été créée." );
-
                 } else
                 {
                     int numberOfSeats;
@@ -71,17 +55,14 @@ namespace Plann.Interface
                     {
                         MessageBox.Show( "Le nombre de place entré n'est pas un nombre entier." );
                     }
-                    
-
                 }
-            }
-            
+            }          
         }
-
         private void returnLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
             this.Visible = false;
             Parent.Controls[ SoftContext.CurrentPeriod.CurrentUcFilter ].Visible = true;
+            OnReload();
         }
     }
 }

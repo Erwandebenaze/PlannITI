@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Plann.Core;
 
@@ -21,12 +14,20 @@ namespace Plann.Interface
         {
             get { return (IPlannContext)TopLevelControl; }
         }
+        internal delegate void MyEventHandler();
+        internal event MyEventHandler reload;
+        internal void OnReload()
+        {
+            if( reload != null )
+            {
+                reload();
+            }
+        }
         protected override void OnLoad( EventArgs e )
         {
             base.OnLoad( e );
             InitializeOlv();
         }
-
         private void InitializeOlv()
         {
             try
@@ -36,10 +37,8 @@ namespace Plann.Interface
             catch( NullReferenceException e )
             {
                 Console.Write( e );
-            }
-        
+            } 
         }
-
         private bool IsValidEmail( string email )
         {
             try
@@ -62,20 +61,18 @@ namespace Plann.Interface
                 } else if(SoftContext.CurrentPeriod.ListTeachers.Contains(new Teacher(nameTextBox.Text, mailTextBox.Text)))
                 {
                     MessageBox.Show( "Ce professeur a déjà été créé" );
-
                 } else
                 {
                     SoftContext.CurrentPeriod.addTeacher( new Teacher( nameTextBox.Text, mailTextBox.Text ) );
                     InitializeOlv();
                 }
-            }
-            
+            }  
         }
-
         private void returnLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
             this.Visible = false;
             Parent.Controls[SoftContext.CurrentPeriod.CurrentUcFilter].Visible = true;
+            OnReload();
         }
     }
 }

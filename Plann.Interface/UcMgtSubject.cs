@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Plann.Core;
 
@@ -17,38 +12,46 @@ namespace Plann.Interface
         public UcMgtSubject()
         {
             InitializeComponent();
-
-            
+            InitializeComboBox();
+        }
+        private void InitializeComboBox()
+        {
+            teacherNameComboBox.Items.Clear();
+            try
+            {
+                foreach( Teacher t in SoftContext.CurrentPeriod.ListTeachers )
+                {
+                    teacherNameComboBox.Items.Add( t.Name );
+                }
+            }
+            catch( NullReferenceException e )
+            {
+                Console.Write( e );
+            }
+        }
+        internal delegate void MyEventHandler();
+        internal event MyEventHandler reload;
+        internal void OnReload()
+        {
+            if(reload != null)
+            {
+                reload();
+            }
         }
         IPlannContext SoftContext
         {
             get { return (IPlannContext)TopLevelControl; }
         }
-
-        //String CurrentFilter
-        //{
-        //    get { return TopLevelControl }
-        //}
-
         protected override void OnLoad( EventArgs e )
         {
             base.OnLoad( e );
             InitializeOlv();
         }
-
         private void InitializeOlv()
         {
             try
             {
                 this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListSubjects );
-            }
-            catch (NullReferenceException e) 
-            {
-                Console.Write( e );
-            }
-
-            try
-            {
                 foreach( Teacher t in SoftContext.CurrentPeriod.ListTeachers )
                 {
                     teacherNameComboBox.Items.Add( t.Name );
@@ -58,10 +61,7 @@ namespace Plann.Interface
             {
                 Console.Write( e );
             }
-
         }
-
-
         private void button1_Click( object sender, EventArgs e )
         {
             if( colorDialog1.ShowDialog() == DialogResult.OK )
@@ -70,13 +70,11 @@ namespace Plann.Interface
                 int color = colorDialog1.Color.A;
             }
         }
-
         private void manageTeachersLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
-            // Load UcMgtTeacher
-           
+            this.Visible = false;
+            Parent.Controls["ucMgtTeacher1"].Visible = true;       
         }
-
         private void validateButton_Click( object sender, EventArgs e )
         {
             if(String.IsNullOrWhiteSpace(nameTextBox.Text)|| button1.BackColor == null)
@@ -96,19 +94,14 @@ namespace Plann.Interface
                     }
                     else
                     {
-                        // Erreur probable sur la récupération du professeur
-                        // Récupérer le professeur selon son nom.
                         Teacher t = SoftContext.CurrentPeriod.ListTeachers.Where( th => th.Name == teacherNameComboBox.SelectedItem.ToString() ).Single();
                         tmpSubject = new Subject( nameTextBox.Text, t, button1.BackColor );
                     }
-
                     SoftContext.CurrentPeriod.addSubject( tmpSubject );
                     InitializeOlv();
                 }
-
             }
         }
-
         private void objectListView1_FormatCell( object sender, BrightIdeasSoftware.FormatCellEventArgs e )
         {
            if( e.Column.AspectName == "Color")
@@ -117,15 +110,12 @@ namespace Plann.Interface
                e.SubItem.BackColor = c;
                e.SubItem.Text = "";
            }
-
-
-
         }
-
         private void returnLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
             this.Visible = false;
             Parent.Controls[SoftContext.CurrentPeriod.CurrentUcFilter].Visible = true;
+            OnReload();
         }
     }
 }

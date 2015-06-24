@@ -64,6 +64,7 @@ namespace Plann.Interface
         {
             // Find a way to know if morning on click
             bool morning = true;
+
             string teacherText;
             string subjectText;
             string roomText;

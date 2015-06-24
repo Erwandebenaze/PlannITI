@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtendedCalendarRenderer.cs" />
     <Compile Include="IPlannContext.cs" />
     <Compile Include="PlannITI.cs">
       <SubType>Form</SubType>

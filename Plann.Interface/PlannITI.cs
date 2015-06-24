@@ -19,7 +19,9 @@ namespace Plann.Interface
             // Reloads items when scrolling
             this.MouseWheel += new MouseEventHandler( ReloadItems );
             calendar.ItemsTimeFormat = "HH : mm";
-            calendar.Renderer.StandardItemHeight = calendar.Renderer.StandardItemHeight + 30;
+
+            //calendar.Renderer = new ExtendedCalendarRenderer( calendar );
+            //calendar.Renderer.StandardItemHeight = calendar.Renderer.StandardItemHeight + 30;
 
             calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
 
@@ -29,10 +31,17 @@ namespace Plann.Interface
             calendar.ItemCreating += calendar_ItemCreating;
             calendar.ItemCreated += calendar_ItemCreated;
             calendar.ItemClick += calendar_ItemClick;
+            calendar.MouseWheel += ReloadItems;
 
             ucMgtSubject1.reload += callReload;
             ucMgtRoom1.reload += callReload;
             ucMgtTeacher1.reload += callReload;
+        }
+
+        void calendar_MouseWheelDoNothing( object sender, MouseEventArgs e )
+        {
+            HandledMouseEventArgs ee = (HandledMouseEventArgs)e;
+            ee.Handled = true;
         }
 
         private void ReloadItems( object sender, MouseEventArgs e )
@@ -148,6 +157,7 @@ namespace Plann.Interface
             endDate = startDate.AddHours( 3 );
 
             CalendarItem ci = new CalendarItem( calendar, startDate, endDate, slotFormattedText );
+            ci.BackgroundColor = slot.AssociatedSubject.Color;
             return ci;
         } 
         #endregion
@@ -210,12 +220,14 @@ namespace Plann.Interface
         {
             CurrentPeriod.SetNextMonthView();
             calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
+            fillCalendarFromSlots();
         }
 
         private void previousMonthButton_Click( object sender, EventArgs e )
         {
             CurrentPeriod.SetPreviousMonthView();
             calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
+            fillCalendarFromSlots();
         }
 
         private void périodeToolStripMenuItem_Click( object sender, EventArgs e )
@@ -226,6 +238,7 @@ namespace Plann.Interface
             ucTeacher1.Visible = false;
             ucMgtPeriod1.Visible = true;
         }
+
         //Slot getSlotFromCalendarItem( CalendarItem ci)
         //{
         //    Teacher teacher = _mySoft.ListTeachers.Where(t => t.Name == ci.)

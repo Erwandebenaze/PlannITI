@@ -259,13 +259,31 @@ namespace Plann.Core
 
         public void SetNextMonthView()
         {
-            _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( 1 );
-            _currentViewMonthStart = _currentViewMonthStart.AddMonths( 1 );
+            if( _currentViewMonthEnd.AddMonths( 1 ) < _endingDate )
+            {
+                _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( 1 );
+                _currentViewMonthStart = _currentViewMonthStart.AddMonths( 1 );
+            }
+            else
+            {
+                _currentViewMonthEnd = _endingDate;
+                _currentViewMonthStart = _endingDate.AddMonths( -1 );
+            }
+
         }
         public void SetPreviousMonthView()
         {
-            _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( -1 );
-            _currentViewMonthStart = _currentViewMonthStart.AddMonths( -1 );
+            if( _currentViewMonthStart.AddMonths( -1 ) > _begginningDate )
+            {
+                _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( -1 );
+                _currentViewMonthStart = _currentViewMonthStart.AddMonths( -1 );
+            }
+            else
+            {
+                _currentViewMonthEnd = _begginningDate.AddMonths(1);
+                _currentViewMonthStart = _begginningDate;
+            }
+            
         }
     }
 }

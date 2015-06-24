@@ -60,6 +60,7 @@ namespace Plann.Interface
                 begginingDateText.Text = e.End.ToShortDateString();
             } else if( _state == "end")
             {
+
                 endingDateText.Text = e.End.ToShortDateString();
             }
             monthCalendar1.Visible = false;

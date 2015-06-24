@@ -31,6 +31,7 @@
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label4;
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.begginingButton = new System.Windows.Forms.Button();
@@ -38,9 +39,15 @@
             this.endingDateText = new System.Windows.Forms.Label();
             this.endingButton = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.holidaysButton = new System.Windows.Forms.Button();
+            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -72,7 +79,7 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(249, 176);
+            this.monthCalendar1.Location = new System.Drawing.Point(51, 175);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 3;
             this.monthCalendar1.Visible = false;
@@ -124,7 +131,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(438, 37);
+            this.linkLabel1.Location = new System.Drawing.Point(29, 100);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(51, 17);
             this.linkLabel1.TabIndex = 9;
@@ -132,10 +139,60 @@
             this.linkLabel1.Text = "Retour";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // monthCalendar2
+            // 
+            this.monthCalendar2.Location = new System.Drawing.Point(51, 175);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 10;
+            this.monthCalendar2.Visible = false;
+            this.monthCalendar2.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar2_DateSelected);
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(386, 37);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(215, 17);
+            label4.TabIndex = 11;
+            label4.Text = "Liste des jours fériés + vacances";
+            // 
+            // holidaysButton
+            // 
+            this.holidaysButton.Location = new System.Drawing.Point(389, 57);
+            this.holidaysButton.Name = "holidaysButton";
+            this.holidaysButton.Size = new System.Drawing.Size(75, 23);
+            this.holidaysButton.TabIndex = 12;
+            this.holidaysButton.Text = "Choisir";
+            this.holidaysButton.UseVisualStyleBackColor = true;
+            this.holidaysButton.Click += new System.EventHandler(this.holidaysButton_Click);
+            // 
+            // objectListView1
+            // 
+            this.objectListView1.AllColumns.Add(this.olvColumn1);
+            this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1});
+            this.objectListView1.Location = new System.Drawing.Point(389, 134);
+            this.objectListView1.Name = "objectListView1";
+            this.objectListView1.Size = new System.Drawing.Size(228, 257);
+            this.objectListView1.TabIndex = 13;
+            this.objectListView1.UseCompatibleStateImageBehavior = false;
+            this.objectListView1.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "Date.ToShortDateString";
+            this.olvColumn1.Text = "Dates";
+            this.olvColumn1.UseFiltering = false;
+            this.olvColumn1.Width = 150;
+            // 
             // UcMgtPeriod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.objectListView1);
+            this.Controls.Add(this.holidaysButton);
+            this.Controls.Add(label4);
+            this.Controls.Add(this.monthCalendar2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.endingButton);
             this.Controls.Add(this.endingDateText);
@@ -148,6 +205,7 @@
             this.Controls.Add(label1);
             this.Name = "UcMgtPeriod";
             this.Size = new System.Drawing.Size(620, 533);
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,5 +220,9 @@
         private System.Windows.Forms.Label endingDateText;
         private System.Windows.Forms.Button endingButton;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.MonthCalendar monthCalendar2;
+        private System.Windows.Forms.Button holidaysButton;
+        private BrightIdeasSoftware.ObjectListView objectListView1;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
     }
 }

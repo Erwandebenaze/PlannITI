@@ -23,6 +23,9 @@ namespace Plann.Core
         List<Teacher> _listTeachers;
         List<Promotion> _listPromotion;
         string _currentUcFilter;
+        DateTime _currentViewMonthStart;
+        DateTime _currentViewMonthEnd;
+
         public Period( string name, DateTime begginningDate, DateTime endingDate, List<DateTime> listOfHolidays)
         {
             if( String.IsNullOrWhiteSpace( name ) ) throw new ArgumentException( "Name est null ou vide" );
@@ -37,6 +40,9 @@ namespace Plann.Core
             _listTeachers = new List<Teacher>();
             _listSlots = new List<Slot>();
             _listPromotion = new List<Promotion>();
+            _currentViewMonthStart = GetFirstMonth( _begginningDate );
+            _currentViewMonthEnd = _currentViewMonthStart.AddMonths( 1 );
+
             Teacher spi = new Teacher( "Spi", "spi@gmail.com" );
             Subject pi = new Subject( "PI", spi, Color.Red );
             addSubject( pi );
@@ -46,8 +52,17 @@ namespace Plann.Core
             addTeacher( spi );
             addRoom( e5 );
             addPromotion( iti );
-            addSlot( new Slot( new DateTime( 2015, 06, 22 ), true, e5, pi, spi, _listPromotion ) );
-            addSlot( new Slot( new DateTime( 2015, 06, 22 ), false, e5, pi, spi, _listPromotion ) );
+            addSlot( new Slot( new DateTime( 2015, 03, 20 ), true, e5, pi, spi, _listPromotion ) );
+            addSlot( new Slot( new DateTime( 2015, 03, 20 ), false, e5, pi, spi, _listPromotion ) );
+        }
+
+        private DateTime GetFirstMonth( DateTime date )
+        {
+            while( date.Day > 1 )
+            {
+                date = date.AddDays( -1 );
+            }
+            return date;
         }
 
         public bool addHoliday(DateTime date)
@@ -100,6 +115,14 @@ namespace Plann.Core
         public List<Slot> ListSlots
         {
             get { return _listSlots; }
+        }
+        public DateTime CurrentViewMonthEnd
+        {
+            get { return _currentViewMonthEnd; }
+        }
+        public DateTime CurrentViewMonthStart
+        {
+            get { return _currentViewMonthStart; }
         }
         #endregion
 
@@ -232,6 +255,17 @@ namespace Plann.Core
             formatter.Serialize( stream, this );
 
             stream.Close();
+        }
+
+        public void SetNextMonthView()
+        {
+            _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( 1 );
+            _currentViewMonthStart = _currentViewMonthStart.AddMonths( 1 );
+        }
+        public void SetPreviousMonthView()
+        {
+            _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( -1 );
+            _currentViewMonthStart = _currentViewMonthStart.AddMonths( -1 );
         }
     }
 }

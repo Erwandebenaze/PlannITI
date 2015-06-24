@@ -13,9 +13,11 @@ namespace Plann.Interface
     public partial class UcMgtPeriod : UserControl
     {
         string _state;
+        List<DateTime> _listHolidays;
         public UcMgtPeriod()
         {
             InitializeComponent();
+            _listHolidays = new List<DateTime>();
         }
         internal delegate void MyEventHandler();
         internal event MyEventHandler reload;
@@ -58,9 +60,32 @@ namespace Plann.Interface
                 begginingDateText.Text = e.End.ToShortDateString();
             } else if( _state == "end")
             {
+
                 endingDateText.Text = e.End.ToShortDateString();
             }
             monthCalendar1.Visible = false;
+        }
+
+        private void monthCalendar2_DateSelected( object sender, DateRangeEventArgs e )
+        {
+            if( _state == "holidays")
+            {
+                _listHolidays.Add( e.End );
+            }
+
+            objectListView1.SetObjects( _listHolidays );
+        }
+
+        private void holidaysButton_Click( object sender, EventArgs e )
+        {
+            monthCalendar1.Visible = false;
+            monthCalendar2.Visible = true;
+            _state = "holidays";
+
+
+
+
+            
         }
     }
 }

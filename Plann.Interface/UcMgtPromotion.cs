@@ -6,6 +6,7 @@ namespace Plann.Interface
 {
     public partial class UcMgtPromotion : UserControl
     {
+        Promotion _pTmp;
         public UcMgtPromotion()
         {
             InitializeComponent();
@@ -50,18 +51,24 @@ namespace Plann.Interface
                 {
                     MessageBox.Show( "L'adresse email n'est pas valide." );
                 }
-                else if( SoftContext.CurrentPeriod.ListPromotion.Contains( new Promotion( nameTextBox.Text, mailTextBox.Text, 5 ) ) )
+                else if( SoftContext.CurrentPeriod.ListPromotion.Contains( new Promotion( nameTextBox.Text, mailTextBox.Text, 5 ) ) && validate.Text =="Valider" )
                 {
                     MessageBox.Show( "Cette promotion a déjà été créée" );
                 }
                 else
                 {
                     int numberOfStudents;
-                    if (int.TryParse(numberOfStudentsTextBox.Text, out numberOfStudents))
+                    if (int.TryParse(numberOfStudentsTextBox.Text, out numberOfStudents) && validate.Text == "Valider")
                     {
                         SoftContext.CurrentPeriod.addPromotion( new Promotion( nameTextBox.Text,mailTextBox.Text , numberOfStudents ) );
                         InitializeOlv();
-                    } else
+                    } else if (int.TryParse(numberOfStudentsTextBox.Text, out numberOfStudents) && validate.Text == "Modifier")
+                    {
+                        SoftContext.CurrentPeriod.editPromotion( _pTmp, new Promotion( nameTextBox.Text, mailTextBox.Text, numberOfStudents ) );
+                        InitializeOlv();
+                        validate.Text = "Valider";
+                    }
+                    else
                     {
                         MessageBox.Show( "Le nombre d'élèves entré n'est pas un nombre entier." );
                     }
@@ -72,6 +79,19 @@ namespace Plann.Interface
         {
             this.Visible = false;
             Parent.Controls[SoftContext.CurrentPeriod.CurrentUcFilter].Visible = true;
+        }
+
+        private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )
+        {
+            if(e.Model != null)
+            {
+                _pTmp = (Promotion)e.Model;
+                nameTextBox.Text = _pTmp.Name;
+                numberOfStudentsTextBox.Text = _pTmp.NumberOfStudents.ToString();
+                mailTextBox.Text = _pTmp.Mail;
+                validate.Text = "Modifier";
+            }
+
         }
     }
 }

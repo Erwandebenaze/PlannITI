@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Plann.Core;
 
 namespace Plann.Interface
 {
@@ -14,10 +15,14 @@ namespace Plann.Interface
     {
         string _state;
         List<DateTime> _listHolidays;
+        DateTime _begDate;
+        DateTime _endDate;
         public UcMgtPeriod()
         {
             InitializeComponent();
             _listHolidays = new List<DateTime>();
+            _begDate = new DateTime() ;
+            _endDate = new DateTime();
         }
         internal delegate void MyEventHandler();
         internal event MyEventHandler reload;
@@ -58,10 +63,11 @@ namespace Plann.Interface
             if( _state == "begin")
             {
                 begginingDateText.Text = e.End.ToShortDateString();
+                _begDate = e.End;
             } else if( _state == "end")
             {
-
                 endingDateText.Text = e.End.ToShortDateString();
+                _endDate = e.End;
             }
             monthCalendar1.Visible = false;
         }
@@ -78,14 +84,45 @@ namespace Plann.Interface
 
         private void holidaysButton_Click( object sender, EventArgs e )
         {
-            monthCalendar1.Visible = false;
-            monthCalendar2.Visible = true;
-            _state = "holidays";
+            if(_state !="holidays")
+            {
+                monthCalendar1.Visible = false;
+                monthCalendar2.Visible = true;
+                _state = "holidays";
+                holidaysButton.Text = "Fin";
+            } else
+            {
+                monthCalendar2.Visible = false;
+                _state = "autre";
+                holidaysButton.Text = "Choisir";
 
+            }
+        }
 
+        private void validatePeriod_Click( object sender, EventArgs e )
+        {
+            if( !String.IsNullOrWhiteSpace( nameTextBox.Text ) && !String.IsNullOrWhiteSpace( begginingDateText.Text ) && !String.IsNullOrWhiteSpace( endingDateText.Text ) && _listHolidays.Count > 0) 
+            {
+                if( !_listHolidays.Where( d => d > _endDate ).Any() && !_listHolidays.Where( d => d < _begDate ).Any() )
+                {
+                    SoftContext.CurrentPeriod.MySoft.ListPeriod.Add( new Period( SoftContext.CurrentPeriod.MySoft, nameTextBox.Text, _begDate, _endDate, _listHolidays ) );
+                } else
+                {
+                    MessageBox.Show( "Une date dans les jours fériés ou de vacances n'est pas dans la période définie." );
+                }
 
+                reinitilisation();
+            }
+        }
 
-            
+        private void reinitilisation()
+        {
+            _state = null;
+            _listHolidays.Clear();
+            objectListView1.Clear();
+            endingDateText.Text = "";
+            begginingDateText.Text = "";
+            nameTextBox.Text = "";
         }
     }
 }

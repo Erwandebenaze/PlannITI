@@ -36,8 +36,8 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ucMgtPeriod1 = new Plann.Interface.UcMgtPeriod();
             this.ucMgtPromotion1 = new Plann.Interface.UcMgtPromotion();
-            this.nextMonthButton = new System.Windows.Forms.Button();
             this.previousMonthButton = new System.Windows.Forms.Button();
+            this.nextMonthButton = new System.Windows.Forms.Button();
             this.ucTeacher1 = new Plann.Interface.UcTeacher();
             this.ucRoom1 = new Plann.Interface.UcRoom();
             this.ucMgtTeacher1 = new Plann.Interface.UcMgtTeacher();
@@ -62,6 +62,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -91,7 +92,7 @@
             // 
             this.ucMgtPeriod1.Location = new System.Drawing.Point(0, 0);
             this.ucMgtPeriod1.Name = "ucMgtPeriod1";
-            this.ucMgtPeriod1.Size = new System.Drawing.Size(843, 533);
+            this.ucMgtPeriod1.Size = new System.Drawing.Size(843, 787);
             this.ucMgtPeriod1.TabIndex = 7;
             // 
             // ucMgtPromotion1
@@ -101,6 +102,26 @@
             this.ucMgtPromotion1.Size = new System.Drawing.Size(575, 495);
             this.ucMgtPromotion1.TabIndex = 6;
             this.ucMgtPromotion1.Visible = false;
+            // 
+            // previousMonthButton
+            // 
+            this.previousMonthButton.Location = new System.Drawing.Point(21, 343);
+            this.previousMonthButton.Name = "previousMonthButton";
+            this.previousMonthButton.Size = new System.Drawing.Size(90, 23);
+            this.previousMonthButton.TabIndex = 7;
+            this.previousMonthButton.Text = "Mois précédent";
+            this.previousMonthButton.UseVisualStyleBackColor = true;
+            this.previousMonthButton.Click += new System.EventHandler(this.previousMonthButton_Click);
+            // 
+            // nextMonthButton
+            // 
+            this.nextMonthButton.Location = new System.Drawing.Point(147, 343);
+            this.nextMonthButton.Name = "nextMonthButton";
+            this.nextMonthButton.Size = new System.Drawing.Size(75, 23);
+            this.nextMonthButton.TabIndex = 6;
+            this.nextMonthButton.Text = "Mois suivant";
+            this.nextMonthButton.UseVisualStyleBackColor = true;
+            this.nextMonthButton.Click += new System.EventHandler(this.nextMonthButton_Click);
             // 
             // ucTeacher1
             // 
@@ -185,30 +206,11 @@
             this.calendar.Margin = new System.Windows.Forms.Padding(4);
             this.calendar.MaximumFullDays = 0;
             this.calendar.Name = "calendar";
-            this.calendar.Size = new System.Drawing.Size(623, 641);
+            this.calendar.Size = new System.Drawing.Size(939, 790);
             this.calendar.TabIndex = 0;
             this.calendar.Text = "calendar1";
             // 
-            // nextMonthButton
-            // 
-            this.nextMonthButton.Location = new System.Drawing.Point(147, 343);
-            this.nextMonthButton.Name = "nextMonthButton";
-            this.nextMonthButton.Size = new System.Drawing.Size(75, 23);
-            this.nextMonthButton.TabIndex = 6;
-            this.nextMonthButton.Text = "Mois suivant";
-            this.nextMonthButton.UseVisualStyleBackColor = true;
-            this.nextMonthButton.Click += new System.EventHandler(this.nextMonthButton_Click);
-            // 
-            // previousMonthButton
-            // 
-            this.previousMonthButton.Location = new System.Drawing.Point(21, 343);
-            this.previousMonthButton.Name = "previousMonthButton";
-            this.previousMonthButton.Size = new System.Drawing.Size(90, 23);
-            this.previousMonthButton.TabIndex = 7;
-            this.previousMonthButton.Text = "Mois précédent";
-            this.previousMonthButton.UseVisualStyleBackColor = true;
-            this.previousMonthButton.Click += new System.EventHandler(this.previousMonthButton_Click);
-            // 
+            // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {

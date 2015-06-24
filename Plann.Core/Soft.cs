@@ -25,11 +25,15 @@ namespace Plann.Core
             listDateTime.Add( new DateTime( 2015, 05, 01 ) );
             listDateTime.Add( new DateTime( 2015, 05, 14 ) );
             listDateTime.Add( new DateTime( 2015, 05, 15 ) );
-            Period p = new Period( "2015M", new DateTime( 2015, 03, 10 ), new DateTime( 2015, 07, 10 ), listDateTime );
+            Period p = new Period( this,"2015M", new DateTime( 2015, 03, 10 ), new DateTime( 2015, 07, 10 ), listDateTime );
             _currentPeriod = p;
             _listPeriod.Add( p );
         }
-
+        public List<Period> ListPeriod
+        {
+            get { return _listPeriod; }
+            set { _listPeriod = value; }
+        }
 
         public Period CurrentPeriod
         {

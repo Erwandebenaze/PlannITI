@@ -148,11 +148,11 @@
             this.colorColumn,
             this.teacherColumn});
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.objectListView1.Location = new System.Drawing.Point(0, 388);
+            this.objectListView1.Location = new System.Drawing.Point(0, 159);
             this.objectListView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.objectListView1.Name = "objectListView1";
             this.objectListView1.ShowGroups = false;
-            this.objectListView1.Size = new System.Drawing.Size(409, 118);
+            this.objectListView1.Size = new System.Drawing.Size(409, 347);
             this.objectListView1.TabIndex = 17;
             this.objectListView1.UseCellFormatEvents = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;

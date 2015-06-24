@@ -96,6 +96,26 @@
             this.previousMonthButton.Text = "Mois précédent";
             this.previousMonthButton.UseVisualStyleBackColor = true;
             this.previousMonthButton.Click += new System.EventHandler(this.previousMonthButton_Click);
+            // previousMonthButton
+            // 
+            this.previousMonthButton.Location = new System.Drawing.Point(21, 343);
+            this.previousMonthButton.Name = "previousMonthButton";
+            this.previousMonthButton.Size = new System.Drawing.Size(90, 23);
+            this.previousMonthButton.TabIndex = 7;
+            this.previousMonthButton.Text = "Mois précédent";
+            this.previousMonthButton.UseVisualStyleBackColor = true;
+            this.previousMonthButton.Click += new System.EventHandler(this.previousMonthButton_Click);
+            // 
+            // nextMonthButton
+            // 
+            this.nextMonthButton.Location = new System.Drawing.Point(147, 343);
+            this.nextMonthButton.Name = "nextMonthButton";
+            this.nextMonthButton.Size = new System.Drawing.Size(75, 23);
+            this.nextMonthButton.TabIndex = 6;
+            this.nextMonthButton.Text = "Mois suivant";
+            this.nextMonthButton.UseVisualStyleBackColor = true;
+            this.nextMonthButton.Click += new System.EventHandler(this.nextMonthButton_Click);
+            // 
             // 
             // nextMonthButton
             // 
@@ -137,7 +157,7 @@
             this.calendar.Location = new System.Drawing.Point(0, 0);
             this.calendar.MaximumFullDays = 0;
             this.calendar.Name = "calendar";
-            this.calendar.Size = new System.Drawing.Size(623, 641);
+            this.calendar.Size = new System.Drawing.Size(939, 790);
             this.calendar.TabIndex = 0;
             this.calendar.Text = "calendar1";
             // 

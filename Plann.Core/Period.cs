@@ -25,10 +25,12 @@ namespace Plann.Core
         string _currentUcFilter;
         DateTime _currentViewMonthStart;
         DateTime _currentViewMonthEnd;
+        Soft _mySoft;
 
-        public Period( string name, DateTime begginningDate, DateTime endingDate, List<DateTime> listOfHolidays)
+        public Period(Soft mySoft, string name, DateTime begginningDate, DateTime endingDate, List<DateTime> listOfHolidays)
         {
             if( String.IsNullOrWhiteSpace( name ) ) throw new ArgumentException( "Name est null ou vide" );
+            if( mySoft == null ) throw new ArgumentNullException( "mySoft est null" );
             if( begginningDate == null || endingDate == null ) throw new ArgumentNullException();
             _name = name;
             _begginningDate = begginningDate;
@@ -42,6 +44,7 @@ namespace Plann.Core
             _listPromotion = new List<Promotion>();
             _currentViewMonthStart = GetFirstMonth( _begginningDate );
             _currentViewMonthEnd = _currentViewMonthStart.AddMonths( 1 );
+            _mySoft = mySoft;
 
             Teacher spi = new Teacher( "Spi", "spi@gmail.com" );
             Subject pi = new Subject( "PI", spi, Color.Red );
@@ -77,6 +80,10 @@ namespace Plann.Core
         {
             get { return _currentUcFilter; }
             set { _currentUcFilter = value; }
+        }
+        public Soft MySoft
+        {
+            get { return _mySoft; }
         }
         public string Name
         {

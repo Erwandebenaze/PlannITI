@@ -6,6 +6,9 @@ namespace Plann.Interface
 {
     public partial class UcTeacher : UserControl
     {
+        public delegate void SelectionTeacherChanged();
+        public event SelectionTeacherChanged TeacherChanged;
+
         public UcTeacher()
         {
             InitializeComponent();
@@ -14,6 +17,13 @@ namespace Plann.Interface
         {
             get { return (IPlannContext)TopLevelControl; }
         }
+
+        public void OnTeacherChanged()
+        {
+            if( TeacherChanged != null )
+                TeacherChanged();
+        }
+
         internal void InitializeComboBox()
         {
             #region ClearComboBox
@@ -70,5 +80,10 @@ namespace Plann.Interface
             Parent.Controls["ucMgtPromotion1"].Visible = true;
         } 
         #endregion
+
+        private void teacherComboBox_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            OnTeacherChanged();
+        }
     }
 }

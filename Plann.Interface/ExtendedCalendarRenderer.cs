@@ -21,7 +21,7 @@ namespace Plann.Interface
         {
             get
             {
-                return base.StandardItemHeight;
+                return base.StandardItemHeight + 30;
             }
             //set
             //{

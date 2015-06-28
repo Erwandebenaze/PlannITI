@@ -16,37 +16,34 @@ namespace Plann.Interface
             _mySoft = new Soft();
             CurrentPeriod.CurrentUcFilter = "ucPromotion1";
             InitializeComponent();
-            // Reloads items when scrolling
-            this.MouseWheel += new MouseEventHandler( ReloadItems );
+
             calendar.ItemsTimeFormat = "HH : mm";
 
-            //calendar.Renderer = new ExtendedCalendarRenderer( calendar );
-            //calendar.Renderer.StandardItemHeight = calendar.Renderer.StandardItemHeight + 30;
+            //Extended renderer for right Item Height
+            calendar.Renderer = new ExtendedCalendarRenderer( calendar );
 
             calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
 
             Console.WriteLine( calendar.ViewStart + " " + calendar.ViewEnd );
-            fillCalendarFromSlots();
+
+            LoadItems();
 
             calendar.ItemCreating += calendar_ItemCreating;
             calendar.ItemCreated += calendar_ItemCreated;
             calendar.ItemClick += calendar_ItemClick;
-            calendar.MouseWheel += ReloadItems;
 
             ucMgtSubject1.reload += callReload;
             ucMgtRoom1.reload += callReload;
             ucMgtTeacher1.reload += callReload;
-        }
-
-        void calendar_MouseWheelDoNothing( object sender, MouseEventArgs e )
-        {
-            HandledMouseEventArgs ee = (HandledMouseEventArgs)e;
-            ee.Handled = true;
+            ucPromotion1.PromotionChanged += LoadItems;
+            ucPromotion1.SectorChanged += LoadItems;
+            ucRoom1.RoomChanged += LoadItems;
+            ucTeacher1.TeacherChanged += LoadItems;
         }
 
         private void ReloadItems( object sender, MouseEventArgs e )
         {
-            fillCalendarFromSlots();
+            LoadItems();
         }
 
         public Period CurrentPeriod
@@ -78,6 +75,8 @@ namespace Plann.Interface
             string subjectText;
             string roomText;
             string promotionText;
+            bool? il = null;
+            string sectorText = null;
 
             switch( CurrentPeriod.CurrentUcFilter )
             {
@@ -86,18 +85,49 @@ namespace Plann.Interface
                     subjectText = ucPromotion1.subjectComboBox.Text;
                     roomText = ucPromotion1.roomComboBox.Text;
                     promotionText = ucPromotion1.promotionComboBox.Text;
+                    if( ucPromotion1.sectorComboBox.Text == "IL" ) 
+                    {
+                        il = true;
+                        sectorText = "IL";
+                    }
+                    else if( ucPromotion1.sectorComboBox.Text == "SR" ) 
+                    {
+                        il = false;
+                        sectorText = "SR";
+                    }
                     break;
                 case "ucRoom1":
                     teacherText = ucRoom1.teacherComboBox.Text;
                     subjectText = ucRoom1.subjectComboBox.Text;
                     roomText = ucRoom1.roomComboBox.Text;
                     promotionText = ucRoom1.promotionComboBox.Text;
+                    if( ucRoom1.sectorComboBox.Text == "IL" ) 
+                    {
+                        il = true;
+                        sectorText = "IL";
+                    }
+                    else if( ucRoom1.sectorComboBox.Text == "SR" )
+                    {
+                        il = false;
+                        sectorText = "SR";
+                    }
+
                     break;
                 case "ucTeacher1":
                     teacherText = ucTeacher1.teacherComboBox.Text;
                     subjectText = ucTeacher1.subjectComboBox.Text;
                     roomText = ucTeacher1.roomComboBox.Text;
                     promotionText = ucTeacher1.promotionComboBox.Text;
+                    if( ucTeacher1.sectorComboBox.Text == "IL" ) 
+                    {
+                        il = true;
+                        sectorText = "IL";
+                    }
+                    else if( ucTeacher1.sectorComboBox.Text == "SR" ) 
+                    {
+                        il = false;
+                        sectorText = "SR";
+                    }
                     break;
                 default:
                     throw new ArgumentException( "Current filter is not set up properly" );
@@ -116,32 +146,69 @@ namespace Plann.Interface
                 Room room = CurrentPeriod.ListRooms.Where( r => r.Name == roomText ).Single();
                 List<Promotion> promotions = CurrentPeriod.ListPromotion.Where( p => p.Name == promotionText ).ToList();
 
-                Slot newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions );
+                Slot newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions, il );
                 CurrentPeriod.addSlot( newSlot );
 
                 e.Item.StartDate = morning ? e.Item.StartDate.AddHours( 9 ) : e.Item.StartDate.AddHours( 13.5 );
                 e.Item.EndDate = e.Item.StartDate + TimeSpan.FromHours( 3.5 );
                 e.Item.Text = subjectText + Environment.NewLine + teacherText + Environment.NewLine + roomText;
+                if( il.HasValue )
+                    e.Item.Text += " - " + sectorText;
                 e.Item.BackgroundColor = subject.Color;
+
             }
         }
+
         void calendar_ItemCreated( object sender, CalendarItemCancelEventArgs e )
         {
-            Console.WriteLine( "Item created" );
+            Console.WriteLine( "Item created : " + e.Item.Text + " " + e.Item.Date);
         }
-        void fillCalendarFromSlots()
+
+        void LoadItems()
         {
             calendar.Items.Clear();
-            foreach( Slot slot in CurrentPeriod.ListSlots )
+            List<Slot> filteredSlots = getFilteredSlots();
+            foreach( Slot slot in filteredSlots )
             {
-                if( slot.Date > calendar.ViewStart && slot.Date < calendar.ViewEnd )
-                {
-                    CalendarItem ci = getCalendarItemFromSlot( slot );
-                    calendar.Items.Add( ci );
-                }
+                CalendarItem ci = getCalendarItemFromSlot( slot );
+                calendar.Items.Add( ci );
             }
             calendar.Items.Reverse();
         }
+
+        List<Slot> getFilteredSlots()
+        {
+            List<Slot> filteredSlots = new List<Slot>();
+            // Get slots on current view
+            List<Slot> slotsOnCurrentView = CurrentPeriod.ListSlots.Where( slot => slot.Date > calendar.ViewStart && slot.Date < calendar.ViewEnd ).ToList();
+
+            if( CurrentPeriod.CurrentUcFilter == "ucPromotion1" )
+            {
+                bool? isIlBox;
+                if( ucPromotion1.sectorComboBox.Text == String.Empty )
+                    isIlBox = null;
+                else if( ucPromotion1.sectorComboBox.Text == "IL" )
+                    isIlBox = true;
+                else
+                    isIlBox = false;
+
+                if( isIlBox.HasValue )
+                    filteredSlots = slotsOnCurrentView.Where( s => s.IsIl == isIlBox && s.AssociatedPromotionList.Any( p => p.Name == ucPromotion1.promotionComboBox.Text ) ).ToList();
+                else
+                    filteredSlots = slotsOnCurrentView.Where( s => s.IsIl == null && s.AssociatedPromotionList.Any( p => p.Name == ucPromotion1.promotionComboBox.Text ) ).ToList();
+            }
+            else if( CurrentPeriod.CurrentUcFilter == "ucRoom1" )
+            {
+                filteredSlots = slotsOnCurrentView.Where( s => s.AssociatedRoom.Name == ucRoom1.roomComboBox.Text ).ToList();
+            }
+            else if( CurrentPeriod.CurrentUcFilter == "ucTeacher1" )
+            {
+                filteredSlots = slotsOnCurrentView.Where( s => s.AssociatedTeacher.Name == ucTeacher1.teacherComboBox.Text ).ToList();
+            }
+
+            return filteredSlots;
+        }
+
         CalendarItem getCalendarItemFromSlot( Slot slot )
         {
             DateTime startDate = slot.Date.Date;
@@ -149,6 +216,18 @@ namespace Plann.Interface
             string slotFormattedText = slot.AssociatedSubject.Name + Environment.NewLine
                 + slot.AssociatedTeacher.Name + Environment.NewLine
                 + slot.AssociatedRoom.Name;
+
+            string sector = null;
+            if( slot.IsIl.HasValue )
+            {
+                if( slot.IsIl.Value )
+                    sector = "IL";
+                else if( !slot.IsIl.Value )
+                    sector = "SR";
+            }
+
+            if( slot.IsIl.HasValue )
+                slotFormattedText += " - " + sector;
 
             if( slot.Morning )
                 startDate = startDate.AddHours( 9 );
@@ -168,6 +247,7 @@ namespace Plann.Interface
             ucRoom1.Visible = false;
             ucTeacher1.Visible = false;
             ucPromotion1.Visible = true;
+            LoadItems();
         }
         private void parProfesseurToolStripMenuItem_Click( object sender, EventArgs e )
         {
@@ -175,6 +255,7 @@ namespace Plann.Interface
             ucPromotion1.Visible = false;
             ucRoom1.Visible = false;
             ucTeacher1.Visible = true;
+            LoadItems();
         } 
         #endregion
         private void loadPeriod_Click( object sender, EventArgs e )
@@ -214,20 +295,21 @@ namespace Plann.Interface
             ucTeacher1.Visible = false;
             ucPromotion1.Visible = false;
             ucRoom1.Visible = true;
+            LoadItems();
         }
 
         private void nextMonthButton_Click( object sender, EventArgs e )
         {
             CurrentPeriod.SetNextMonthView();
             calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
-            fillCalendarFromSlots();
+            LoadItems();
         }
 
         private void previousMonthButton_Click( object sender, EventArgs e )
         {
             CurrentPeriod.SetPreviousMonthView();
             calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
-            fillCalendarFromSlots();
+            LoadItems();
         }
 
         private void périodeToolStripMenuItem_Click( object sender, EventArgs e )

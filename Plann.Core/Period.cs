@@ -55,8 +55,8 @@ namespace Plann.Core
             addTeacher( spi );
             addRoom( e5 );
             addPromotion( iti );
-            addSlot( new Slot( new DateTime( 2015, 03, 20 ), true, e5, pi, spi, _listPromotion ) );
-            addSlot( new Slot( new DateTime( 2015, 03, 20 ), false, e5, pi, spi, _listPromotion ) );
+            addSlot( new Slot( new DateTime( 2015, 03, 20 ), true, e5, pi, spi, _listPromotion, true ) );
+            addSlot( new Slot( new DateTime( 2015, 03, 20 ), false, e5, pi, spi, _listPromotion, false ) );
         }
 
         private DateTime GetFirstMonth( DateTime date )

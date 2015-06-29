@@ -14,10 +14,10 @@ namespace Plann.Core
         bool _morning;
         Subject _associatedSubject;
         Teacher _associatedTeacher;
-
         List<Promotion> _associatedPromotionList;
+        bool? _isIl;
 
-        public Slot(DateTime date, bool morning, Room associatedRoom, Subject associatedSubject, Teacher associatedTeacher, List<Promotion> promotionAssociatedList)
+        public Slot(DateTime date, bool morning, Room associatedRoom, Subject associatedSubject, Teacher associatedTeacher, List<Promotion> promotionAssociatedList, bool? il)
         {
             if( date == null || associatedRoom == null || associatedSubject == null ) throw new ArgumentNullException();
             _date = date;
@@ -26,6 +26,7 @@ namespace Plann.Core
             _associatedSubject = associatedSubject;
             _associatedTeacher = associatedTeacher;
             _associatedPromotionList = promotionAssociatedList;
+            _isIl = il;
         }
 
         #region Properties
@@ -50,7 +51,15 @@ namespace Plann.Core
         {
             get { return _date; }
         }
-
+        public List<Promotion> AssociatedPromotionList
+        {
+            get { return _associatedPromotionList; }
+            set { _associatedPromotionList = value; }
+        }
+        public bool? IsIl
+        {
+            get { return _isIl; }
+        }
         #endregion
     }
 }

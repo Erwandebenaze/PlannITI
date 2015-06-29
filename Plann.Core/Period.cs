@@ -55,8 +55,8 @@ namespace Plann.Core
             addTeacher( spi );
             addRoom( e5 );
             addPromotion( iti );
-            addSlot( new Slot( new DateTime( 2015, 03, 20 ), true, e5, pi, spi, _listPromotion ) );
-            addSlot( new Slot( new DateTime( 2015, 03, 20 ), false, e5, pi, spi, _listPromotion ) );
+            addSlot( new Slot( new DateTime( 2015, 03, 20 ), true, e5, pi, spi, _listPromotion, true ) );
+            addSlot( new Slot( new DateTime( 2015, 03, 20 ), false, e5, pi, spi, _listPromotion, false ) );
         }
 
         private DateTime GetFirstMonth( DateTime date )
@@ -266,13 +266,31 @@ namespace Plann.Core
 
         public void SetNextMonthView()
         {
-            _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( 1 );
-            _currentViewMonthStart = _currentViewMonthStart.AddMonths( 1 );
+            if( _currentViewMonthEnd.AddMonths( 1 ) < _endingDate )
+            {
+                _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( 1 );
+                _currentViewMonthStart = _currentViewMonthStart.AddMonths( 1 );
+            }
+            else
+            {
+                _currentViewMonthEnd = _endingDate;
+                _currentViewMonthStart = _endingDate.AddMonths( -1 );
+            }
+
         }
         public void SetPreviousMonthView()
         {
-            _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( -1 );
-            _currentViewMonthStart = _currentViewMonthStart.AddMonths( -1 );
+            if( _currentViewMonthStart.AddMonths( -1 ) > _begginningDate )
+            {
+                _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( -1 );
+                _currentViewMonthStart = _currentViewMonthStart.AddMonths( -1 );
+            }
+            else
+            {
+                _currentViewMonthEnd = _begginningDate.AddMonths(1);
+                _currentViewMonthStart = _begginningDate;
+            }
+            
         }
     }
 }

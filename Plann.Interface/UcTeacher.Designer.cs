@@ -116,7 +116,7 @@
             // 
             this.promotionComboBox.FormattingEnabled = true;
             this.promotionComboBox.Location = new System.Drawing.Point(15, 155);
-            this.promotionComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.promotionComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.promotionComboBox.Name = "promotionComboBox";
             this.promotionComboBox.Size = new System.Drawing.Size(92, 21);
             this.promotionComboBox.TabIndex = 2;
@@ -124,8 +124,12 @@
             // sectorComboBox
             // 
             this.sectorComboBox.FormattingEnabled = true;
+            this.sectorComboBox.Items.AddRange(new object[] {
+            "",
+            "IL",
+            "SR"});
             this.sectorComboBox.Location = new System.Drawing.Point(110, 155);
-            this.sectorComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sectorComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.sectorComboBox.Name = "sectorComboBox";
             this.sectorComboBox.Size = new System.Drawing.Size(92, 21);
             this.sectorComboBox.TabIndex = 3;
@@ -133,6 +137,7 @@
             // managePromotionsLink
             // 
             this.managePromotionsLink.AutoSize = true;
+            this.managePromotionsLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.managePromotionsLink.Location = new System.Drawing.Point(206, 155);
             this.managePromotionsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.managePromotionsLink.Name = "managePromotionsLink";
@@ -146,7 +151,7 @@
             // 
             this.subjectComboBox.FormattingEnabled = true;
             this.subjectComboBox.Location = new System.Drawing.Point(13, 211);
-            this.subjectComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.subjectComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.subjectComboBox.Name = "subjectComboBox";
             this.subjectComboBox.Size = new System.Drawing.Size(92, 21);
             this.subjectComboBox.TabIndex = 7;
@@ -155,7 +160,7 @@
             // 
             this.roomComboBox.FormattingEnabled = true;
             this.roomComboBox.Location = new System.Drawing.Point(13, 265);
-            this.roomComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.roomComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.roomComboBox.Name = "roomComboBox";
             this.roomComboBox.Size = new System.Drawing.Size(92, 21);
             this.roomComboBox.TabIndex = 9;
@@ -164,14 +169,16 @@
             // 
             this.teacherComboBox.FormattingEnabled = true;
             this.teacherComboBox.Location = new System.Drawing.Point(14, 32);
-            this.teacherComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.teacherComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.teacherComboBox.Name = "teacherComboBox";
             this.teacherComboBox.Size = new System.Drawing.Size(92, 21);
             this.teacherComboBox.TabIndex = 11;
+            this.teacherComboBox.SelectedIndexChanged += new System.EventHandler(this.teacherComboBox_SelectedIndexChanged);
             // 
             // manageSubjectsLink
             // 
             this.manageSubjectsLink.AutoSize = true;
+            this.manageSubjectsLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.manageSubjectsLink.Location = new System.Drawing.Point(108, 217);
             this.manageSubjectsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.manageSubjectsLink.Name = "manageSubjectsLink";
@@ -184,6 +191,7 @@
             // manageRoomsLink
             // 
             this.manageRoomsLink.AutoSize = true;
+            this.manageRoomsLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.manageRoomsLink.Location = new System.Drawing.Point(108, 267);
             this.manageRoomsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.manageRoomsLink.Name = "manageRoomsLink";
@@ -196,6 +204,7 @@
             // manageTeachersLink
             // 
             this.manageTeachersLink.AutoSize = true;
+            this.manageTeachersLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.manageTeachersLink.Location = new System.Drawing.Point(110, 37);
             this.manageTeachersLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.manageTeachersLink.Name = "manageTeachersLink";
@@ -224,7 +233,7 @@
             this.Controls.Add(this.promotionComboBox);
             this.Controls.Add(label2);
             this.Controls.Add(label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UcTeacher";
             this.Size = new System.Drawing.Size(307, 411);
             this.ResumeLayout(false);

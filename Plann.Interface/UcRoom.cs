@@ -7,6 +7,9 @@ namespace Plann.Interface
 {
     public partial class UcRoom : UserControl
     {
+        public delegate void SelectionRoomChanged();
+        public event SelectionRoomChanged RoomChanged;
+
         public UcRoom()
         {
             InitializeComponent();
@@ -15,6 +18,13 @@ namespace Plann.Interface
         {
             get { return (IPlannContext)TopLevelControl; }
         }
+
+        public void OnPromotionChanged()
+        {
+            if( RoomChanged != null )
+                RoomChanged();
+        }
+
         internal void InitializeComboBox()
         {
             #region ClearComboBox
@@ -78,6 +88,11 @@ namespace Plann.Interface
                 Teacher t = SoftContext.CurrentPeriod.ListSubjects.Where( su => su.Name == subjectComboBox.Text ).Select( te => te.ReferentTeacher ).Single();
                 teacherComboBox.SelectedItem = t.Name;
             }
+        }
+
+        private void roomComboBox_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            OnPromotionChanged();
         }
     }
 }

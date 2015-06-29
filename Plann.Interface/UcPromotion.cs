@@ -7,6 +7,12 @@ namespace Plann.Interface
 {
     public partial class UcPromotion : UserControl
     {
+        public delegate void SelectionPromotionChanged();
+        public event SelectionPromotionChanged PromotionChanged;
+
+        public delegate void SelectionSectorChanged();
+        public event SelectionSectorChanged SectorChanged;
+
         public UcPromotion()
         {
             InitializeComponent();
@@ -16,6 +22,19 @@ namespace Plann.Interface
         {
             get { return (IPlannContext)TopLevelControl; }
         }
+
+        public void OnPromotionChanged()
+        {
+            if( PromotionChanged != null )
+                PromotionChanged();
+        }
+
+        public void OnSectorChanged()
+        {
+            if( SectorChanged != null )
+                SectorChanged();
+        }
+
         internal void InitializeComboBox()
         {
             #region ClearComboBox
@@ -79,6 +98,16 @@ namespace Plann.Interface
                 Teacher t = SoftContext.CurrentPeriod.ListSubjects.Where( su => su.Name == subjectComboBox.Text ).Select( te => te.ReferentTeacher ).Single();
                 teacherComboBox.SelectedItem = t.Name;
             }
+        }
+
+        private void promotionComboBox_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            OnPromotionChanged();
+        }
+
+        private void sectorComboBox_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            OnSectorChanged();
         }
     }
 }

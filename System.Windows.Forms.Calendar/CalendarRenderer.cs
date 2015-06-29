@@ -228,8 +228,8 @@ namespace System.Windows.Forms.Calendar
 
                 return _standardItemHeight + ItemTextMargin.Vertical;
             }
-            set
-            { _standardItemHeight = value; }
+            //set
+            //{ _standardItemHeight = value; }
         }
 
         /// <summary>

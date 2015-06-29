@@ -108,6 +108,18 @@ namespace System.Windows.Forms.Calendar
         public event CalendarDayEventHandler DayHeaderClick;
 
         /// <summary>
+        /// Occurs when a day is clicked with the left mouse button
+        /// </summary>
+        [Description( "Occurs when a day is clicked with the left mouse button" )]
+        public event CalendarDayEventHandler DayLeftClick;
+
+        /// <summary>
+        /// Occurs when a day is clicked with the right mouse button
+        /// </summary>
+        [Description( "Occurs when a day is clicked with the right mouse button" )]
+        public event CalendarDayEventHandler DayRightClick;
+
+        /// <summary>
         /// Occurs when an item is about to be created.
         /// </summary>
         /// <remarks>
@@ -1427,6 +1439,22 @@ namespace System.Windows.Forms.Calendar
             }
         }
 
+        protected virtual void OnDayLeftClick( CalendarDayEventArgs e )
+        {
+            if( DayLeftClick != null )
+            {
+                DayLeftClick( this, e );
+            }
+        }
+
+        protected virtual void OnDayRightClick( CalendarDayEventArgs e )
+        {
+            if( DayRightClick != null )
+            {
+                DayRightClick( this, e );
+            }
+        }
+
         protected virtual void OnItemClick(CalendarItemEventArgs e)
         {
             if (ItemClick != null)
@@ -1782,6 +1810,14 @@ namespace System.Windows.Forms.Calendar
                         if (hittedDay.HeaderBounds.Contains(e.Location))
                         {
                             OnDayHeaderClick(new CalendarDayEventArgs(hittedDay));
+                        }
+                        if( hittedDay.BodyBounds.Contains( e.Location ) )
+                        {
+                            if( e.Button == MouseButtons.Left )
+                                OnDayLeftClick( new CalendarDayEventArgs( hittedDay ) );
+                            if( e.Button == MouseButtons.Right )
+                                OnDayRightClick( new CalendarDayEventArgs( hittedDay ) );
+
                         }
                     }
                     break;

@@ -11,6 +11,8 @@ namespace Plann.Interface
     public partial class PlannITI : Form, IPlannContext
     {
         Soft _mySoft;
+        bool? _leftClick;
+
         public PlannITI()
         {
             _mySoft = new Soft();
@@ -28,22 +30,40 @@ namespace Plann.Interface
 
             LoadItems();
 
+            calendar.DayLeftClick += calendar_DayLeftClick;
+            calendar.DayRightClick += calendar_DayRightClick;
             calendar.ItemCreating += calendar_ItemCreating;
             calendar.ItemCreated += calendar_ItemCreated;
             calendar.ItemClick += calendar_ItemClick;
+            calendar.ItemDeleted += calendar_ItemDeleted;
 
             ucMgtSubject1.reload += callReload;
             ucMgtRoom1.reload += callReload;
             ucMgtTeacher1.reload += callReload;
+
             ucPromotion1.PromotionChanged += LoadItems;
             ucPromotion1.SectorChanged += LoadItems;
             ucRoom1.RoomChanged += LoadItems;
             ucTeacher1.TeacherChanged += LoadItems;
         }
 
-        private void ReloadItems( object sender, MouseEventArgs e )
+        private void calendar_ItemDeleted( object sender, CalendarItemEventArgs e )
         {
+            Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.Date == e.Item.Date ).First();
+            CurrentPeriod.removeSlot( slotToDelete );
             LoadItems();
+        }
+
+        void calendar_DayRightClick( object sender, CalendarDayEventArgs e )
+        {
+            _leftClick = false;
+            calendar.CreateItemOnSelection( "", false );
+        }
+
+        void calendar_DayLeftClick( object sender, CalendarDayEventArgs e )
+        {
+            _leftClick = true;
+            calendar.CreateItemOnSelection( "", false );
         }
 
         public Period CurrentPeriod
@@ -61,21 +81,24 @@ namespace Plann.Interface
         {
             Console.WriteLine( e.Item.Text );
             Console.WriteLine( e.Item.Date );
-            //foreach( Slot slot in CurrentPeriod.ListSlots )
-            //{
-            //    Console.WriteLine( slot.Date + " " + slot.AssociatedSubject + " " + slot.AssociatedTeacher + " " + slot.AssociatedRoom + " " + slot.Morning );
-            //}
         }   
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )
         {
-            // Find a way to know if morning on click
-            bool morning = true;
+            bool morning;
+
+            if( _leftClick.HasValue )
+                morning = _leftClick.Value ? true : false;
+            else
+            {
+                e.Cancel = true;
+                return;
+            }
 
             string teacherText;
             string subjectText;
             string roomText;
             string promotionText;
-            bool? il = null;
+            bool? isIl = null;
             string sectorText = null;
 
             switch( CurrentPeriod.CurrentUcFilter )
@@ -87,12 +110,12 @@ namespace Plann.Interface
                     promotionText = ucPromotion1.promotionComboBox.Text;
                     if( ucPromotion1.sectorComboBox.Text == "IL" ) 
                     {
-                        il = true;
+                        isIl = true;
                         sectorText = "IL";
                     }
                     else if( ucPromotion1.sectorComboBox.Text == "SR" ) 
                     {
-                        il = false;
+                        isIl = false;
                         sectorText = "SR";
                     }
                     break;
@@ -103,12 +126,12 @@ namespace Plann.Interface
                     promotionText = ucRoom1.promotionComboBox.Text;
                     if( ucRoom1.sectorComboBox.Text == "IL" ) 
                     {
-                        il = true;
+                        isIl = true;
                         sectorText = "IL";
                     }
                     else if( ucRoom1.sectorComboBox.Text == "SR" )
                     {
-                        il = false;
+                        isIl = false;
                         sectorText = "SR";
                     }
 
@@ -120,12 +143,12 @@ namespace Plann.Interface
                     promotionText = ucTeacher1.promotionComboBox.Text;
                     if( ucTeacher1.sectorComboBox.Text == "IL" ) 
                     {
-                        il = true;
+                        isIl = true;
                         sectorText = "IL";
                     }
                     else if( ucTeacher1.sectorComboBox.Text == "SR" ) 
                     {
-                        il = false;
+                        isIl = false;
                         sectorText = "SR";
                     }
                     break;
@@ -133,12 +156,24 @@ namespace Plann.Interface
                     throw new ArgumentException( "Current filter is not set up properly" );
             }
 
+            // A REVOIR
             DateTime day = e.Item.StartDate.Date;
-            int nb = calendar.Items.Count( i => i.StartDate.Date == day );
-            if( nb > 1 || subjectText == String.Empty || roomText == String.Empty || promotionText == String.Empty )
+
+            int nbM = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day && ( s.Morning == morning && s.IsIl == isIl ) );
+
+            int nb;
+            if( isIl.HasValue )
+                nb = CurrentPeriod.ListSlots.Count( s => ( s.IsIl == isIl || s.IsIl == null ) && s.Date.Date == day );
+            else
+                nb = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day && s.IsIl == null );
+
+            if( nb > 1 || nbM > 0 || subjectText == String.Empty || roomText == String.Empty || promotionText == String.Empty )
             {
                 e.Cancel = true;
+                return;
             }
+            // A REVOIR
+
             else
             {
                 Teacher teacher = CurrentPeriod.ListTeachers.Where( t => t.Name == teacherText ).SingleOrDefault();
@@ -146,22 +181,26 @@ namespace Plann.Interface
                 Room room = CurrentPeriod.ListRooms.Where( r => r.Name == roomText ).Single();
                 List<Promotion> promotions = CurrentPeriod.ListPromotion.Where( p => p.Name == promotionText ).ToList();
 
-                Slot newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions, il );
+                Slot newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions, isIl );
                 CurrentPeriod.addSlot( newSlot );
 
                 e.Item.StartDate = morning ? e.Item.StartDate.AddHours( 9 ) : e.Item.StartDate.AddHours( 13.5 );
                 e.Item.EndDate = e.Item.StartDate + TimeSpan.FromHours( 3.5 );
-                e.Item.Text = subjectText + Environment.NewLine + teacherText + Environment.NewLine + roomText;
-                if( il.HasValue )
+                e.Item.Text = subjectText;
+                e.Item.Text += morning ? " - AM" : " - PM";
+                e.Item.Text += Environment.NewLine + teacherText + Environment.NewLine + roomText;
+                if( isIl.HasValue )
                     e.Item.Text += " - " + sectorText;
                 e.Item.BackgroundColor = subject.Color;
-
             }
+
+            _leftClick = null;
         }
 
         void calendar_ItemCreated( object sender, CalendarItemCancelEventArgs e )
         {
-            Console.WriteLine( "Item created : " + e.Item.Text + " " + e.Item.Date);
+            LoadItems();
+            Console.WriteLine( "ItemCreated fired !" );
         }
 
         void LoadItems()
@@ -173,7 +212,6 @@ namespace Plann.Interface
                 CalendarItem ci = getCalendarItemFromSlot( slot );
                 calendar.Items.Add( ci );
             }
-            calendar.Items.Reverse();
         }
 
         List<Slot> getFilteredSlots()
@@ -193,7 +231,7 @@ namespace Plann.Interface
                     isIlBox = false;
 
                 if( isIlBox.HasValue )
-                    filteredSlots = slotsOnCurrentView.Where( s => s.IsIl == isIlBox && s.AssociatedPromotionList.Any( p => p.Name == ucPromotion1.promotionComboBox.Text ) ).ToList();
+                    filteredSlots = slotsOnCurrentView.Where( s => ( s.IsIl == isIlBox || s.IsIl == null ) && s.AssociatedPromotionList.Any( p => p.Name == ucPromotion1.promotionComboBox.Text ) ).ToList();
                 else
                     filteredSlots = slotsOnCurrentView.Where( s => s.IsIl == null && s.AssociatedPromotionList.Any( p => p.Name == ucPromotion1.promotionComboBox.Text ) ).ToList();
             }
@@ -206,6 +244,8 @@ namespace Plann.Interface
                 filteredSlots = slotsOnCurrentView.Where( s => s.AssociatedTeacher.Name == ucTeacher1.teacherComboBox.Text ).ToList();
             }
 
+            filteredSlots = filteredSlots.OrderByDescending( s => s.Date ).ToList();
+            
             return filteredSlots;
         }
 
@@ -213,9 +253,9 @@ namespace Plann.Interface
         {
             DateTime startDate = slot.Date.Date;
             DateTime endDate = new DateTime();
-            string slotFormattedText = slot.AssociatedSubject.Name + Environment.NewLine
-                + slot.AssociatedTeacher.Name + Environment.NewLine
-                + slot.AssociatedRoom.Name;
+            string slotFormattedText = slot.AssociatedSubject.Name;
+            slotFormattedText += slot.Morning ? " - AM" : " - PM";
+            slotFormattedText += Environment.NewLine + slot.AssociatedTeacher.Name + Environment.NewLine + slot.AssociatedRoom.Name;
 
             string sector = null;
             if( slot.IsIl.HasValue )
@@ -229,11 +269,12 @@ namespace Plann.Interface
             if( slot.IsIl.HasValue )
                 slotFormattedText += " - " + sector;
 
-            if( slot.Morning )
-                startDate = startDate.AddHours( 9 );
-            else
-                startDate = startDate.AddHours( 13.5 );
-            endDate = startDate.AddHours( 3 );
+            //if( slot.Morning )
+            //    startDate = startDate.AddHours( 9 );
+            //else
+            //    startDate = startDate.AddHours( 13.5 );
+            startDate = slot.Date;
+            endDate = startDate.AddHours( 3.5 );
 
             CalendarItem ci = new CalendarItem( calendar, startDate, endDate, slotFormattedText );
             ci.BackgroundColor = slot.AssociatedSubject.Color;

@@ -138,6 +138,7 @@ namespace Plann.Core
         public bool addSlot( Slot slot )
         {
             if( slot == null ) throw new ArgumentNullException();
+            slot.Date = slot.Date.AddHours( slot.Morning ? 9 : 13.5 );
             _listSlots.Add( slot );
             return true;
         }

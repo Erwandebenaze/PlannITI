@@ -50,7 +50,6 @@ namespace Plann.Core
         public DateTime Date
         {
             get { return _date; }
-            internal set { _date = value; }
         }
         public List<Promotion> AssociatedPromotionList
         {

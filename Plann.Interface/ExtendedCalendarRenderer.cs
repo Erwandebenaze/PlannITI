@@ -9,9 +9,6 @@ namespace Plann.Interface
 {
     class ExtendedCalendarRenderer : CalendarProfessionalRenderer
     {
-
-        int _standardItemHeight;
-
         public ExtendedCalendarRenderer(Calendar calendar)
             : base(calendar)
         {
@@ -21,12 +18,8 @@ namespace Plann.Interface
         {
             get
             {
-                return base.StandardItemHeight + 30;
+                return base.StandardItemHeight + 40;
             }
-            //set
-            //{
-            //    _standardItemHeight = value;
-            //}
         }
     }
 }

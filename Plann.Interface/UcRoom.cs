@@ -85,14 +85,28 @@ namespace Plann.Interface
         {
             if( subjectComboBox.Text != null )
             {
-                Teacher t = SoftContext.CurrentPeriod.ListSubjects.Where( su => su.Name == subjectComboBox.Text ).Select( te => te.ReferentTeacher ).Single();
-                teacherComboBox.SelectedItem = t.Name;
+                if( SoftContext.CurrentPeriod.ListSubjects.Where( su => su.Name == subjectComboBox.Text ).Where( te => te.ReferentTeacher != null ).Select( te => te.ReferentTeacher ).Any() )
+                {
+                    Teacher t = SoftContext.CurrentPeriod.ListSubjects.Where( su => su.Name == subjectComboBox.Text ).Where( te => te.ReferentTeacher != null ).Select( te => te.ReferentTeacher ).Single();
+                    teacherComboBox.SelectedItem = t.Name;
+                }
             }
         }
 
         private void roomComboBox_SelectedIndexChanged( object sender, EventArgs e )
         {
             OnPromotionChanged();
+        }
+
+        private void promotionComboBox_Click( object sender, EventArgs e )
+        {
+            
+            InitializeComboBox();
+        }
+
+        private void subjectComboBox_Click( object sender, EventArgs e )
+        {
+            InitializeComboBox();
         }
     }
 }

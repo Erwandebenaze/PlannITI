@@ -54,20 +54,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(10, 23);
-            label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label1.Location = new System.Drawing.Point(13, 28);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(54, 13);
+            label1.Size = new System.Drawing.Size(72, 17);
             label1.TabIndex = 0;
             label1.Text = "Promotion";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(106, 23);
-            label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label2.Location = new System.Drawing.Point(141, 28);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(34, 13);
+            label2.Size = new System.Drawing.Size(46, 17);
             label2.TabIndex = 1;
             label2.Text = "Filière";
             // 
@@ -75,40 +73,36 @@
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label3.Location = new System.Drawing.Point(10, 106);
-            label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label3.Location = new System.Drawing.Point(13, 130);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(87, 20);
+            label3.Size = new System.Drawing.Size(104, 25);
             label3.TabIndex = 5;
             label3.Text = "Affectation";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(12, 143);
-            label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label4.Location = new System.Drawing.Point(16, 176);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(42, 13);
+            label4.Size = new System.Drawing.Size(55, 17);
             label4.TabIndex = 6;
             label4.Text = "Matière";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(12, 200);
-            label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label5.Location = new System.Drawing.Point(16, 246);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(30, 13);
+            label5.Size = new System.Drawing.Size(39, 17);
             label5.TabIndex = 8;
             label5.Text = "Salle";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(12, 261);
-            label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label6.Location = new System.Drawing.Point(16, 321);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(57, 13);
+            label6.Size = new System.Drawing.Size(77, 17);
             label6.TabIndex = 10;
             label6.Text = "Professeur";
             // 
@@ -117,10 +111,10 @@
             this.promotionComboBox.FormattingEnabled = true;
             this.promotionComboBox.Items.AddRange(new object[] {
             "itiTruc"});
-            this.promotionComboBox.Location = new System.Drawing.Point(13, 39);
-            this.promotionComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.promotionComboBox.Location = new System.Drawing.Point(17, 48);
+            this.promotionComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.promotionComboBox.Name = "promotionComboBox";
-            this.promotionComboBox.Size = new System.Drawing.Size(92, 21);
+            this.promotionComboBox.Size = new System.Drawing.Size(121, 24);
             this.promotionComboBox.TabIndex = 2;
             this.promotionComboBox.SelectedIndexChanged += new System.EventHandler(this.promotionComboBox_SelectedIndexChanged);
             // 
@@ -131,10 +125,10 @@
             "",
             "IL",
             "SR"});
-            this.sectorComboBox.Location = new System.Drawing.Point(108, 39);
-            this.sectorComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.sectorComboBox.Location = new System.Drawing.Point(144, 48);
+            this.sectorComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.sectorComboBox.Name = "sectorComboBox";
-            this.sectorComboBox.Size = new System.Drawing.Size(92, 21);
+            this.sectorComboBox.Size = new System.Drawing.Size(121, 24);
             this.sectorComboBox.TabIndex = 3;
             this.sectorComboBox.SelectedIndexChanged += new System.EventHandler(this.sectorComboBox_SelectedIndexChanged);
             // 
@@ -142,10 +136,9 @@
             // 
             this.managePromotionsLink.AutoSize = true;
             this.managePromotionsLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            this.managePromotionsLink.Location = new System.Drawing.Point(203, 39);
-            this.managePromotionsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.managePromotionsLink.Location = new System.Drawing.Point(271, 48);
             this.managePromotionsLink.Name = "managePromotionsLink";
-            this.managePromotionsLink.Size = new System.Drawing.Size(103, 13);
+            this.managePromotionsLink.Size = new System.Drawing.Size(141, 17);
             this.managePromotionsLink.TabIndex = 4;
             this.managePromotionsLink.TabStop = true;
             this.managePromotionsLink.Text = "Gérer les promotions";
@@ -156,43 +149,45 @@
             this.subjectComboBox.FormattingEnabled = true;
             this.subjectComboBox.Items.AddRange(new object[] {
             "PI"});
-            this.subjectComboBox.Location = new System.Drawing.Point(13, 159);
-            this.subjectComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.subjectComboBox.Location = new System.Drawing.Point(17, 196);
+            this.subjectComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.subjectComboBox.Name = "subjectComboBox";
-            this.subjectComboBox.Size = new System.Drawing.Size(92, 21);
+            this.subjectComboBox.Size = new System.Drawing.Size(121, 24);
             this.subjectComboBox.TabIndex = 7;
             this.subjectComboBox.SelectedIndexChanged += new System.EventHandler(this.subjectComboBox_SelectedIndexChanged);
+            this.subjectComboBox.Click += new System.EventHandler(this.subjectComboBox_Click);
             // 
             // roomComboBox
             // 
             this.roomComboBox.FormattingEnabled = true;
             this.roomComboBox.Items.AddRange(new object[] {
             "E01"});
-            this.roomComboBox.Location = new System.Drawing.Point(13, 216);
-            this.roomComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.roomComboBox.Location = new System.Drawing.Point(17, 266);
+            this.roomComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roomComboBox.Name = "roomComboBox";
-            this.roomComboBox.Size = new System.Drawing.Size(92, 21);
+            this.roomComboBox.Size = new System.Drawing.Size(121, 24);
             this.roomComboBox.TabIndex = 9;
+            this.roomComboBox.Click += new System.EventHandler(this.roomComboBox_Click);
             // 
             // teacherComboBox
             // 
             this.teacherComboBox.FormattingEnabled = true;
             this.teacherComboBox.Items.AddRange(new object[] {
             "Spi"});
-            this.teacherComboBox.Location = new System.Drawing.Point(13, 277);
-            this.teacherComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.teacherComboBox.Location = new System.Drawing.Point(17, 341);
+            this.teacherComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.teacherComboBox.Name = "teacherComboBox";
-            this.teacherComboBox.Size = new System.Drawing.Size(92, 21);
+            this.teacherComboBox.Size = new System.Drawing.Size(121, 24);
             this.teacherComboBox.TabIndex = 11;
+            this.teacherComboBox.Click += new System.EventHandler(this.teacherComboBox_Click);
             // 
             // manageSubjectsLink
             // 
             this.manageSubjectsLink.AutoSize = true;
             this.manageSubjectsLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            this.manageSubjectsLink.Location = new System.Drawing.Point(108, 162);
-            this.manageSubjectsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.manageSubjectsLink.Location = new System.Drawing.Point(144, 199);
             this.manageSubjectsLink.Name = "manageSubjectsLink";
-            this.manageSubjectsLink.Size = new System.Drawing.Size(91, 13);
+            this.manageSubjectsLink.Size = new System.Drawing.Size(125, 17);
             this.manageSubjectsLink.TabIndex = 12;
             this.manageSubjectsLink.TabStop = true;
             this.manageSubjectsLink.Text = "Gérer les matières";
@@ -202,10 +197,9 @@
             // 
             this.manageRoomsLink.AutoSize = true;
             this.manageRoomsLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            this.manageRoomsLink.Location = new System.Drawing.Point(108, 219);
-            this.manageRoomsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.manageRoomsLink.Location = new System.Drawing.Point(144, 270);
             this.manageRoomsLink.Name = "manageRoomsLink";
-            this.manageRoomsLink.Size = new System.Drawing.Size(78, 13);
+            this.manageRoomsLink.Size = new System.Drawing.Size(107, 17);
             this.manageRoomsLink.TabIndex = 13;
             this.manageRoomsLink.TabStop = true;
             this.manageRoomsLink.Text = "Gérer les salles";
@@ -215,10 +209,9 @@
             // 
             this.manageTeachersLink.AutoSize = true;
             this.manageTeachersLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            this.manageTeachersLink.Location = new System.Drawing.Point(108, 280);
-            this.manageTeachersLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.manageTeachersLink.Location = new System.Drawing.Point(144, 345);
             this.manageTeachersLink.Name = "manageTeachersLink";
-            this.manageTeachersLink.Size = new System.Drawing.Size(106, 13);
+            this.manageTeachersLink.Size = new System.Drawing.Size(146, 17);
             this.manageTeachersLink.TabIndex = 14;
             this.manageTeachersLink.TabStop = true;
             this.manageTeachersLink.Text = "Gérer les professeurs";
@@ -226,7 +219,7 @@
             // 
             // UcPromotion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.manageTeachersLink);
             this.Controls.Add(this.manageRoomsLink);
@@ -243,9 +236,9 @@
             this.Controls.Add(this.promotionComboBox);
             this.Controls.Add(label2);
             this.Controls.Add(label1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UcPromotion";
-            this.Size = new System.Drawing.Size(307, 411);
+            this.Size = new System.Drawing.Size(409, 506);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -37,6 +37,7 @@
             this.numberOfSeatsColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.validateButton = new System.Windows.Forms.Button();
             this.returnLink = new System.Windows.Forms.LinkLabel();
+            this.delete = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
@@ -94,6 +95,7 @@
             this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
+            this.objectListView1.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.objectListView1_CellClick);
             // 
             // nameColumn
             // 
@@ -131,10 +133,23 @@
             this.returnLink.Text = "Retour";
             this.returnLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.returnLink_LinkClicked);
             // 
+            // delete
+            // 
+            this.delete.Location = new System.Drawing.Point(129, 145);
+            this.delete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.delete.Name = "delete";
+            this.delete.Size = new System.Drawing.Size(87, 24);
+            this.delete.TabIndex = 7;
+            this.delete.Text = "Supprimer";
+            this.delete.UseVisualStyleBackColor = true;
+            this.delete.Visible = false;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
+            // 
             // UcMgtRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.delete);
             this.Controls.Add(this.returnLink);
             this.Controls.Add(this.validateButton);
             this.Controls.Add(this.objectListView1);
@@ -160,5 +175,6 @@
         private BrightIdeasSoftware.OLVColumn numberOfSeatsColumn;
         private System.Windows.Forms.Button validateButton;
         private System.Windows.Forms.LinkLabel returnLink;
+        private System.Windows.Forms.Button delete;
     }
 }

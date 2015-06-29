@@ -247,6 +247,9 @@ namespace Plann.Interface
             ucRoom1.Visible = false;
             ucTeacher1.Visible = false;
             ucPromotion1.Visible = true;
+            ucMgtSubject1.reload += callReload;
+            ucMgtRoom1.reload += callReload;
+            ucMgtTeacher1.reload += callReload;
             LoadItems();
         }
         private void parProfesseurToolStripMenuItem_Click( object sender, EventArgs e )
@@ -255,39 +258,10 @@ namespace Plann.Interface
             ucPromotion1.Visible = false;
             ucRoom1.Visible = false;
             ucTeacher1.Visible = true;
+            ucMgtSubject1.reload += callReload;
+            ucMgtRoom1.reload += callReload;
+            ucMgtTeacher1.reload += callReload;
             LoadItems();
-        } 
-        #endregion
-        private void loadPeriod_Click( object sender, EventArgs e )
-        {
-           // System.Diagnostics.Process.Start( @"..\..\..\Sauvegardes" );
-            OpenFileDialog d = new OpenFileDialog();
-            Stream myStream = null;
-            //MessageBox.Show( Environment.CurrentDirectory.ToString() );
-            
-            d.InitialDirectory = @"C:\Dev\PlannITI\Sauvegardes"; // CHANGER LE REPERTOIRE EN CAS DE CHANGEMENT DE PC
-            MessageBox.Show( d.InitialDirectory ); 
-            d.Filter = "bin files (*.bin)|*.bin";
-            // d.ShowDialog();
-
-            if( d.ShowDialog() == DialogResult.OK )
-            {
-                try
-                {
-                    if( (myStream = d.OpenFile()) != null )
-                    {
-                        using( myStream )
-                        {
-                            PeriodLoader.Load( d.FileName );
-                            MessageBox.Show( "La partie a été chargée." );
-                        }
-                    }
-                }
-                catch( Exception ex )
-                {
-                    MessageBox.Show( "Error: Could not read file from disk. Original error: " + ex.Message );
-                }
-            }
         }
         private void parSalleToolStripMenuItem_Click( object sender, EventArgs e )
         {
@@ -296,7 +270,11 @@ namespace Plann.Interface
             ucPromotion1.Visible = false;
             ucRoom1.Visible = true;
             LoadItems();
+            ucMgtSubject1.reload += callReload;
+            ucMgtRoom1.reload += callReload;
+            ucMgtTeacher1.reload += callReload;
         }
+        #endregion
 
         private void nextMonthButton_Click( object sender, EventArgs e )
         {
@@ -312,14 +290,67 @@ namespace Plann.Interface
             LoadItems();
         }
 
-        private void périodeToolStripMenuItem_Click( object sender, EventArgs e )
+        private void créerUnePériodeToolStripMenuItem_Click( object sender, EventArgs e )
         {
             CurrentPeriod.CurrentUcFilter = "ucTeacher1";
             ucPromotion1.Visible = false;
             ucRoom1.Visible = false;
             ucTeacher1.Visible = false;
             ucMgtPeriod1.Visible = true;
+            ucMgtSubject1.reload += callReload;
+            ucMgtRoom1.reload += callReload;
+            ucMgtTeacher1.reload += callReload;
         }
+
+        private void chargerUnePériodeToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            // System.Diagnostics.Process.Start( @"..\..\..\Sauvegardes" );
+            OpenFileDialog d = new OpenFileDialog();
+            Stream myStream = null;
+            //MessageBox.Show( Environment.CurrentDirectory.ToString() );
+
+            d.InitialDirectory = @"C:\Dev\PlannITI\Sauvegardes"; // CHANGER LE REPERTOIRE EN CAS DE CHANGEMENT DE PC
+            //MessageBox.Show( d.InitialDirectory );
+            d.Filter = "bin files (*.bin)|*.bin";
+            // d.ShowDialog();
+
+            if( d.ShowDialog() == DialogResult.OK )
+            {
+                try
+                {
+                    if( (myStream = d.OpenFile()) != null )
+                    {
+                        using( myStream )
+                        {
+                           _mySoft.ChangePeriode(PeriodLoader.Load( d.FileName ));
+                           parPromotionToolStripMenuItem_Click( null, null );
+                           ReloadOlv();
+                            MessageBox.Show( "La période a été chargée." );
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    MessageBox.Show( "Error: Could not read file from disk. Original error: " + ex.Message );
+                }
+            }
+        }
+
+        private void ReloadOlv()
+        {
+            ucMgtPromotion1.LoadPage();
+            ucMgtSubject1.LoadPage();
+            ucMgtRoom1.LoadPage();
+        }
+
+        private void sauvegarderToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            CurrentPeriod.SavePeriod();
+
+            MessageBox.Show( "La période actuelle a été sauvegardée." );
+        }
+
+
 
         //Slot getSlotFromCalendarItem( CalendarItem ci)
         //{

@@ -9,10 +9,15 @@ namespace Plann.Interface
 {
     public partial class UcMgtSubject : UserControl
     {
+        Subject _sTmp;
         public UcMgtSubject()
         {
             InitializeComponent();
             InitializeComboBox();
+        }
+        public void LoadPage()
+        {
+            InitializeOlv();
         }
         private void InitializeComboBox()
         {
@@ -67,7 +72,7 @@ namespace Plann.Interface
             if( colorDialog1.ShowDialog() == DialogResult.OK )
             {
                 button1.BackColor = colorDialog1.Color;
-                int color = colorDialog1.Color.A;
+            //    int color = colorDialog1.Color.A;
             }
         }
         private void manageTeachersLink_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
@@ -82,23 +87,39 @@ namespace Plann.Interface
                 MessageBox.Show( "Vous ne pouvez pas valider le formulaire. Vous devez au moins entrer un intitulé et une couleur." );
             } else
             {
-                if (SoftContext.CurrentPeriod.ListSubjects.Contains(new Subject(nameTextBox.Text, Color.Red)))
+                if( SoftContext.CurrentPeriod.ListSubjects.Contains( new Subject( nameTextBox.Text, Color.Red ) ) && validateButton.Text == "Valider" )
                 {
                     MessageBox.Show( "Cette matière a déjà été entrée." );
                 } else
                 {
                     Subject tmpSubject = null;
-                    if( teacherNameComboBox.SelectedItem == null )
+                    if( teacherNameComboBox.SelectedItem == null && validateButton.Text == "Valider" )
                     {
                         tmpSubject = new Subject( nameTextBox.Text, button1.BackColor );
+                        SoftContext.CurrentPeriod.addSubject( tmpSubject );
+                    }
+                    else if( teacherNameComboBox.SelectedItem == null && validateButton.Text == "Modifier" )
+                    {
+                        SoftContext.CurrentPeriod.editSubject( _sTmp, new Subject(nameTextBox.Text, button1.BackColor ));
+                        InitializeOlv();
+                        validateButton.Text = "Valider";
+                    } else if (validateButton.Text == "Modifier" )
+                    {
+                        Teacher t = SoftContext.CurrentPeriod.ListTeachers.Where( th => th.Name == teacherNameComboBox.SelectedItem.ToString() ).Single();
+                        SoftContext.CurrentPeriod.editSubject( _sTmp, new Subject( nameTextBox.Text, t, button1.BackColor ) );
+                        InitializeOlv(); 
+                        delete.Visible = false;
+                        validateButton.Text = "Valider";
                     }
                     else
                     {
                         Teacher t = SoftContext.CurrentPeriod.ListTeachers.Where( th => th.Name == teacherNameComboBox.SelectedItem.ToString() ).Single();
                         tmpSubject = new Subject( nameTextBox.Text, t, button1.BackColor );
+                        SoftContext.CurrentPeriod.addSubject( tmpSubject );
                     }
-                    SoftContext.CurrentPeriod.addSubject( tmpSubject );
+                    
                     InitializeOlv();
+                    InitializeComboBox();
                 }
             }
         }
@@ -116,6 +137,27 @@ namespace Plann.Interface
             this.Visible = false;
             Parent.Controls[SoftContext.CurrentPeriod.CurrentUcFilter].Visible = true;
             OnReload();
+        }
+
+        private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )
+        {
+            if( e.Model != null )
+            {
+                _sTmp = (Subject)e.Model;
+                nameTextBox.Text = _sTmp.Name;
+                button1.BackColor = _sTmp.Color;
+                if( _sTmp.ReferentTeacher != null )
+                    teacherNameComboBox.Text = _sTmp.ReferentTeacher.Name;
+                validateButton.Text = "Modifier";
+                delete.Visible = true;
+            }
+        }
+
+        private void delete_Click( object sender, EventArgs e )
+        {
+            SoftContext.CurrentPeriod.ListSubjects.Remove( _sTmp );
+            InitializeOlv();
+            delete.Visible = false;
         }
     }
 }

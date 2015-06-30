@@ -76,13 +76,7 @@ namespace Plann.Interface
         {
             if( _state == "holidays")
             {
-                if( _listHolidays.Contains(e.End))
-                {
-                    MessageBox.Show( "Cette date a déjà été ajoutée." );
-                } else
-                {
-                    _listHolidays.Add( e.End );
-                }
+                _listHolidays.Add( e.End );
             }
 
             objectListView1.SetObjects( _listHolidays );
@@ -109,16 +103,9 @@ namespace Plann.Interface
         {
             if( !String.IsNullOrWhiteSpace( nameTextBox.Text ) && !String.IsNullOrWhiteSpace( begginingDateText.Text ) && !String.IsNullOrWhiteSpace( endingDateText.Text ) && _listHolidays.Count > 0) 
             {
-                if( _begDate > _endDate)
+                if( !_listHolidays.Where( d => d > _endDate ).Any() && !_listHolidays.Where( d => d < _begDate ).Any() )
                 {
-                    MessageBox.Show( "La date de début de période est après celle de fin." );
-                }
-                else if( !_listHolidays.Where( d => d > _endDate ).Any() && !_listHolidays.Where( d => d < _begDate ).Any() )
-                {
-                    Period p = new Period( SoftContext.CurrentPeriod.MySoft, nameTextBox.Text, _begDate, _endDate, _listHolidays );
-                    SoftContext.CurrentPeriod.MySoft.ListPeriod.Add( p );
-                    p.SavePeriod();
-                    MessageBox.Show( "La période a bien été créée. Pour la charger, cliquez en haut à gauche sur Période puis Charger période" );
+                    SoftContext.CurrentPeriod.MySoft.ListPeriod.Add( new Period( SoftContext.CurrentPeriod.MySoft, nameTextBox.Text, _begDate, _endDate, _listHolidays ) );
                 } else
                 {
                     MessageBox.Show( "Une date dans les jours fériés ou de vacances n'est pas dans la période définie." );
@@ -136,9 +123,6 @@ namespace Plann.Interface
             endingDateText.Text = "";
             begginingDateText.Text = "";
             nameTextBox.Text = "";
-            monthCalendar2.Visible = false;
-            _state = "autre";
-            holidaysButton.Text = "Choisir";
         }
     }
 }

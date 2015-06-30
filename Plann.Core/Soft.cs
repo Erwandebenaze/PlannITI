@@ -40,10 +40,5 @@ namespace Plann.Core
             get { return _currentPeriod; }
         }
 
-        public void ChangePeriode( Period p )
-        {
-            _currentPeriod = p;
-        }
-
     }
 }

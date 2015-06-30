@@ -11,10 +11,6 @@ namespace Plann.Interface
         {
             InitializeComponent();
         }
-        public void LoadPage()
-        {
-            InitializeOlv();
-        }
         private bool IsValidEmail( string email )
         {
             try
@@ -57,7 +53,7 @@ namespace Plann.Interface
                 }
                 else if( SoftContext.CurrentPeriod.ListPromotion.Contains( new Promotion( nameTextBox.Text, mailTextBox.Text, 5 ) ) && validate.Text =="Valider" )
                 {
-                    MessageBox.Show( "Cette promotion a déjà été créée." );
+                    MessageBox.Show( "Cette promotion a déjà été créée" );
                 }
                 else
                 {
@@ -71,7 +67,6 @@ namespace Plann.Interface
                         SoftContext.CurrentPeriod.editPromotion( _pTmp, new Promotion( nameTextBox.Text, mailTextBox.Text, numberOfStudents ) );
                         InitializeOlv();
                         validate.Text = "Valider";
-                        delete.Visible = false;
                     }
                     else
                     {
@@ -95,16 +90,7 @@ namespace Plann.Interface
                 numberOfStudentsTextBox.Text = _pTmp.NumberOfStudents.ToString();
                 mailTextBox.Text = _pTmp.Mail;
                 validate.Text = "Modifier";
-                delete.Visible = true;
             }
-
-        }
-
-        private void delete_Click( object sender, EventArgs e )
-        {
-            SoftContext.CurrentPeriod.ListPromotion.Remove( _pTmp );
-            InitializeOlv();
-            delete.Visible = false;
 
         }
     }

@@ -50,7 +50,9 @@ namespace Plann.Interface
         protected override void OnLoad( EventArgs e )
         {
             base.OnLoad( e );
+
             InitializeOlv();
+        
         }
         private void InitializeOlv()
         {

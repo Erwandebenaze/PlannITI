@@ -44,6 +44,8 @@
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.validatePeriod = new System.Windows.Forms.Button();
+            this.begginingDateTextBox = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -72,7 +74,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(224, 36);
+            label3.Location = new System.Drawing.Point(237, 36);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(57, 17);
             label3.TabIndex = 2;
@@ -123,7 +125,7 @@
             // endingDateText
             // 
             this.endingDateText.AutoSize = true;
-            this.endingDateText.Location = new System.Drawing.Point(224, 72);
+            this.endingDateText.Location = new System.Drawing.Point(224, 16);
             this.endingDateText.Name = "endingDateText";
             this.endingDateText.Size = new System.Drawing.Size(0, 17);
             this.endingDateText.TabIndex = 7;
@@ -197,10 +199,26 @@
             this.validatePeriod.UseVisualStyleBackColor = true;
             this.validatePeriod.Click += new System.EventHandler(this.validatePeriod_Click);
             // 
+            // begginingDateTextBox
+            // 
+            this.begginingDateTextBox.Location = new System.Drawing.Point(109, 117);
+            this.begginingDateTextBox.Name = "begginingDateTextBox";
+            this.begginingDateTextBox.Size = new System.Drawing.Size(100, 22);
+            this.begginingDateTextBox.TabIndex = 15;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(248, 107);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.TabIndex = 16;
+            // 
             // UcMgtPeriod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.begginingDateTextBox);
             this.Controls.Add(this.validatePeriod);
             this.Controls.Add(this.objectListView1);
             this.Controls.Add(this.holidaysButton);
@@ -238,5 +256,7 @@
         private BrightIdeasSoftware.ObjectListView objectListView1;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
         private System.Windows.Forms.Button validatePeriod;
+        private System.Windows.Forms.TextBox begginingDateTextBox;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

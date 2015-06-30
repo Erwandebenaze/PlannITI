@@ -161,6 +161,7 @@
             this.roomComboBox.Size = new System.Drawing.Size(121, 24);
             this.roomComboBox.TabIndex = 9;
             this.roomComboBox.SelectedIndexChanged += new System.EventHandler(this.roomComboBox_SelectedIndexChanged);
+     //       this.roomComboBox.Click += new System.EventHandler(this.roomComboBox_Click);
             // 
             // teacherComboBox
             // 

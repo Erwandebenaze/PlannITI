@@ -40,13 +40,28 @@ namespace Plann.Interface
             ucMgtSubject1.reload += callReload;
             ucMgtRoom1.reload += callReload;
             ucMgtTeacher1.reload += callReload;
-
             ucPromotion1.PromotionChanged += LoadItems;
             ucPromotion1.SectorChanged += LoadItems;
             ucRoom1.RoomChanged += LoadItems;
             ucTeacher1.TeacherChanged += LoadItems;
         }
 
+        private void ReloadItems( object sender, MouseEventArgs e )
+        {
+            LoadItems();
+        }
+
+        public Period CurrentPeriod
+        {
+            get { return _mySoft.CurrentPeriod; }
+        }
+        private void callReload()
+        {
+            ucPromotion1.InitializeComboBox();
+            ucRoom1.InitializeComboBox();
+            ucTeacher1.InitializeComboBox();
+        }
+        #region Calendar
         private void calendar_ItemDeleted( object sender, CalendarItemEventArgs e )
         {
             Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.Date == e.Item.Date ).First();
@@ -66,22 +81,11 @@ namespace Plann.Interface
             calendar.CreateItemOnSelection( "", false );
         }
 
-        public Period CurrentPeriod
-        {
-            get { return _mySoft.CurrentPeriod; }
-        }
-        private void callReload()
-        {
-            ucPromotion1.InitializeComboBox();
-            ucRoom1.InitializeComboBox();
-            ucTeacher1.InitializeComboBox();
-        }
-        #region Calendar
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
         {
             Console.WriteLine( e.Item.Text );
             Console.WriteLine( e.Item.Date );
-        }   
+        }
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )
         {
             bool morning;
@@ -108,12 +112,12 @@ namespace Plann.Interface
                     subjectText = ucPromotion1.subjectComboBox.Text;
                     roomText = ucPromotion1.roomComboBox.Text;
                     promotionText = ucPromotion1.promotionComboBox.Text;
-                    if( ucPromotion1.sectorComboBox.Text == "IL" ) 
+                    if( ucPromotion1.sectorComboBox.Text == "IL" )
                     {
                         isIl = true;
                         sectorText = "IL";
                     }
-                    else if( ucPromotion1.sectorComboBox.Text == "SR" ) 
+                    else if( ucPromotion1.sectorComboBox.Text == "SR" )
                     {
                         isIl = false;
                         sectorText = "SR";
@@ -124,7 +128,7 @@ namespace Plann.Interface
                     subjectText = ucRoom1.subjectComboBox.Text;
                     roomText = ucRoom1.roomComboBox.Text;
                     promotionText = ucRoom1.promotionComboBox.Text;
-                    if( ucRoom1.sectorComboBox.Text == "IL" ) 
+                    if( ucRoom1.sectorComboBox.Text == "IL" )
                     {
                         isIl = true;
                         sectorText = "IL";
@@ -141,12 +145,12 @@ namespace Plann.Interface
                     subjectText = ucTeacher1.subjectComboBox.Text;
                     roomText = ucTeacher1.roomComboBox.Text;
                     promotionText = ucTeacher1.promotionComboBox.Text;
-                    if( ucTeacher1.sectorComboBox.Text == "IL" ) 
+                    if( ucTeacher1.sectorComboBox.Text == "IL" )
                     {
                         isIl = true;
                         sectorText = "IL";
                     }
-                    else if( ucTeacher1.sectorComboBox.Text == "SR" ) 
+                    else if( ucTeacher1.sectorComboBox.Text == "SR" )
                     {
                         isIl = false;
                         sectorText = "SR";
@@ -212,6 +216,7 @@ namespace Plann.Interface
                 CalendarItem ci = getCalendarItemFromSlot( slot );
                 calendar.Items.Add( ci );
             }
+            calendar.Items.Reverse();
         }
 
         List<Slot> getFilteredSlots()
@@ -245,7 +250,7 @@ namespace Plann.Interface
             }
 
             filteredSlots = filteredSlots.OrderByDescending( s => s.Date ).ToList();
-            
+
             return filteredSlots;
         }
 
@@ -288,6 +293,9 @@ namespace Plann.Interface
             ucRoom1.Visible = false;
             ucTeacher1.Visible = false;
             ucPromotion1.Visible = true;
+            ucMgtSubject1.reload += callReload;
+            ucMgtRoom1.reload += callReload;
+            ucMgtTeacher1.reload += callReload;
             LoadItems();
         }
         private void parProfesseurToolStripMenuItem_Click( object sender, EventArgs e )
@@ -296,39 +304,10 @@ namespace Plann.Interface
             ucPromotion1.Visible = false;
             ucRoom1.Visible = false;
             ucTeacher1.Visible = true;
+            ucMgtSubject1.reload += callReload;
+            ucMgtRoom1.reload += callReload;
+            ucMgtTeacher1.reload += callReload;
             LoadItems();
-        } 
-        #endregion
-        private void loadPeriod_Click( object sender, EventArgs e )
-        {
-           // System.Diagnostics.Process.Start( @"..\..\..\Sauvegardes" );
-            OpenFileDialog d = new OpenFileDialog();
-            Stream myStream = null;
-            //MessageBox.Show( Environment.CurrentDirectory.ToString() );
-            
-            d.InitialDirectory = @"C:\Dev\PlannITI\Sauvegardes"; // CHANGER LE REPERTOIRE EN CAS DE CHANGEMENT DE PC
-            MessageBox.Show( d.InitialDirectory ); 
-            d.Filter = "bin files (*.bin)|*.bin";
-            // d.ShowDialog();
-
-            if( d.ShowDialog() == DialogResult.OK )
-            {
-                try
-                {
-                    if( (myStream = d.OpenFile()) != null )
-                    {
-                        using( myStream )
-                        {
-                            PeriodLoader.Load( d.FileName );
-                            MessageBox.Show( "La partie a été chargée." );
-                        }
-                    }
-                }
-                catch( Exception ex )
-                {
-                    MessageBox.Show( "Error: Could not read file from disk. Original error: " + ex.Message );
-                }
-            }
         }
         private void parSalleToolStripMenuItem_Click( object sender, EventArgs e )
         {
@@ -337,7 +316,11 @@ namespace Plann.Interface
             ucPromotion1.Visible = false;
             ucRoom1.Visible = true;
             LoadItems();
+            ucMgtSubject1.reload += callReload;
+            ucMgtRoom1.reload += callReload;
+            ucMgtTeacher1.reload += callReload;
         }
+        #endregion
 
         private void nextMonthButton_Click( object sender, EventArgs e )
         {
@@ -353,14 +336,70 @@ namespace Plann.Interface
             LoadItems();
         }
 
-        private void périodeToolStripMenuItem_Click( object sender, EventArgs e )
+        private void créerUnePériodeToolStripMenuItem_Click( object sender, EventArgs e )
         {
             CurrentPeriod.CurrentUcFilter = "ucTeacher1";
             ucPromotion1.Visible = false;
             ucRoom1.Visible = false;
             ucTeacher1.Visible = false;
             ucMgtPeriod1.Visible = true;
+            ucMgtSubject1.reload += callReload;
+            ucMgtRoom1.reload += callReload;
+            ucMgtTeacher1.reload += callReload;
         }
+
+        private void chargerUnePériodeToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            // System.Diagnostics.Process.Start( @"..\..\..\Sauvegardes" );
+            OpenFileDialog d = new OpenFileDialog();
+            Stream myStream = null;
+            //MessageBox.Show( Environment.CurrentDirectory.ToString() );
+
+            d.InitialDirectory = @"C:\Dev\Plann-Copie\Sauvegardes"; // CHANGER LE REPERTOIRE EN CAS DE CHANGEMENT DE PC
+            //MessageBox.Show( d.InitialDirectory );
+            d.Filter = "bin files (*.bin)|*.bin";
+            // d.ShowDialog();
+
+            if( d.ShowDialog() == DialogResult.OK )
+            {
+                try
+                {
+                    if( (myStream = d.OpenFile()) != null )
+                    {
+                        using( myStream )
+                        {
+                           _mySoft.ChangePeriode(PeriodLoader.Load( d.FileName ));
+                           parPromotionToolStripMenuItem_Click( null, null );
+                           ReloadOlv();
+                           callReload();
+                            MessageBox.Show( "La période a été chargée." );
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    MessageBox.Show( "Error: Could not read file from disk. Original error: " + ex.Message );
+                }
+            }
+            ucMgtPeriod1.Visible = false;
+            ucPromotion1.Visible = true;
+        }
+
+        private void ReloadOlv()
+        {
+            ucMgtPromotion1.LoadPage();
+            ucMgtSubject1.LoadPage();
+            ucMgtRoom1.LoadPage();
+        }
+
+        private void sauvegarderToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            CurrentPeriod.SavePeriod();
+
+            MessageBox.Show( "La période actuelle a été sauvegardée." );
+        }
+
+
 
         //Slot getSlotFromCalendarItem( CalendarItem ci)
         //{

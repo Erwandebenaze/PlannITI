@@ -6,9 +6,20 @@ namespace Plann.Interface
 {
     public partial class UcMgtRoom : UserControl
     {
+        Room _rTmp;
         public UcMgtRoom()
         {
             InitializeComponent();
+        }
+        private void reinitialisation()
+        {
+            nameTextBox.Text = "";
+            numberOfSeatsTextBox.Text = "";
+            validateButton.Text = "Valider";
+        }
+        public void LoadPage()
+        {
+            InitializeOlv();
         }
         internal delegate void MyEventHandler();
         internal event MyEventHandler reload;
@@ -41,17 +52,26 @@ namespace Plann.Interface
         {
             if( !String.IsNullOrWhiteSpace( nameTextBox.Text ) && !String.IsNullOrWhiteSpace( numberOfSeatsTextBox.Text ) )
             {
-                if( SoftContext.CurrentPeriod.ListRooms.Contains( new Room( nameTextBox.Text,5) ) )
+                if( SoftContext.CurrentPeriod.ListRooms.Contains( new Room( nameTextBox.Text, 5 ) ) && validateButton.Text == "Valider" )
                 {
                     MessageBox.Show( "Cette salle a déjà été créée." );
                 } else
                 {
                     int numberOfSeats;
-                    if (int.TryParse(numberOfSeatsTextBox.Text, out numberOfSeats))
+                    if( int.TryParse( numberOfSeatsTextBox.Text, out numberOfSeats ) && validateButton.Text == "Valider" )
                     {
                         SoftContext.CurrentPeriod.addRoom( new Room( nameTextBox.Text, numberOfSeats ) );
                         InitializeOlv();
-                    } else
+                        reinitialisation();
+                    }
+                    else if( int.TryParse( numberOfSeatsTextBox.Text, out numberOfSeats ) && validateButton.Text == "Modifier" )
+                    {
+                        SoftContext.CurrentPeriod.editRoom( _rTmp, new Room( nameTextBox.Text, numberOfSeats ) );
+                        InitializeOlv();
+                        validateButton.Text = "Valider";
+                        delete.Visible = false;
+                        reinitialisation();
+                    } else 
                     {
                         MessageBox.Show( "Le nombre de place entré n'est pas un nombre entier." );
                     }
@@ -63,6 +83,27 @@ namespace Plann.Interface
             this.Visible = false;
             Parent.Controls[ SoftContext.CurrentPeriod.CurrentUcFilter ].Visible = true;
             OnReload();
+        }
+
+        private void delete_Click( object sender, EventArgs e )
+        {
+            SoftContext.CurrentPeriod.ListRooms.Remove( _rTmp );
+            InitializeOlv();
+            delete.Visible = false; 
+            reinitialisation();
+        }
+
+        private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )
+        {
+            if( e.Model != null )
+            {
+                _rTmp = (Room)e.Model;
+                nameTextBox.Text = _rTmp.Name;
+                numberOfSeatsTextBox.Text = _rTmp.NumberOfSeats.ToString();
+                validateButton.Text = "Modifier";
+                delete.Visible = true;
+            }
+
         }
     }
 }

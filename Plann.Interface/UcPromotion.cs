@@ -38,6 +38,10 @@ namespace Plann.Interface
         internal void InitializeComboBox()
         {
             #region ClearComboBox
+            promotionComboBox.Text = "";
+            teacherComboBox.Text = "";
+            subjectComboBox.Text = "";
+            roomComboBox.Text = "";
             promotionComboBox.Items.Clear();
             teacherComboBox.Items.Clear();
             subjectComboBox.Items.Clear();
@@ -95,8 +99,14 @@ namespace Plann.Interface
         {
             if(subjectComboBox.Text != null)
             {
-                Teacher t = SoftContext.CurrentPeriod.ListSubjects.Where( su => su.Name == subjectComboBox.Text ).Select( te => te.ReferentTeacher ).Single();
-                teacherComboBox.SelectedItem = t.Name;
+                if (SoftContext.CurrentPeriod.ListSubjects.Where( su => su.Name == subjectComboBox.Text ).Where( te => te.ReferentTeacher != null ).Select( te => te.ReferentTeacher ).Any())
+                {
+                  Teacher t = SoftContext.CurrentPeriod.ListSubjects.Where( su => su.Name == subjectComboBox.Text ).Where( te => te.ReferentTeacher != null ).Select( te => te.ReferentTeacher ).Single(); 
+                  teacherComboBox.SelectedItem = t.Name;
+                } else
+                {
+                    teacherComboBox.Text = "";
+                }
             }
         }
 
@@ -108,6 +118,30 @@ namespace Plann.Interface
         private void sectorComboBox_SelectedIndexChanged( object sender, EventArgs e )
         {
             OnSectorChanged();
+        }
+
+        private void subjectComboBox_Click( object sender, EventArgs e )
+        {
+            if( promotionComboBox.Items.Count == 0 && roomComboBox.Items.Count == 0 && subjectComboBox.Items.Count == 0 )
+                InitializeComboBox();
+            }
+
+        private void roomComboBox_Click( object sender, EventArgs e )
+        {
+            if( promotionComboBox.Items.Count == 0 && roomComboBox.Items.Count == 0 && subjectComboBox.Items.Count == 0 )
+            InitializeComboBox();
+        }
+
+        private void teacherComboBox_Click( object sender, EventArgs e )
+        {
+            if( promotionComboBox.Items.Count == 0 && roomComboBox.Items.Count == 0 && subjectComboBox.Items.Count == 0 )
+            InitializeComboBox();
+        }
+
+        private void promotionComboBox_Click( object sender, EventArgs e )
+        {
+            if( promotionComboBox.Items.Count == 0 && roomComboBox.Items.Count == 0 && subjectComboBox.Items.Count == 0 )
+                InitializeComboBox();
         }
     }
 }

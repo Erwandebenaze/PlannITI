@@ -223,7 +223,7 @@ namespace Plann.Core
 
         public bool editSubject( Subject subjectToEdit, Subject newSubject )
         {
-            if( !_listSubjects.Contains( subjectToEdit ) ) throw new ArgumentException( "La salle n'est pas dans la liste des salles." );
+            if( !_listSubjects.Contains( subjectToEdit ) ) throw new ArgumentException( "La matière n'est pas dans la liste des matières." );
 
             int index = _listSubjects.FindIndex( s => s == subjectToEdit );
             removeSubject( subjectToEdit );

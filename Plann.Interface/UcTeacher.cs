@@ -85,5 +85,29 @@ namespace Plann.Interface
         {
             OnTeacherChanged();
         }
+
+        private void promotionComboBox_Click( object sender, EventArgs e )
+        {
+            if( promotionComboBox.Items.Count == 0 && roomComboBox.Items.Count == 0 && subjectComboBox.Items.Count == 0 )
+                InitializeComboBox();
+        }
+
+        private void subjectComboBox_Click( object sender, EventArgs e )
+        {
+            if( promotionComboBox.Items.Count == 0 && roomComboBox.Items.Count == 0 && subjectComboBox.Items.Count == 0 )
+                InitializeComboBox();
+        }
+
+        private void roomComboBox_Click( object sender, EventArgs e )
+        {
+            if( promotionComboBox.Items.Count == 0 && roomComboBox.Items.Count == 0 && subjectComboBox.Items.Count == 0 )
+                InitializeComboBox();
+        }
+
+        private void teacherComboBox_Click( object sender, EventArgs e )
+        {
+            if( promotionComboBox.Items.Count == 0 && roomComboBox.Items.Count == 0 && subjectComboBox.Items.Count == 0 )
+                InitializeComboBox();
+        }
     }
 }

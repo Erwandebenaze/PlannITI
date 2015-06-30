@@ -43,6 +43,7 @@
             this.colorColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.teacherColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.returnLink = new System.Windows.Forms.LinkLabel();
+            this.delete = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -157,6 +158,7 @@
             this.objectListView1.UseCellFormatEvents = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
+            this.objectListView1.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.objectListView1_CellClick);
             this.objectListView1.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.objectListView1_FormatCell);
             // 
             // nameColumn
@@ -191,10 +193,23 @@
             this.returnLink.Text = "Retour";
             this.returnLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.returnLink_LinkClicked);
             // 
+            // delete
+            // 
+            this.delete.Location = new System.Drawing.Point(117, 124);
+            this.delete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.delete.Name = "delete";
+            this.delete.Size = new System.Drawing.Size(183, 28);
+            this.delete.TabIndex = 22;
+            this.delete.Text = "Supprimer";
+            this.delete.UseVisualStyleBackColor = true;
+            this.delete.Visible = false;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
+            // 
             // UcMgtSubject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.delete);
             this.Controls.Add(this.returnLink);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.validateButton);
@@ -228,6 +243,7 @@
         private BrightIdeasSoftware.OLVColumn teacherColumn;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.LinkLabel returnLink;
+        private System.Windows.Forms.Button delete;
 
     }
 }

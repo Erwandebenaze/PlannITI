@@ -977,8 +977,8 @@ namespace System.Windows.Forms.Calendar
                 for (int i = 0; i < Calendar.Days.Length; i++)
                 {
                     Calendar.Days[i].ContainedItems.Clear();
-                    Calendar.Days[ i ].SetOverflowEnd( false );
-                    Calendar.Days[ i ].SetOverflowStart( false );
+                    Calendar.Days[i].SetOverflowEnd(false);
+                    Calendar.Days[i].SetOverflowStart(false);
                 }
 
                 int maxItems = 0;

@@ -1817,7 +1817,6 @@ namespace System.Windows.Forms.Calendar
                                 OnDayLeftClick( new CalendarDayEventArgs( hittedDay ) );
                             if( e.Button == MouseButtons.Right )
                                 OnDayRightClick( new CalendarDayEventArgs( hittedDay ) );
-
                         }
                     }
                     break;

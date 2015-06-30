@@ -46,6 +46,16 @@ namespace Plann.Interface
             ucTeacher1.TeacherChanged += LoadItems;
         }
 
+        protected override void OnMouseWheel( MouseEventArgs e )
+        {
+            if( e.Delta > 0 )
+                setPreviousMonth();
+            else
+                setNextMonth();
+            
+            base.OnMouseWheel( e );
+        }
+
         private void ReloadItems( object sender, MouseEventArgs e )
         {
             LoadItems();
@@ -62,6 +72,19 @@ namespace Plann.Interface
             ucTeacher1.InitializeComboBox();
         }
         #region Calendar
+
+        private void calendar_Scroll( object sender, ScrollEventArgs e )
+        {
+            if( e.OldValue > e.NewValue )
+            {
+                MessageBox.Show( "Mouse scroll UP !" );
+            }
+            else
+            {
+                MessageBox.Show( "Mouse scroll DOWN !" );
+            }
+        }
+
         private void calendar_ItemDeleted( object sender, CalendarItemEventArgs e )
         {
             Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.Date == e.Item.Date ).First();
@@ -163,15 +186,19 @@ namespace Plann.Interface
             // A REVOIR
             DateTime day = e.Item.StartDate.Date;
 
-            int nbM = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day && ( s.Morning == morning && s.IsIl == isIl ) );
+            int nbMorning;
+            if( isIl.HasValue )
+                nbMorning = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day && ( s.Morning == morning && s.IsIl == isIl ) );
+            else
+                nbMorning = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day && s.Morning == morning );
 
             int nb;
             if( isIl.HasValue )
                 nb = CurrentPeriod.ListSlots.Count( s => ( s.IsIl == isIl || s.IsIl == null ) && s.Date.Date == day );
             else
-                nb = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day && s.IsIl == null );
+                nb = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day );
 
-            if( nb > 1 || nbM > 0 || subjectText == String.Empty || roomText == String.Empty || promotionText == String.Empty )
+            if( nb > 1 || nbMorning > 0 || subjectText == String.Empty || roomText == String.Empty || promotionText == String.Empty )
             {
                 e.Cancel = true;
                 return;
@@ -284,7 +311,32 @@ namespace Plann.Interface
             CalendarItem ci = new CalendarItem( calendar, startDate, endDate, slotFormattedText );
             ci.BackgroundColor = slot.AssociatedSubject.Color;
             return ci;
-        } 
+        }
+
+        private void setNextMonth()
+        {
+            CurrentPeriod.SetNextMonthView();
+            calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
+            LoadItems();
+        }
+
+        private void setPreviousMonth()
+        {
+            CurrentPeriod.SetPreviousMonthView();
+            calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
+            LoadItems();
+        }
+
+        private void nextMonthButton_Click( object sender, EventArgs e )
+        {
+            setNextMonth();
+        }
+
+        private void previousMonthButton_Click( object sender, EventArgs e )
+        {
+            setPreviousMonth();
+        }
+
         #endregion
         #region ToolStrip
         private void parPromotionToolStripMenuItem_Click( object sender, EventArgs e )
@@ -321,20 +373,6 @@ namespace Plann.Interface
             ucMgtTeacher1.reload += callReload;
         }
         #endregion
-
-        private void nextMonthButton_Click( object sender, EventArgs e )
-        {
-            CurrentPeriod.SetNextMonthView();
-            calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
-            LoadItems();
-        }
-
-        private void previousMonthButton_Click( object sender, EventArgs e )
-        {
-            CurrentPeriod.SetPreviousMonthView();
-            calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
-            LoadItems();
-        }
 
         private void créerUnePériodeToolStripMenuItem_Click( object sender, EventArgs e )
         {
@@ -398,12 +436,5 @@ namespace Plann.Interface
 
             MessageBox.Show( "La période actuelle a été sauvegardée." );
         }
-
-
-
-        //Slot getSlotFromCalendarItem( CalendarItem ci)
-        //{
-        //    Teacher teacher = _mySoft.ListTeachers.Where(t => t.Name == ci.)
-        //}
     }
 }

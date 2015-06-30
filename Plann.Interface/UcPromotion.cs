@@ -17,7 +17,8 @@ namespace Plann.Interface
         {
             InitializeComponent();
             InitializeComboBox();
-        }      
+        }
+     
         IPlannContext SoftContext
         {
             get { return (IPlannContext)TopLevelControl; }

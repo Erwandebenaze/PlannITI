@@ -40,7 +40,6 @@
             this.mailColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.validate = new System.Windows.Forms.Button();
             this.retour = new System.Windows.Forms.LinkLabel();
-            this.delete = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -106,10 +105,10 @@
             this.numberOfStudentsColumn,
             this.mailColumn});
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.objectListView1.Location = new System.Drawing.Point(0, 170);
+            this.objectListView1.Location = new System.Drawing.Point(0, 133);
             this.objectListView1.Name = "objectListView1";
             this.objectListView1.ShowGroups = false;
-            this.objectListView1.Size = new System.Drawing.Size(381, 325);
+            this.objectListView1.Size = new System.Drawing.Size(381, 362);
             this.objectListView1.TabIndex = 6;
             this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
@@ -136,7 +135,6 @@
             // 
             this.mailColumn.AspectName = "Mail";
             this.mailColumn.MinimumWidth = 100;
-            this.mailColumn.Text = "Mail de la promotion";
             this.mailColumn.UseFiltering = false;
             this.mailColumn.Width = 100;
             // 
@@ -161,22 +159,10 @@
             this.retour.Text = "Retour";
             this.retour.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.retour_LinkClicked);
             // 
-            // delete
-            // 
-            this.delete.Location = new System.Drawing.Point(122, 133);
-            this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(86, 31);
-            this.delete.TabIndex = 9;
-            this.delete.Text = "Supprimer";
-            this.delete.UseVisualStyleBackColor = true;
-            this.delete.Visible = false;
-            this.delete.Click += new System.EventHandler(this.delete_Click);
-            // 
             // UcMgtPromotion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.delete);
             this.Controls.Add(this.retour);
             this.Controls.Add(this.validate);
             this.Controls.Add(this.objectListView1);
@@ -205,6 +191,5 @@
         private BrightIdeasSoftware.OLVColumn mailColumn;
         private System.Windows.Forms.Button validate;
         private System.Windows.Forms.LinkLabel retour;
-        private System.Windows.Forms.Button delete;
     }
 }

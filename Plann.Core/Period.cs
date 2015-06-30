@@ -138,6 +138,7 @@ namespace Plann.Core
         public bool addSlot( Slot slot )
         {
             if( slot == null ) throw new ArgumentNullException();
+            slot.Date = slot.Date.AddHours( slot.Morning ? 9 : 13.5 );
             _listSlots.Add( slot );
             return true;
         }
@@ -222,7 +223,7 @@ namespace Plann.Core
 
         public bool editSubject( Subject subjectToEdit, Subject newSubject )
         {
-            if( !_listSubjects.Contains( subjectToEdit ) ) throw new ArgumentException( "La matière n'est pas dans la liste des matières." );
+            if( !_listSubjects.Contains( subjectToEdit ) ) throw new ArgumentException( "La salle n'est pas dans la liste des salles." );
 
             int index = _listSubjects.FindIndex( s => s == subjectToEdit );
             removeSubject( subjectToEdit );

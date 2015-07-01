@@ -1844,19 +1844,19 @@ namespace System.Windows.Forms.Calendar
             SetState(CalendarState.Idle);
         }
 
-        //protected override void OnMouseWheel(MouseEventArgs e)
-        //{
-        //    base.OnMouseWheel(e);
+        protected override void OnMouseWheel( MouseEventArgs e )
+        {
+            base.OnMouseWheel( e );
 
-        //    if (DaysMode == CalendarDaysMode.Expanded)
-        //    {
-        //        ScrollTimeUnits(e.Delta);
-        //    }
-        //    else if (DaysMode == CalendarDaysMode.Short)
-        //    {
-        //        ScrollCalendar(e.Delta);
-        //    }
-        //}
+            if( DaysMode == CalendarDaysMode.Expanded )
+            {
+                ScrollTimeUnits( e.Delta );
+            }
+            else if( DaysMode == CalendarDaysMode.Short )
+            {
+                ScrollCalendar( e.Delta );
+            }
+        }
 
         protected override void OnPaint(PaintEventArgs e)
         {

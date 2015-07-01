@@ -92,6 +92,7 @@
             // 
             // teacherNameComboBox
             // 
+            this.teacherNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.teacherNameComboBox.FormattingEnabled = true;
             this.teacherNameComboBox.Location = new System.Drawing.Point(243, 36);
             this.teacherNameComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

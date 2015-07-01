@@ -108,6 +108,7 @@
             // 
             // promotionComboBox
             // 
+            this.promotionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.promotionComboBox.FormattingEnabled = true;
             this.promotionComboBox.Items.AddRange(new object[] {
             "itiTruc"});
@@ -121,6 +122,7 @@
             // 
             // sectorComboBox
             // 
+            this.sectorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sectorComboBox.FormattingEnabled = true;
             this.sectorComboBox.Items.AddRange(new object[] {
             "",
@@ -147,6 +149,7 @@
             // 
             // subjectComboBox
             // 
+            this.subjectComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.subjectComboBox.FormattingEnabled = true;
             this.subjectComboBox.Items.AddRange(new object[] {
             "PI"});
@@ -160,6 +163,8 @@
             // 
             // roomComboBox
             // 
+            this.roomComboBox.AllowDrop = true;
+            this.roomComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.roomComboBox.FormattingEnabled = true;
             this.roomComboBox.Items.AddRange(new object[] {
             "E01"});
@@ -172,6 +177,7 @@
             // 
             // teacherComboBox
             // 
+            this.teacherComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.teacherComboBox.FormattingEnabled = true;
             this.teacherComboBox.Items.AddRange(new object[] {
             "Spi"});

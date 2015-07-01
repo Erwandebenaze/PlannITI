@@ -5,6 +5,7 @@ using Plann.Core;
 using System.Windows.Forms.Calendar;
 using System.IO;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Plann.Interface
 {
@@ -12,12 +13,37 @@ namespace Plann.Interface
     {
         Soft _mySoft;
         bool? _leftClick;
-
+        Timer _timer;
+        int interval;
         public PlannITI()
         {
             _mySoft = new Soft();
+
+            string fileName = findIfTmpExists();
+            if (fileName != null)
+            {
+                DialogResult res = MessageBox.Show( "La programme a été quitté de manière impromptue. Voulez-vous charger la sauvegarde automatique ?", "Quitter", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 );
+                if(res == DialogResult.Yes)
+                {
+                    _mySoft.ChangePeriode( PeriodLoader.Load( fileName ) );
+                }
+                else
+                {
+                    _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName );
+                    loadPeriodFromBeginning();
+                }
+            }
+
             CurrentPeriod.CurrentUcFilter = "ucPromotion1";
             InitializeComponent();
+
+
+
+            _timer = new Timer();
+            interval = 5000;
+            _timer.Interval = interval;
+            _timer.Tick += _timer_Tick;
+            _timer.Start();
 
             calendar.ItemsTimeFormat = "HH : mm";
 
@@ -30,20 +56,45 @@ namespace Plann.Interface
 
             LoadItems();
 
+            #region CalendarEvents
             calendar.DayLeftClick += calendar_DayLeftClick;
             calendar.DayRightClick += calendar_DayRightClick;
             calendar.ItemCreating += calendar_ItemCreating;
             calendar.ItemCreated += calendar_ItemCreated;
             calendar.ItemClick += calendar_ItemClick;
-            calendar.ItemDeleted += calendar_ItemDeleted;
+            calendar.ItemDeleted += calendar_ItemDeleted; 
+            #endregion
 
+            #region ReloadAndLoadItems
             ucMgtSubject1.reload += callReload;
             ucMgtRoom1.reload += callReload;
             ucMgtTeacher1.reload += callReload;
             ucPromotion1.PromotionChanged += LoadItems;
             ucPromotion1.SectorChanged += LoadItems;
             ucRoom1.RoomChanged += LoadItems;
-            ucTeacher1.TeacherChanged += LoadItems;
+            ucTeacher1.TeacherChanged += LoadItems; 
+            #endregion
+        }
+
+        private string findIfTmpExists()
+        {
+            string pattern = @"Tmp.bin$";
+            string fileName = null;
+            Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+            foreach ( string s in  System.IO.Directory.GetFiles(@"..\..\..\Sauvegardes"))
+            {
+                if(rgx.IsMatch( s ))
+                {
+                    fileName = s;
+                    break;
+                }
+            }
+            return fileName;
+
+        }
+        void _timer_Tick( object sender, EventArgs e )
+        {
+            CurrentPeriod.SaveTmpPeriod();
         }
 
         protected override void OnMouseWheel( MouseEventArgs e )
@@ -65,6 +116,7 @@ namespace Plann.Interface
         {
             get { return _mySoft.CurrentPeriod; }
         }
+
         private void callReload()
         {
             ucPromotion1.InitializeComboBox();
@@ -188,13 +240,13 @@ namespace Plann.Interface
 
             int nbMorning;
             if( isIl.HasValue )
-                nbMorning = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day && ( s.Morning == morning && s.IsIl == isIl ) );
+                nbMorning = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day && (s.Morning == morning && s.IsIl == isIl) );
             else
                 nbMorning = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day && s.Morning == morning );
 
             int nb;
             if( isIl.HasValue )
-                nb = CurrentPeriod.ListSlots.Count( s => ( s.IsIl == isIl || s.IsIl == null ) && s.Date.Date == day );
+                nb = CurrentPeriod.ListSlots.Count( s => (s.IsIl == isIl || s.IsIl == null) && s.Date.Date == day );
             else
                 nb = CurrentPeriod.ListSlots.Count( s => s.Date.Date == day );
 
@@ -263,7 +315,7 @@ namespace Plann.Interface
                     isIlBox = false;
 
                 if( isIlBox.HasValue )
-                    filteredSlots = slotsOnCurrentView.Where( s => ( s.IsIl == isIlBox || s.IsIl == null ) && s.AssociatedPromotionList.Any( p => p.Name == ucPromotion1.promotionComboBox.Text ) ).ToList();
+                    filteredSlots = slotsOnCurrentView.Where( s => (s.IsIl == isIlBox || s.IsIl == null) && s.AssociatedPromotionList.Any( p => p.Name == ucPromotion1.promotionComboBox.Text ) ).ToList();
                 else
                     filteredSlots = slotsOnCurrentView.Where( s => s.IsIl == null && s.AssociatedPromotionList.Any( p => p.Name == ucPromotion1.promotionComboBox.Text ) ).ToList();
             }
@@ -393,7 +445,7 @@ namespace Plann.Interface
             Stream myStream = null;
             //MessageBox.Show( Environment.CurrentDirectory.ToString() );
 
-            d.InitialDirectory = @"C:\Dev\Plann-Copie\Sauvegardes"; // CHANGER LE REPERTOIRE EN CAS DE CHANGEMENT DE PC
+            d.InitialDirectory = @"C:\Dev\PlannITI\Sauvegardes"; // CHANGER LE REPERTOIRE EN CAS DE CHANGEMENT DE PC
             //MessageBox.Show( d.InitialDirectory );
             d.Filter = "bin files (*.bin)|*.bin";
             // d.ShowDialog();
@@ -423,6 +475,38 @@ namespace Plann.Interface
             ucPromotion1.Visible = true;
         }
 
+        private void loadPeriodFromBeginning()
+        {
+            OpenFileDialog d = new OpenFileDialog();
+            Stream myStream = null;
+
+            d.InitialDirectory = @"C:\Dev\PlannITI\Sauvegardes"; // CHANGER LE REPERTOIRE EN CAS DE CHANGEMENT DE PC
+            d.Filter = "bin files (*.bin)|*.bin";
+
+            while( d.ShowDialog() != DialogResult.OK )
+            {
+                
+                try
+                {
+                    if( (myStream = d.OpenFile()) != null )
+                    {
+                        using( myStream )
+                        {
+                            _mySoft.ChangePeriode( PeriodLoader.Load( d.FileName ) );
+                           // parPromotionToolStripMenuItem_Click( null, null );
+                            MessageBox.Show( "La période a été chargée." );
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    MessageBox.Show( "Vous devez charger une période pour commencer" );
+                    Console.WriteLine( ex );
+                }
+            }
+        }
+
+      
         private void ReloadOlv()
         {
             ucMgtPromotion1.LoadPage();
@@ -435,6 +519,23 @@ namespace Plann.Interface
             CurrentPeriod.SavePeriod();
 
             MessageBox.Show( "La période actuelle a été sauvegardée." );
+        }
+
+        private void PlannITI_FormClosing( object sender, FormClosingEventArgs e )
+        {
+            DialogResult res = MessageBox.Show( "Souhaitez-vous enregistrer avant de quitter ?","Quitter", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3 );
+            if( res == DialogResult.Cancel )
+            {
+                e.Cancel = true;
+            }
+            else if( res == DialogResult.Yes ) 
+            {
+                CurrentPeriod.SavePeriod();
+                CurrentPeriod.DeleteTmpPeriod();
+            } else if( res == DialogResult.No)
+            {
+                CurrentPeriod.DeleteTmpPeriod();
+            }
         }
     }
 }

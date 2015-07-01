@@ -11,7 +11,6 @@ namespace Plann.Interface
         {
             InitializeComponent();
         }
-
         private void reinitialisation()
         {
             nameTextBox.Text = "";
@@ -94,6 +93,7 @@ namespace Plann.Interface
         {
             this.Visible = false;
             Parent.Controls[SoftContext.CurrentPeriod.CurrentUcFilter].Visible = true;
+            reinitialisation();
         }
 
         private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )

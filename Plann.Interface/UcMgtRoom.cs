@@ -82,6 +82,7 @@ namespace Plann.Interface
         {
             this.Visible = false;
             Parent.Controls[ SoftContext.CurrentPeriod.CurrentUcFilter ].Visible = true;
+            reinitialisation();
             OnReload();
         }
 

@@ -264,6 +264,44 @@ namespace Plann.Core
 
             stream.Close();
         }
+        public void SaveTmpPeriod()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream( @"..\..\..\Sauvegardes\" + this.Name + "Tmp.bin", FileMode.Create, FileAccess.Write, FileShare.None );
+            formatter.Serialize( stream, this );
+            Console.WriteLine( DateTime.Now + " : Fichier " + this.Name + "Tmp.bin sauvegardé." );
+            stream.Close();
+        }
+        public void DeleteTmpPeriod()
+        {
+            if( System.IO.File.Exists( @"..\..\..\Sauvegardes\" + this.Name + "Tmp.bin" ) )
+            {
+                try
+                {
+                    System.IO.File.Delete( @"..\..\..\Sauvegardes\" + this.Name + "Tmp.bin" );
+                }
+                catch( System.IO.IOException e )
+                {
+                    Console.WriteLine( e.Message );
+                    return;
+                }
+            }
+        }
+        public void DeleteTmpPeriod(string fileName)
+        {
+            if( System.IO.File.Exists( fileName ))
+            {
+                try
+                {
+                    System.IO.File.Delete( fileName);
+                }
+                catch( System.IO.IOException e )
+                {
+                    Console.WriteLine( e.Message );
+                    return;
+                }
+            }
+        }
 
         public void SetNextMonthView()
         {
@@ -293,5 +331,7 @@ namespace Plann.Core
             }
             
         }
+
+
     }
 }

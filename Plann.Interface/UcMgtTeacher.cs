@@ -90,6 +90,7 @@ namespace Plann.Interface
             this.Visible = false;
             Parent.Controls[SoftContext.CurrentPeriod.CurrentUcFilter].Visible = true;
             OnReload();
+            reinitialisation();
         }
 
         private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )

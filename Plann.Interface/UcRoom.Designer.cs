@@ -108,6 +108,7 @@
             // 
             // promotionComboBox
             // 
+            this.promotionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.promotionComboBox.FormattingEnabled = true;
             this.promotionComboBox.Location = new System.Drawing.Point(20, 191);
             this.promotionComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -118,6 +119,7 @@
             // 
             // sectorComboBox
             // 
+            this.sectorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sectorComboBox.FormattingEnabled = true;
             this.sectorComboBox.Items.AddRange(new object[] {
             "",
@@ -143,6 +145,7 @@
             // 
             // subjectComboBox
             // 
+            this.subjectComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.subjectComboBox.FormattingEnabled = true;
             this.subjectComboBox.Location = new System.Drawing.Point(17, 260);
             this.subjectComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -154,6 +157,7 @@
             // 
             // roomComboBox
             // 
+            this.roomComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.roomComboBox.FormattingEnabled = true;
             this.roomComboBox.Location = new System.Drawing.Point(17, 33);
             this.roomComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -165,6 +169,7 @@
             // 
             // teacherComboBox
             // 
+            this.teacherComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.teacherComboBox.FormattingEnabled = true;
             this.teacherComboBox.Location = new System.Drawing.Point(17, 341);
             this.teacherComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

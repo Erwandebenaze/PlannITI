@@ -105,12 +105,14 @@ namespace Plann.Interface
                     {
                         tmpSubject = new Subject( nameTextBox.Text, button1.BackColor );
                         SoftContext.CurrentPeriod.addSubject( tmpSubject );
+                        reinitialisation();
                     }
                     else if( teacherNameComboBox.SelectedItem == null && validateButton.Text == "Modifier" )
                     {
                         SoftContext.CurrentPeriod.editSubject( _sTmp, new Subject(nameTextBox.Text, button1.BackColor ));
                         InitializeOlv();
                         validateButton.Text = "Valider";
+                        reinitialisation();
                     } else if (validateButton.Text == "Modifier" )
                     {
                         Teacher t = SoftContext.CurrentPeriod.ListTeachers.Where( th => th.Name == teacherNameComboBox.SelectedItem.ToString() ).Single();

@@ -357,7 +357,7 @@ namespace Plann.Interface
                     newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions, isIl, additionnalText );
                 else
                     newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions, isIl );
-                // newSlot.CurrentCalendarItem = e.Item;
+
                 CurrentPeriod.addSlot( newSlot );
                 #endregion
             }
@@ -495,7 +495,7 @@ namespace Plann.Interface
 
         CalendarItem getCalendarItemFromSlot( Slot slot )
         {
-            DateTime startDate = slot.Date.Date;
+            DateTime startDate = slot.Date;
             DateTime endDate = new DateTime();
 
             string slotFormattedText = CustomTextWrap( slot );
@@ -505,7 +505,6 @@ namespace Plann.Interface
             CalendarItem ci = new CalendarItem( calendar, startDate, endDate, slotFormattedText );
             ci.BackgroundColor = slot.AssociatedSubject.Color;
 
-            // slot.CurrentCalendarItem = ci;
             return ci;
         }
 

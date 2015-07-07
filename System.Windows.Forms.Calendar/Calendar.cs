@@ -9,6 +9,7 @@ namespace System.Windows.Forms.Calendar
     /// <summary>
     /// Hosts a calendar view where user can manage calendar items.
     /// </summary>
+   
     [DefaultEvent("LoadItems")]
     public class Calendar
         : ScrollableControl
@@ -108,16 +109,16 @@ namespace System.Windows.Forms.Calendar
         public event CalendarDayEventHandler DayHeaderClick;
 
         /// <summary>
-        /// Occurs when a day is clicked with the left mouse button
+        /// Occurs when a day is clicked on the top half of the day cell
         /// </summary>
         [Description( "Occurs when a day is clicked with the left mouse button" )]
-        public event CalendarDayEventHandler DayLeftClick;
+        public event CalendarDayEventHandler DayTopClick;
 
         /// <summary>
-        /// Occurs when a day is clicked with the right mouse button
+        /// Occurs when a day is clicked on the bottom half of the day cell
         /// </summary>
         [Description( "Occurs when a day is clicked with the right mouse button" )]
-        public event CalendarDayEventHandler DayRightClick;
+        public event CalendarDayEventHandler DayBottomClick;
 
         /// <summary>
         /// Occurs when an item is about to be created.
@@ -1439,19 +1440,19 @@ namespace System.Windows.Forms.Calendar
             }
         }
 
-        protected virtual void OnDayLeftClick( CalendarDayEventArgs e )
+        protected virtual void OnDayTopClick( CalendarDayEventArgs e )
         {
-            if( DayLeftClick != null )
+            if( DayTopClick != null )
             {
-                DayLeftClick( this, e );
+                DayTopClick( this, e );
             }
         }
 
-        protected virtual void OnDayRightClick( CalendarDayEventArgs e )
+        protected virtual void OnDayBottomClick( CalendarDayEventArgs e )
         {
-            if( DayRightClick != null )
+            if( DayBottomClick != null )
             {
-                DayRightClick( this, e );
+                DayBottomClick( this, e );
             }
         }
 
@@ -1813,10 +1814,13 @@ namespace System.Windows.Forms.Calendar
                         }
                         if( hittedDay.BodyBounds.Contains( e.Location ) )
                         {
-                            if( e.Button == MouseButtons.Left )
-                                OnDayLeftClick( new CalendarDayEventArgs( hittedDay ) );
-                            if( e.Button == MouseButtons.Right )
-                                OnDayRightClick( new CalendarDayEventArgs( hittedDay ) );
+                            double realHeight = hittedDay.Bounds.Height - hittedDay.HeaderBounds.Height;
+                            double realTop = hittedDay.Bounds.Top + hittedDay.HeaderBounds.Height;
+
+                            if( e.Y < hittedDay.Bounds.Top + ( realHeight / 2 ) )
+                                OnDayTopClick( new CalendarDayEventArgs( hittedDay ) );
+                            else
+                                OnDayBottomClick( new CalendarDayEventArgs( hittedDay ) );
                         }
                     }
                     break;

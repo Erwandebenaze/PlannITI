@@ -259,6 +259,8 @@ namespace Plann.Core
         public void SavePeriod()
         {
             IFormatter formatter = new BinaryFormatter();
+            // CHANGE ICI
+            
             Stream stream = new FileStream( @"..\..\..\Sauvegardes\" + this.Name + ".bin", FileMode.Create, FileAccess.Write, FileShare.None );
             formatter.Serialize( stream, this );
 
@@ -267,13 +269,15 @@ namespace Plann.Core
         public void SaveTmpPeriod()
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream( @"..\..\..\Sauvegardes\" + this.Name + "Tmp.bin", FileMode.Create, FileAccess.Write, FileShare.None );
+            // CHANGE ICI
+            Stream stream = new FileStream( @"..\..\Sauvegardes\" + this.Name + "Tmp.bin", FileMode.Create, FileAccess.Write, FileShare.None );
             formatter.Serialize( stream, this );
             Console.WriteLine( DateTime.Now + " : Fichier " + this.Name + "Tmp.bin sauvegardé." );
             stream.Close();
         }
         public void DeleteTmpPeriod()
         {
+            // CHANGE ICI
             if( System.IO.File.Exists( @"..\..\..\Sauvegardes\" + this.Name + "Tmp.bin" ) )
             {
                 try

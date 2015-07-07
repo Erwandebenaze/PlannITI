@@ -12,6 +12,7 @@ namespace System.Windows.Forms.Calendar
     /// <remarks>
     /// <para>CalendarItem provides a graphical representation of tasks within a date range.</para>
     /// </remarks>
+   [Serializable]
     public class CalendarItem
         : CalendarSelectableElement
     {

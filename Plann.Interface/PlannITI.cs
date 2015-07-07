@@ -423,7 +423,6 @@ namespace Plann.Interface
                     ci.SetBounds( r );
                 }
             }
-            Console.WriteLine( "LoadCalendarView called !" );
         }
         void SetCurrentYearMonth()
         {

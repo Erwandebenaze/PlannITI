@@ -283,7 +283,7 @@ namespace Plann.Core
             }
             catch( SerializationException e )
             {
-                Console.WriteLine( "Problème de sérialisation dans SavePeriod. " + e );
+                Console.WriteLine( "Problème de sérialisation dans SavePeriodTmp. " + e );
             }
             Console.WriteLine( DateTime.Now + " : Fichier " + this.Name + "Tmp.bin sauvegardé." );
             stream.Close();

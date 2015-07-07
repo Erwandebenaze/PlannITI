@@ -1103,7 +1103,7 @@ namespace System.Windows.Forms.Calendar
                     OnItemDeleted(new CalendarItemEventArgs(item));
                 }
 
-                Renderer.PerformItemsLayout();
+                // Renderer.PerformItemsLayout();
             }
         }
 

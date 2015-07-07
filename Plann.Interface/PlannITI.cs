@@ -218,6 +218,7 @@ namespace Plann.Interface
         private void calendar_ItemDeleted( object sender, CalendarItemEventArgs e )
         {
             Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.Date == e.Item.StartDate && s.IsOnView == e.Item.IsOnViewDateRange ).Single();
+            //Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.CurrentCalendarItem == e.Item ).Single();
             CurrentPeriod.removeSlot( slotToDelete );
             LoadCalendarView();
         }
@@ -356,7 +357,7 @@ namespace Plann.Interface
                     newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions, isIl, additionnalText );
                 else
                     newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions, isIl );
-
+                // newSlot.CurrentCalendarItem = e.Item;
                 CurrentPeriod.addSlot( newSlot );
                 #endregion
             }
@@ -504,6 +505,7 @@ namespace Plann.Interface
             CalendarItem ci = new CalendarItem( calendar, startDate, endDate, slotFormattedText );
             ci.BackgroundColor = slot.AssociatedSubject.Color;
 
+            // slot.CurrentCalendarItem = ci;
             return ci;
         }
 

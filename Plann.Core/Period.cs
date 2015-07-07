@@ -42,7 +42,7 @@ namespace Plann.Core
             _listTeachers = new List<Teacher>();
             _listSlots = new List<Slot>();
             _listPromotion = new List<Promotion>();
-            _currentViewMonthStart = GetFirstMonth( _begginningDate );
+            _currentViewMonthStart = _begginningDate;
             _currentViewMonthEnd = _currentViewMonthStart.AddMonths( 1 );
             _mySoft = mySoft;
 
@@ -331,7 +331,6 @@ namespace Plann.Core
                 _currentViewMonthEnd = _endingDate;
                 _currentViewMonthStart = _endingDate.AddMonths( -1 );
             }
-
         }
         public void SetPreviousMonthView()
         {
@@ -342,10 +341,9 @@ namespace Plann.Core
             }
             else
             {
-                _currentViewMonthEnd = _begginningDate.AddMonths(1);
+                _currentViewMonthEnd = _begginningDate.AddMonths( 1 );
                 _currentViewMonthStart = _begginningDate;
             }
-            
         }
 
 

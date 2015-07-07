@@ -262,16 +262,29 @@ namespace Plann.Core
             // CHANGE ICI
             
             Stream stream = new FileStream( @"..\..\..\Sauvegardes\" + this.Name + ".bin", FileMode.Create, FileAccess.Write, FileShare.None );
-            formatter.Serialize( stream, this );
-
+            try
+            {
+                formatter.Serialize( stream, this );
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Problème de sérialisation dans SavePeriod. "+ e );
+            }
             stream.Close();
         }
         public void SaveTmpPeriod()
         {
             IFormatter formatter = new BinaryFormatter();
             // CHANGE ICI
-            Stream stream = new FileStream( @"..\..\Sauvegardes\" + this.Name + "Tmp.bin", FileMode.Create, FileAccess.Write, FileShare.None );
-            formatter.Serialize( stream, this );
+            Stream stream = new FileStream( @"..\..\..\Sauvegardes\" + this.Name + "Tmp.bin", FileMode.Create, FileAccess.Write, FileShare.None );
+            try
+            {
+                formatter.Serialize( stream, this );
+            }
+            catch( SerializationException e )
+            {
+                Console.WriteLine( "Problème de sérialisation dans SavePeriod. " + e );
+            }
             Console.WriteLine( DateTime.Now + " : Fichier " + this.Name + "Tmp.bin sauvegardé." );
             stream.Close();
         }

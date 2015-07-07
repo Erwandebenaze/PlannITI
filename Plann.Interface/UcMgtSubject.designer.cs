@@ -150,7 +150,6 @@
             this.colorColumn,
             this.teacherColumn});
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.objectListView1.FullRowSelect = true;
             this.objectListView1.Location = new System.Drawing.Point(0, 159);
             this.objectListView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.objectListView1.Name = "objectListView1";
@@ -160,6 +159,8 @@
             this.objectListView1.UseCellFormatEvents = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
+            this.objectListView1.CellEditFinishing += new BrightIdeasSoftware.CellEditEventHandler(this.objectListView1_CellEditFinishing);
+            this.objectListView1.CellEditStarting += new BrightIdeasSoftware.CellEditEventHandler(this.objectListView1_CellEditStarting);
             this.objectListView1.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.objectListView1_FormatCell);
             // 
             // nameColumn

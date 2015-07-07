@@ -45,6 +45,7 @@ namespace Plann.Interface
             roomComboBox.Text = "";
             promotionComboBox.Items.Clear();
             teacherComboBox.Items.Clear();
+            teacherComboBox.Items.Add( "" );
             subjectComboBox.Items.Clear();
             roomComboBox.Items.Clear();
             #endregion

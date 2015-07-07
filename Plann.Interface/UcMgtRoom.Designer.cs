@@ -86,6 +86,7 @@
             this.nameColumn,
             this.numberOfSeatsColumn});
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.objectListView1.FullRowSelect = true;
             this.objectListView1.Location = new System.Drawing.Point(0, 188);
             this.objectListView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.objectListView1.Name = "objectListView1";

@@ -30,6 +30,7 @@ namespace Plann.Interface
             #region ClearComboBox
             promotionComboBox.Items.Clear();
             teacherComboBox.Items.Clear();
+            teacherComboBox.Items.Add( "" );
             subjectComboBox.Items.Clear();
             roomComboBox.Items.Clear(); 
             #endregion

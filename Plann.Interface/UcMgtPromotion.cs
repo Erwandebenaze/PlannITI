@@ -15,6 +15,8 @@ namespace Plann.Interface
         {
             nameTextBox.Text = "";
             mailTextBox.Text = "";
+            numberOfIl.Text = "";
+            numberOfSr.Text = "";
             numberOfStudentsTextBox.Text = "";
             validate.Text = "Valider";
         }
@@ -62,25 +64,26 @@ namespace Plann.Interface
                 {
                     MessageBox.Show( "L'adresse email n'est pas valide." );
                 }
-                else if( SoftContext.CurrentPeriod.ListPromotion.Contains( new Promotion( nameTextBox.Text, mailTextBox.Text, 5 ) ) && validate.Text =="Valider" )
+                else if( SoftContext.CurrentPeriod.ListPromotion.Contains( new Promotion( nameTextBox.Text, mailTextBox.Text, 5,3,2 ) ))
                 {
                     MessageBox.Show( "Cette promotion a déjà été créée." );
                 }
                 else
                 {
                     int numberOfStudents;
-                    if (int.TryParse(numberOfStudentsTextBox.Text, out numberOfStudents) && validate.Text == "Valider")
+                    int numberOfIL;
+                    int numberOfSR;
+                    if( int.TryParse( numberOfStudentsTextBox.Text, out numberOfStudents ) && int.TryParse( numberOfILTextBox.Text, out numberOfIL ) && int.TryParse(numberOfSRTextBox.Text, out numberOfSR))
                     {
-                        SoftContext.CurrentPeriod.addPromotion( new Promotion( nameTextBox.Text,mailTextBox.Text , numberOfStudents ) );
-                        InitializeOlv();
-                        reinitialisation();
-                    } else if (int.TryParse(numberOfStudentsTextBox.Text, out numberOfStudents) && validate.Text == "Modifier")
-                    {
-                        SoftContext.CurrentPeriod.editPromotion( _pTmp, new Promotion( nameTextBox.Text, mailTextBox.Text, numberOfStudents ) );
-                        InitializeOlv();
-                        validate.Text = "Valider";
-                        delete.Visible = false; 
-                        reinitialisation();
+                        if ((numberOfIL + numberOfSR) == numberOfStudents)
+                        {
+                            SoftContext.CurrentPeriod.addPromotion( new Promotion( nameTextBox.Text, mailTextBox.Text, numberOfStudents, numberOfIL, numberOfSR ) );
+                            InitializeOlv();
+                            reinitialisation();
+                        } else
+                        {
+                            MessageBox.Show( "Le nombre de SR et le nombre d'IL doit être égal au nombre d'élèves." );
+                        }
                     }
                     else
                     {
@@ -96,28 +99,6 @@ namespace Plann.Interface
             reinitialisation();
         }
 
-        private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )
-        {
-            if(e.Model != null)
-            {
-                _pTmp = (Promotion)e.Model;
-                nameTextBox.Text = _pTmp.Name;
-                numberOfStudentsTextBox.Text = _pTmp.NumberOfStudents.ToString();
-                mailTextBox.Text = _pTmp.Mail;
-                validate.Text = "Modifier";
-                delete.Visible = true;
 
-            }
-
-        }
-
-        private void delete_Click( object sender, EventArgs e )
-        {
-            SoftContext.CurrentPeriod.ListPromotion.Remove( _pTmp );
-            InitializeOlv();
-            delete.Visible = false;
-            reinitialisation();
-
-        }
     }
 }

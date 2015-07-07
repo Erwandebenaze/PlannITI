@@ -9,18 +9,28 @@ namespace Plann.Core
     [Serializable]
     public class Promotion
     {
-        readonly string _name;
+        string _name;
         int _numberOfStudents;
         string _mail;
+        int _numberOfIl;
+        int _numberOfSr;
 
-        public Promotion(string name, string mail, int numberOfStudents)
+
+        public Promotion(string name, string mail, int numberOfStudents, int numberOfIL, int numberOfSR)
         {
             if( String.IsNullOrWhiteSpace( name ) || String.IsNullOrWhiteSpace( mail ) ) throw new ArgumentNullException();
             if( !IsValidEmail( mail ) ) throw new ArgumentException( "La chaine entrée n'est pas un mail" );
             if( numberOfStudents < 4 ) throw new ArgumentException( "Il ne peut pas y avoir moins de 4 étudiants dans la promotion" );
+            if( numberOfIL < 0 ) throw new ArgumentException( "Il ne peut pas y avoir un nombre négatif de IL" );
+            if( numberOfSR < 0 ) throw new ArgumentException( "Il ne peut pas y avoir un nombre négatif de SR" );
+            if( numberOfIL + numberOfSR != numberOfStudents ) throw new ArgumentException( "La somme des IL et des SR doit égale au nombre d'élèves." );
+           
             _name = name;
             _mail = mail;
             _numberOfStudents = numberOfStudents;
+
+            _numberOfIl = numberOfIL;
+            _numberOfSr = numberOfSR;
 
         }
         private bool IsValidEmail( string email )
@@ -55,6 +65,7 @@ namespace Plann.Core
         public string Name
         {
             get { return _name; }
+            set { _name = value; }
         }
         public int NumberOfStudents
         {
@@ -65,8 +76,18 @@ namespace Plann.Core
         public string Mail
         {
             get { return _mail; }
+            set { _mail = value; }
         }
-
+        public int NumberOfIl
+        {
+            get { return _numberOfIl; }
+            set { _numberOfIl = value; }
+        }
+        public int NumberOfSr
+        {
+            get { return _numberOfSr; }
+            set { _numberOfSr = value; }
+        }
         #endregion
         
     }

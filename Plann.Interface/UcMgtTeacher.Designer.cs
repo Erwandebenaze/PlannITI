@@ -86,6 +86,7 @@
             this.nameColumn,
             this.mailColumn});
             this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.objectListView1.FullRowSelect = true;
             this.objectListView1.Location = new System.Drawing.Point(0, 172);
             this.objectListView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.objectListView1.Name = "objectListView1";
@@ -95,7 +96,6 @@
             this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
-            this.objectListView1.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.objectListView1_CellClick);
             // 
             // nameColumn
             // 

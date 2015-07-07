@@ -62,6 +62,10 @@ namespace Plann.Interface
         }
         private void InitializeOlv()
         {
+            objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
+           // BrightIdeasSoftware.ObjectListView.EditorRegistry.Register(Color , ColorEditor );
+
+            
             try
             {
                 this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListSubjects );
@@ -151,7 +155,6 @@ namespace Plann.Interface
             OnReload();
             reinitialisation();
         }
-
         private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )
         {
             if( e.Model != null )
@@ -165,7 +168,6 @@ namespace Plann.Interface
                 delete.Visible = true;
             }
         }
-
         private void delete_Click( object sender, EventArgs e )
         {
             SoftContext.CurrentPeriod.ListSubjects.Remove( _sTmp );
@@ -174,4 +176,12 @@ namespace Plann.Interface
             reinitialisation();
         }
     }
+
+    //private class ColorEditor
+    //{
+    //    public ColorEditor()
+    //    {
+
+    //    }
+    //}
 }

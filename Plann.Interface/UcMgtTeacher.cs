@@ -37,6 +37,7 @@ namespace Plann.Interface
         }
         private void InitializeOlv()
         {
+            objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
             try
             {
                 this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListTeachers );

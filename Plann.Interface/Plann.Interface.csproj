@@ -49,6 +49,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorCellEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ExtendedCalendarRenderer.cs" />
     <Compile Include="IPlannContext.cs" />
     <Compile Include="PlannITI.cs">

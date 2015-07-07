@@ -95,7 +95,6 @@
             this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
-            this.objectListView1.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.objectListView1_CellClick);
             // 
             // nameColumn
             // 
@@ -108,7 +107,7 @@
             this.numberOfSeatsColumn.AspectName = "NumberOfSeats";
             this.numberOfSeatsColumn.FillsFreeSpace = true;
             this.numberOfSeatsColumn.Text = "Nombre de places";
-            this.numberOfSeatsColumn.Width = 61;
+            this.numberOfSeatsColumn.Width = 100;
             // 
             // validateButton
             // 

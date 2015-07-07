@@ -27,7 +27,7 @@ namespace Plann.Interface
             string fileName = findIfTmpExists();
             if (fileName != null)
             {
-                DialogResult res = MessageBox.Show( "La programme a été quitté de manière impromptue. Voulez-vous charger la sauvegarde automatique ?", "Quitter", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 );
+                DialogResult res = MessageBox.Show( "La programme a été fermé de manière impromptue. Voulez-vous charger la sauvegarde automatique ?", "Quitter", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 );
                 if(res == DialogResult.Yes)
                 {
                     _mySoft.ChangePeriode( PeriodLoader.Load( fileName ) );
@@ -37,6 +37,9 @@ namespace Plann.Interface
                     _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName );
                     loadPeriodFromBeginning();
                 }
+            } else
+            {
+                loadPeriodFromBeginning();
             }
 
             CurrentPeriod.CurrentUcFilter = "ucPromotion1";

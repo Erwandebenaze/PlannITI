@@ -9,8 +9,8 @@ namespace Plann.Core
     [Serializable]
     public class Teacher
     {
-        readonly string _name;
-        readonly string _mail;
+        string _name;
+        string _mail;
 
         public Teacher(string name, string mail)
         {
@@ -37,12 +37,14 @@ namespace Plann.Core
         public string Name
         {
             get { return _name; }
+            set { _name = value; }
         }
 
 
         public string Mail
         {
             get { return _mail; }
+            set { _mail = value; }
         }
 
         #endregion

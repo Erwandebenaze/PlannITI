@@ -39,6 +39,7 @@ namespace Plann.Interface
         }
         private void InitializeOlv()
         {
+            objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
             try
             {
                 this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListRooms );
@@ -105,6 +106,12 @@ namespace Plann.Interface
                 delete.Visible = true;
             }
 
+        }
+
+        private void objectListView1_CellEditStarting( object sender, BrightIdeasSoftware.CellEditEventArgs e )
+        {
+            objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
+            MessageBox.Show( "Fesses" );
         }
     }
 }

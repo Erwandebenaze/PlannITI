@@ -276,6 +276,9 @@ namespace Plann.Core
             IFormatter formatter = new BinaryFormatter();
             // CHANGE ICI
             Stream stream = new FileStream( @"..\..\..\Sauvegardes\" + this.Name + "Tmp.bin", FileMode.Create, FileAccess.Write, FileShare.None );
+<<<<<<< HEAD
+            formatter.Serialize( stream, this );
+=======
             try
             {
                 formatter.Serialize( stream, this );
@@ -284,6 +287,7 @@ namespace Plann.Core
             {
                 Console.WriteLine( "Problème de sérialisation dans SavePeriod. " + e );
             }
+>>>>>>> origin/dev
             Console.WriteLine( DateTime.Now + " : Fichier " + this.Name + "Tmp.bin sauvegardé." );
             stream.Close();
         }

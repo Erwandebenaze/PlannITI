@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Plann.Core;
+using BrightIdeasSoftware;
 
 
 namespace Plann.Interface
@@ -10,6 +11,7 @@ namespace Plann.Interface
     public partial class UcMgtSubject : UserControl
     {
         Subject _sTmp;
+        Color _cTmp;
         public UcMgtSubject()
         {
             InitializeComponent();
@@ -62,6 +64,18 @@ namespace Plann.Interface
         }
         private void InitializeOlv()
         {
+            objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
+            //BrightIdeasSoftware.ObjectListView.EditorRegistry.Register(typeof(Color) ,  );
+
+            //BrightIdeasSoftware.ObjectListView.EditorRegistry.Register( typeof( Color ), delegate( Object model, BrightIdeasSoftware.OLVColumn column, Object value )
+            //{
+            //    ColorDialog c = new ColorDialog();
+                
+
+            //    return c;
+            //} );
+
+            
             try
             {
                 this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListSubjects );
@@ -151,7 +165,6 @@ namespace Plann.Interface
             OnReload();
             reinitialisation();
         }
-
         private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )
         {
             if( e.Model != null )
@@ -165,13 +178,30 @@ namespace Plann.Interface
                 delete.Visible = true;
             }
         }
-
         private void delete_Click( object sender, EventArgs e )
         {
             SoftContext.CurrentPeriod.ListSubjects.Remove( _sTmp );
             InitializeOlv();
             delete.Visible = false;
             reinitialisation();
+        }
+
+        private void objectListView1_CellEditStarting( object sender, CellEditEventArgs e )
+        {
+            if( e.Value is Color )
+            {
+                ColorCellEditor cce = new ColorCellEditor((Color)e.Value);
+                _cTmp = cce.Value;
+                e.Control = cce;
+            }
+        }
+
+        private void objectListView1_CellEditFinishing( object sender, CellEditEventArgs e )
+        {
+            if(e.Cancel == false)
+            {
+                e.NewValue = _cTmp;
+            }
         }
     }
 }

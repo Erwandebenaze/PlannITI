@@ -50,7 +50,7 @@ namespace Plann.Core
             Subject pi = new Subject( "PI", spi, Color.Red );
             addSubject( pi );
             Room e5 = new Room( "E01", 40 );
-            Promotion iti = new Promotion( "ItiTruc", "iti@intech.fr", 20 );
+            Promotion iti = new Promotion( "ItiTruc", "iti@intech.fr", 20, 10,10);
 
             addTeacher( spi );
             addRoom( e5 );

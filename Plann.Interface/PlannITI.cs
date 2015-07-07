@@ -22,20 +22,23 @@ namespace Plann.Interface
         int interval;
         public PlannITI()
         {
-            _mySoft = new Soft();
-
             string fileName = findIfTmpExists();
             if (fileName != null)
             {
                 DialogResult res = MessageBox.Show( "La programme a été fermé de manière impromptue. Voulez-vous charger la sauvegarde automatique ?", "Quitter", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 );
                 if(res == DialogResult.Yes)
                 {
-                    _mySoft.ChangePeriode( PeriodLoader.Load( fileName ) );
+                    Period p = PeriodLoader.Load( fileName );
+                    _mySoft = p.MySoft;
+                    _mySoft.ChangePeriode( p );
+                    string fileName2 = findIfTmpExists();
+                    if( fileName2 != null )
+                        _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName2 );
                 }
                 else
                 {
-                    _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName );
                     loadPeriodFromBeginning();
+                    _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName );
                 }
             } else
             {
@@ -48,7 +51,7 @@ namespace Plann.Interface
 
 
             _timer = new Timer();
-            interval = 1000;
+            interval = 1500;
             _timer.Interval = interval;
             _timer.Tick += _timer_Tick;
             _timer.Start();
@@ -692,6 +695,10 @@ namespace Plann.Interface
                     MessageBox.Show( "Error: Could not read file from disk. Original error: " + ex.Message );
                 }
             }
+            string fileName = findIfTmpExists();
+            if(fileName != null)
+                _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName );
+
             ucMgtPeriod1.Visible = false;
             ucPromotion1.Visible = true;
         }
@@ -703,19 +710,23 @@ namespace Plann.Interface
 
             d.InitialDirectory = @"C:\Dev\PlannITI\Sauvegardes"; // CHANGER LE REPERTOIRE EN CAS DE CHANGEMENT DE PC
             d.Filter = "bin files (*.bin)|*.bin";
-
-            while( d.ShowDialog() != DialogResult.OK )
+            bool b = true;
+            do
             {
-                
+                b = true;
+                if( d.ShowDialog() != DialogResult.OK)
+                {
+                    b = false;
+                }
                 try
                 {
                     if( (myStream = d.OpenFile()) != null )
                     {
                         using( myStream )
                         {
-                            _mySoft.ChangePeriode( PeriodLoader.Load( d.FileName ) );
-                           // parPromotionToolStripMenuItem_Click( null, null );
-                            MessageBox.Show( "La période a été chargée." );
+                            Period p = PeriodLoader.Load( d.FileName );
+                            _mySoft = p.MySoft;
+                            _mySoft.ChangePeriode( p );
                         }
                     }
                 }
@@ -724,7 +735,10 @@ namespace Plann.Interface
                     MessageBox.Show( "Vous devez charger une période pour commencer" );
                     Console.WriteLine( ex );
                 }
-            }
+            } while( b == false );
+            string fileName = findIfTmpExists();
+            if( fileName != null )
+                _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName );
         }
 
       

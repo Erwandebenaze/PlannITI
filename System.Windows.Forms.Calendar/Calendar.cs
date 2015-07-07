@@ -9,7 +9,7 @@ namespace System.Windows.Forms.Calendar
     /// <summary>
     /// Hosts a calendar view where user can manage calendar items.
     /// </summary>
-   
+   [Serializable]
     [DefaultEvent("LoadItems")]
     public class Calendar
         : ScrollableControl

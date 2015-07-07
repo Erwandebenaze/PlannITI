@@ -8,6 +8,7 @@ namespace System.Windows.Forms.Calendar
     /// <summary>
     /// Implements a basic <see cref="ICalendarSelectableElement"/>
     /// </summary>
+    [Serializable]
     public abstract class CalendarSelectableElement
         : ICalendarSelectableElement
     {

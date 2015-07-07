@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
@@ -43,12 +44,14 @@
             this.colorColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.teacherColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.returnLink = new System.Windows.Forms.LinkLabel();
-            this.delete = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.supprimerMatièreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -123,7 +126,7 @@
             // 
             // validateButton
             // 
-            this.validateButton.Location = new System.Drawing.Point(117, 92);
+            this.validateButton.Location = new System.Drawing.Point(107, 115);
             this.validateButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.validateButton.Name = "validateButton";
             this.validateButton.Size = new System.Drawing.Size(183, 28);
@@ -161,6 +164,7 @@
             this.objectListView1.View = System.Windows.Forms.View.Details;
             this.objectListView1.CellEditFinishing += new BrightIdeasSoftware.CellEditEventHandler(this.objectListView1_CellEditFinishing);
             this.objectListView1.CellEditStarting += new BrightIdeasSoftware.CellEditEventHandler(this.objectListView1_CellEditStarting);
+            this.objectListView1.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.objectListView1_CellRightClick);
             this.objectListView1.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.objectListView1_FormatCell);
             // 
             // nameColumn
@@ -186,7 +190,7 @@
             // returnLink
             // 
             this.returnLink.AutoSize = true;
-            this.returnLink.Location = new System.Drawing.Point(353, 98);
+            this.returnLink.Location = new System.Drawing.Point(354, 115);
             this.returnLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.returnLink.Name = "returnLink";
             this.returnLink.Size = new System.Drawing.Size(51, 17);
@@ -195,23 +199,25 @@
             this.returnLink.Text = "Retour";
             this.returnLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.returnLink_LinkClicked);
             // 
-            // delete
+            // contextMenuStrip1
             // 
-            this.delete.Location = new System.Drawing.Point(117, 124);
-            this.delete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(183, 28);
-            this.delete.TabIndex = 22;
-            this.delete.Text = "Supprimer";
-            this.delete.UseVisualStyleBackColor = true;
-            this.delete.Visible = false;
-            this.delete.Click += new System.EventHandler(this.delete_Click);
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.supprimerMatièreToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(203, 28);
+            // 
+            // supprimerMatièreToolStripMenuItem
+            // 
+            this.supprimerMatièreToolStripMenuItem.Name = "supprimerMatièreToolStripMenuItem";
+            this.supprimerMatièreToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
+            this.supprimerMatièreToolStripMenuItem.Text = "Supprimer matière";
+            this.supprimerMatièreToolStripMenuItem.Click += new System.EventHandler(this.supprimerMatièreToolStripMenuItem_Click);
             // 
             // UcMgtSubject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.delete);
             this.Controls.Add(this.returnLink);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.validateButton);
@@ -227,6 +233,7 @@
             this.Name = "UcMgtSubject";
             this.Size = new System.Drawing.Size(409, 506);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,7 +252,8 @@
         private BrightIdeasSoftware.OLVColumn teacherColumn;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.LinkLabel returnLink;
-        private System.Windows.Forms.Button delete;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem supprimerMatièreToolStripMenuItem;
 
     }
 }

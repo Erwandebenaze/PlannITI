@@ -38,7 +38,9 @@ namespace Plann.Interface
                 else
                 {
                     loadPeriodFromBeginning();
-                    _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName );
+                    string fileName2 = findIfTmpExists();
+                    if( fileName2 != null )
+                        _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName2 );
                 }
             } else
             {
@@ -83,33 +85,14 @@ namespace Plann.Interface
             ucTeacher1.TeacherChanged += LoadCalendarView; 
             #endregion
         }
-
-        private string findIfTmpExists()
-        {
-            string pattern = @"Tmp.bin$";
-            string fileName = null;
-            Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
-            foreach ( string s in  System.IO.Directory.GetFiles(@"..\..\..\Sauvegardes"))
-            {
-                if(rgx.IsMatch( s ))
-                {
-                    fileName = s;
-                    break;
-                }
-            }
-            return fileName;
-
-        }
         void _timer_Tick( object sender, EventArgs e )
         {
             CurrentPeriod.SaveTmpPeriod();
         }
-
         public Period CurrentPeriod
         {
             get { return _mySoft.CurrentPeriod; }
         }
-
         private void callReload()
         {
             ucPromotion1.InitializeComboBox();
@@ -121,12 +104,10 @@ namespace Plann.Interface
         {
             LoadCalendarView();
         }
-
         void calendar_Resize( object sender, EventArgs e )
         {
             LoadCalendarView();
         }
-
         void PlannITI_Resize( object sender, EventArgs e )
         {
             if( this.Height < 300 )
@@ -135,13 +116,11 @@ namespace Plann.Interface
                 this.Width = 400;
             LoadCalendarView();
         }
-
         void setViewRange()
         {
             calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
             SetCurrentYearMonth();
         }
-
         protected override void WndProc( ref Message m )
         {
             base.WndProc( ref m );
@@ -154,7 +133,6 @@ namespace Plann.Interface
                 }
             }
         }
-
         void contextMenuStrip1_Opening( object sender, System.ComponentModel.CancelEventArgs e )
         {
             contextMenuStrip1.Items.Clear();
@@ -208,7 +186,6 @@ namespace Plann.Interface
             contextMenuStrip1.Items.Add( "Matin" ).Name = "amToolStripMenuItem";
             contextMenuStrip1.Items.Add( "Après-Midi" ).Name = "pmToolStripMenuItem";
         }
-
         protected override void OnMouseWheel( MouseEventArgs e )
         {
             if( e.Delta > 0 )
@@ -217,14 +194,12 @@ namespace Plann.Interface
                 setNextMonth();
             base.OnMouseWheel( e );
         }
-
         private void calendar_ItemDeleted( object sender, CalendarItemEventArgs e )
         {
             Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.Date == e.Item.StartDate && s.IsOnView == e.Item.IsOnViewDateRange ).Single();
             CurrentPeriod.removeSlot( slotToDelete );
             LoadCalendarView();
         }
-
         private void contextMenuStrip1_ItemClicked( object sender, ToolStripItemClickedEventArgs e )
         {
             if( e.ClickedItem.Name == "amToolStripMenuItem" )
@@ -236,7 +211,6 @@ namespace Plann.Interface
             LoadCalendarView();
             _contextStripOn = false;
         }
-
         void calendar_DayTopClick( object sender, CalendarDayEventArgs e )
         {
             if( !_contextStripOn )
@@ -251,7 +225,6 @@ namespace Plann.Interface
                 contextMenuStrip1.Hide();
             }
         }
-
         void calendar_DayBottomClick( object sender, CalendarDayEventArgs e )
         {
             if( !_contextStripOn )
@@ -267,7 +240,6 @@ namespace Plann.Interface
             }
 
         }
-
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
         {
             Console.WriteLine( e.Item.Text );
@@ -366,7 +338,6 @@ namespace Plann.Interface
 
             _topClick = null;
         }
-
         bool isAffectationConflict( DateTime dayPicked, bool? isIl, bool morning, string teacherText, string subjectText, string roomText, string promotionText )
         {
             bool conflict = false;
@@ -416,12 +387,10 @@ namespace Plann.Interface
 
             return false;
         }
-
         void calendar_ItemCreated( object sender, CalendarItemCancelEventArgs e )
         {
             LoadCalendarView();
         }
-
         internal void LoadCalendarView()
         {
             calendar.Items.Clear();
@@ -456,12 +425,10 @@ namespace Plann.Interface
             }
             Console.WriteLine( "LoadCalendarView called !" );
         }
-
         void SetCurrentYearMonth()
         {
             currentYearMonthLabel.Text = calendar.ViewStart.Year.ToString() + " / " + calendar.ViewStart.ToString( "MMMM" );
         }
-
         List<Slot> getFilteredSlots()
         {
             List<Slot> filteredSlots = new List<Slot>();
@@ -510,7 +477,6 @@ namespace Plann.Interface
 
             return ci;
         }
-
         string CustomTextWrap( Slot slot )
         {
             string slotFormattedText = "";
@@ -563,7 +529,6 @@ namespace Plann.Interface
 
             return slotFormattedText;
         }
-
         static List<string> WrapText( string text, double pixels, string fontFamily,
     float emSize )
         {
@@ -598,21 +563,18 @@ namespace Plann.Interface
 
             return wrappedLines;
         }
-
         private void setNextMonth()
         {
             CurrentPeriod.SetNextMonthView();
             setViewRange();
             LoadCalendarView();
         }
-
         private void setPreviousMonth()
         {
             CurrentPeriod.SetPreviousMonthView();
             setViewRange();
             LoadCalendarView();
         }
-
         #endregion
         #region ToolStrip
         private void parPromotionToolStripMenuItem_Click( object sender, EventArgs e )
@@ -648,8 +610,6 @@ namespace Plann.Interface
             ucMgtTeacher1.reload += callReload;
             LoadCalendarView();
         }
-        #endregion
-
         private void créerUnePériodeToolStripMenuItem_Click( object sender, EventArgs e )
         {
             CurrentPeriod.CurrentUcFilter = "ucTeacher1";
@@ -661,7 +621,6 @@ namespace Plann.Interface
             ucMgtRoom1.reload += callReload;
             ucMgtTeacher1.reload += callReload;
         }
-
         private void chargerUnePériodeToolStripMenuItem_Click( object sender, EventArgs e )
         {
             // System.Diagnostics.Process.Start( @"..\..\..\Sauvegardes" );
@@ -682,10 +641,10 @@ namespace Plann.Interface
                     {
                         using( myStream )
                         {
-                           _mySoft.ChangePeriode(PeriodLoader.Load( d.FileName ));
-                           parPromotionToolStripMenuItem_Click( null, null );
-                           ReloadOlv();
-                           callReload();
+                            _mySoft.ChangePeriode( PeriodLoader.Load( d.FileName ) );
+                            parPromotionToolStripMenuItem_Click( null, null );
+                            ReloadOlv();
+                            callReload();
                             MessageBox.Show( "La période a été chargée." );
                         }
                     }
@@ -696,13 +655,13 @@ namespace Plann.Interface
                 }
             }
             string fileName = findIfTmpExists();
-            if(fileName != null)
+            if( fileName != null )
                 _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName );
 
             ucMgtPeriod1.Visible = false;
             ucPromotion1.Visible = true;
         }
-
+        #endregion
         private void loadPeriodFromBeginning()
         {
             OpenFileDialog d = new OpenFileDialog();
@@ -740,22 +699,34 @@ namespace Plann.Interface
             if( fileName != null )
                 _mySoft.CurrentPeriod.DeleteTmpPeriod( fileName );
         }
+        private string findIfTmpExists()
+        {
+            string pattern = @"Tmp.bin$";
+            string fileName = null;
+            Regex rgx = new Regex( pattern, RegexOptions.IgnoreCase );
+            foreach( string s in System.IO.Directory.GetFiles( @"..\..\..\Sauvegardes" ) )
+            {
+                if( rgx.IsMatch( s ) )
+                {
+                    fileName = s;
+                    break;
+                }
+            }
+            return fileName;
 
-      
+        }
         private void ReloadOlv()
         {
             ucMgtPromotion1.LoadPage();
             ucMgtSubject1.LoadPage();
             ucMgtRoom1.LoadPage();
         }
-
         private void sauvegarderToolStripMenuItem_Click( object sender, EventArgs e )
         {
             CurrentPeriod.SavePeriod();
 
             MessageBox.Show( "La période actuelle a été sauvegardée." );
         }
-
         private void PlannITI_FormClosing( object sender, FormClosingEventArgs e )
         {
             DialogResult res = MessageBox.Show( "Souhaitez-vous enregistrer avant de quitter ?","Quitter", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3 );

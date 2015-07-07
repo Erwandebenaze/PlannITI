@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Forms;
 using Plann.Core;
+using System.Linq;
 
 namespace Plann.Interface
 {
@@ -67,16 +69,9 @@ namespace Plann.Interface
                 {
                     MessageBox.Show( "L'adresse email n'est pas valide." );
                 }
-                else if( SoftContext.CurrentPeriod.ListTeachers.Contains( new Teacher( nameTextBox.Text, mailTextBox.Text ) ) && validateButton.Text == "Valider" )
+                else if( SoftContext.CurrentPeriod.ListTeachers.Contains( new Teacher( nameTextBox.Text, mailTextBox.Text ) ) )
                 {
                     MessageBox.Show( "Ce professeur a déjà été créé" );
-                } else if (validateButton.Text == "Modifier" )
-                {
-                    SoftContext.CurrentPeriod.editTeacher( _tTmp, new Teacher( nameTextBox.Text, mailTextBox.Text ) );
-                    InitializeOlv();
-                    validateButton.Text = "Valider";
-                    delete.Visible = false;
-                    reinitialisation();
                 }
                 else
                 {
@@ -94,24 +89,25 @@ namespace Plann.Interface
             reinitialisation();
         }
 
-        private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )
+        private void supprimerProfesseurToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            if( e.Model != null )
+            if( SoftContext.CurrentPeriod.ListSlots.Where( sl => sl.AssociatedTeacher == _tTmp ).Any() )
             {
-                _tTmp = (Teacher)e.Model;
-                nameTextBox.Text = _tTmp.Name;
-                mailTextBox.Text = _tTmp.Mail;
-                validateButton.Text = "Modifier";
-                delete.Visible = true;
+                MessageBox.Show( "Vous ne pouvez pas supprimer ce professeeur. Supprimer d'abord le créneau où il est affecté." );
+            }
+            else
+            {
+                SoftContext.CurrentPeriod.removeTeacher( _tTmp );
+                InitializeOlv();
+                reinitialisation();
             }
         }
 
-        private void delete_Click( object sender, EventArgs e )
+        private void objectListView1_CellRightClick( object sender, BrightIdeasSoftware.CellRightClickEventArgs e )
         {
-            SoftContext.CurrentPeriod.ListTeachers.Remove( _tTmp );
-            InitializeOlv();
-            delete.Visible = false;
-            reinitialisation();
+            contextMenuStrip1.Show( new System.Drawing.Point( Cursor.Position.X, Cursor.Position.Y - 30 ) );
+            _tTmp = (Teacher)e.Model;
+            
         }
     }
 }

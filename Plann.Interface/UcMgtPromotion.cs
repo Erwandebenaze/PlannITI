@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Plann.Core;
+using System.Linq;
 
 namespace Plann.Interface
 {
@@ -47,6 +48,8 @@ namespace Plann.Interface
         }
         private void InitializeOlv()
         {
+            objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
+
             try
             {
                 this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListPromotion );
@@ -97,6 +100,26 @@ namespace Plann.Interface
             this.Visible = false;
             Parent.Controls[SoftContext.CurrentPeriod.CurrentUcFilter].Visible = true;
             reinitialisation();
+        }
+
+        private void supprimerPromotionToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            if( SoftContext.CurrentPeriod.ListSlots.Where( sl => sl.AssociatedPromotionList.Contains(_pTmp) ).Any() )
+            {
+                MessageBox.Show( "Vous ne pouvez pas supprimer cette promotion. Supprimer d'abord le créneau où elle est affectée." );
+            }
+            else
+            {
+                SoftContext.CurrentPeriod.removePromotion( _pTmp );
+                InitializeOlv();
+                reinitialisation();
+            }
+        }
+
+        private void objectListView1_CellRightClick( object sender, BrightIdeasSoftware.CellRightClickEventArgs e )
+        {
+            contextMenuStrip1.Show( new System.Drawing.Point( Cursor.Position.X, Cursor.Position.Y - 30 ) );
+            _pTmp = (Promotion)e.Model;
         }
 
 

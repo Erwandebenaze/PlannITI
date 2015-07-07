@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
@@ -38,20 +39,23 @@
             this.mailTextBox = new System.Windows.Forms.TextBox();
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.nameColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.mailColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.numberOfStudentsColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.numberOfIl = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.numberOfSr = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.mailColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.validate = new System.Windows.Forms.Button();
             this.retour = new System.Windows.Forms.LinkLabel();
             this.numberOfILTextBox = new System.Windows.Forms.TextBox();
             this.numberOfSRTextBox = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.supprimerPromotionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -80,6 +84,24 @@
             label3.Size = new System.Drawing.Size(89, 17);
             label3.TabIndex = 2;
             label3.Text = "Adresse mail";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(244, 20);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(93, 17);
+            label4.TabIndex = 9;
+            label4.Text = "Nombre de IL";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(244, 74);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(101, 17);
+            label5.TabIndex = 11;
+            label5.Text = "Nombre de SR";
             // 
             // nameTextBox
             // 
@@ -126,6 +148,7 @@
             this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
+            this.objectListView1.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.objectListView1_CellRightClick);
             // 
             // nameColumn
             // 
@@ -135,19 +158,9 @@
             this.nameColumn.UseFiltering = false;
             this.nameColumn.Width = 75;
             // 
-            // mailColumn
-            // 
-            this.mailColumn.AspectName = "Mail";
-            this.mailColumn.DisplayIndex = 2;
-            this.mailColumn.MinimumWidth = 100;
-            this.mailColumn.Text = "Mail de la promotion";
-            this.mailColumn.UseFiltering = false;
-            this.mailColumn.Width = 100;
-            // 
             // numberOfStudentsColumn
             // 
             this.numberOfStudentsColumn.AspectName = "NumberOfStudents";
-            this.numberOfStudentsColumn.DisplayIndex = 1;
             this.numberOfStudentsColumn.MinimumWidth = 60;
             this.numberOfStudentsColumn.Text = "Nb élèves";
             this.numberOfStudentsColumn.UseFiltering = false;
@@ -163,6 +176,14 @@
             this.numberOfSr.AspectName = "NumberOfSr";
             this.numberOfSr.Text = "Nb SR";
             this.numberOfSr.Width = 50;
+            // 
+            // mailColumn
+            // 
+            this.mailColumn.AspectName = "Mail";
+            this.mailColumn.MinimumWidth = 100;
+            this.mailColumn.Text = "Mail de la promotion";
+            this.mailColumn.UseFiltering = false;
+            this.mailColumn.Width = 100;
             // 
             // validate
             // 
@@ -192,15 +213,6 @@
             this.numberOfILTextBox.Size = new System.Drawing.Size(100, 22);
             this.numberOfILTextBox.TabIndex = 5;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(244, 20);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(93, 17);
-            label4.TabIndex = 9;
-            label4.Text = "Nombre de IL";
-            // 
             // numberOfSRTextBox
             // 
             this.numberOfSRTextBox.Location = new System.Drawing.Point(248, 100);
@@ -208,14 +220,20 @@
             this.numberOfSRTextBox.Size = new System.Drawing.Size(100, 22);
             this.numberOfSRTextBox.TabIndex = 6;
             // 
-            // label5
+            // contextMenuStrip1
             // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(244, 74);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(101, 17);
-            label5.TabIndex = 11;
-            label5.Text = "Nombre de SR";
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.supprimerPromotionToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(223, 28);
+            // 
+            // supprimerPromotionToolStripMenuItem
+            // 
+            this.supprimerPromotionToolStripMenuItem.Name = "supprimerPromotionToolStripMenuItem";
+            this.supprimerPromotionToolStripMenuItem.Size = new System.Drawing.Size(222, 24);
+            this.supprimerPromotionToolStripMenuItem.Text = "Supprimer promotion";
+            this.supprimerPromotionToolStripMenuItem.Click += new System.EventHandler(this.supprimerPromotionToolStripMenuItem_Click);
             // 
             // UcMgtPromotion
             // 
@@ -237,6 +255,7 @@
             this.Name = "UcMgtPromotion";
             this.Size = new System.Drawing.Size(381, 495);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,5 +276,7 @@
         private BrightIdeasSoftware.OLVColumn numberOfSr;
         private System.Windows.Forms.TextBox numberOfILTextBox;
         private System.Windows.Forms.TextBox numberOfSRTextBox;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem supprimerPromotionToolStripMenuItem;
     }
 }

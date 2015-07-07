@@ -318,7 +318,6 @@ namespace Plann.Core
                 }
             }
         }
-
         public void SetNextMonthView()
         {
             if( _currentViewMonthEnd.AddMonths( 1 ) < _endingDate )
@@ -345,7 +344,5 @@ namespace Plann.Core
                 _currentViewMonthStart = _begginningDate;
             }
         }
-
-
     }
 }

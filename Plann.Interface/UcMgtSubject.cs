@@ -109,32 +109,24 @@ namespace Plann.Interface
                 MessageBox.Show( "Vous ne pouvez pas valider le formulaire. Vous devez au moins entrer un intitulé et une couleur." );
             } else
             {
-                if( SoftContext.CurrentPeriod.ListSubjects.Contains( new Subject( nameTextBox.Text, Color.Red ) ) && validateButton.Text == "Valider" )
+                if( SoftContext.CurrentPeriod.ListSubjects.Contains( new Subject( nameTextBox.Text, Color.Red ) ) )
                 {
                     MessageBox.Show( "Cette matière a déjà été entrée." );
                 } else
                 {
                     Subject tmpSubject = null;
-                    if( teacherNameComboBox.SelectedItem == null && validateButton.Text == "Valider" )
+                    if( teacherNameComboBox.SelectedItem == null )
                     {
                         tmpSubject = new Subject( nameTextBox.Text, button1.BackColor );
                         SoftContext.CurrentPeriod.addSubject( tmpSubject );
                         reinitialisation();
                     }
-                    else if( teacherNameComboBox.SelectedItem == null && validateButton.Text == "Modifier" )
+                    else if( teacherNameComboBox.SelectedItem == null )
                     {
                         SoftContext.CurrentPeriod.editSubject( _sTmp, new Subject(nameTextBox.Text, button1.BackColor ));
                         InitializeOlv();
                         validateButton.Text = "Valider";
                         reinitialisation();
-                    } else if (validateButton.Text == "Modifier" )
-                    {
-                        Teacher t = SoftContext.CurrentPeriod.ListTeachers.Where( th => th.Name == teacherNameComboBox.SelectedItem.ToString() ).Single();
-                        SoftContext.CurrentPeriod.editSubject( _sTmp, new Subject( nameTextBox.Text, t, button1.BackColor ) );
-                        InitializeOlv(); 
-                        delete.Visible = false;
-                        reinitialisation();
-                        validateButton.Text = "Valider";
                     }
                     else
                     {
@@ -143,7 +135,7 @@ namespace Plann.Interface
                         SoftContext.CurrentPeriod.addSubject( tmpSubject );
                         reinitialisation();
                     }
-                    
+               
                     InitializeOlv();
                     InitializeComboBox();
                 }
@@ -165,27 +157,6 @@ namespace Plann.Interface
             OnReload();
             reinitialisation();
         }
-        private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )
-        {
-            if( e.Model != null )
-            {
-                _sTmp = (Subject)e.Model;
-                nameTextBox.Text = _sTmp.Name;
-                button1.BackColor = _sTmp.Color;
-                if( _sTmp.ReferentTeacher != null )
-                    teacherNameComboBox.Text = _sTmp.ReferentTeacher.Name;
-                validateButton.Text = "Modifier";
-                delete.Visible = true;
-            }
-        }
-        private void delete_Click( object sender, EventArgs e )
-        {
-            SoftContext.CurrentPeriod.ListSubjects.Remove( _sTmp );
-            InitializeOlv();
-            delete.Visible = false;
-            reinitialisation();
-        }
-
         private void objectListView1_CellEditStarting( object sender, CellEditEventArgs e )
         {
             if( e.Value is Color )
@@ -195,13 +166,32 @@ namespace Plann.Interface
                 e.Control = cce;
             }
         }
-
         private void objectListView1_CellEditFinishing( object sender, CellEditEventArgs e )
         {
             if(e.Cancel == false)
             {
                 e.NewValue = _cTmp;
             }
+        }
+
+        private void supprimerMatièreToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            if( SoftContext.CurrentPeriod.ListSlots.Where(sl => sl.AssociatedSubject == _sTmp).Any() )
+            {
+                MessageBox.Show( "Vous ne pouvez pas supprimer cette matière. Supprimer d'abord le créneau où elle est affectée." );
+            } else
+            {
+                SoftContext.CurrentPeriod.removeSubject( _sTmp );
+                InitializeOlv();
+                reinitialisation();
+            }
+
+        }
+
+        private void objectListView1_CellRightClick( object sender, CellRightClickEventArgs e )
+        {
+            contextMenuStrip1.Show( new System.Drawing.Point( Cursor.Position.X, Cursor.Position.Y - 30 ) );
+            _sTmp = (Subject)e.Model;
         }
     }
 }

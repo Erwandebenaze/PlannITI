@@ -35,14 +35,6 @@
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ucTeacher1 = new Plann.Interface.UcTeacher();
-            this.ucRoom1 = new Plann.Interface.UcRoom();
-            this.ucMgtTeacher1 = new Plann.Interface.UcMgtTeacher();
-            this.ucMgtSubject1 = new Plann.Interface.UcMgtSubject();
-            this.ucMgtRoom1 = new Plann.Interface.UcMgtRoom();
-            this.ucPromotion1 = new Plann.Interface.UcPromotion();
-            this.ucMgtPeriod1 = new Plann.Interface.UcMgtPeriod();
-            this.ucMgtPromotion1 = new Plann.Interface.UcMgtPromotion();
             this.calendar = new System.Windows.Forms.Calendar.Calendar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.périodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +50,14 @@
             this.amToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currentYearMonthLabel = new System.Windows.Forms.Label();
+            this.ucTeacher1 = new Plann.Interface.UcTeacher();
+            this.ucRoom1 = new Plann.Interface.UcRoom();
+            this.ucMgtTeacher1 = new Plann.Interface.UcMgtTeacher();
+            this.ucMgtSubject1 = new Plann.Interface.UcMgtSubject();
+            this.ucMgtRoom1 = new Plann.Interface.UcMgtRoom();
+            this.ucPromotion1 = new Plann.Interface.UcPromotion();
+            this.ucMgtPeriod1 = new Plann.Interface.UcMgtPeriod();
+            this.ucMgtPromotion1 = new Plann.Interface.UcMgtPromotion();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -88,80 +88,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.calendar);
-            this.splitContainer1.Size = new System.Drawing.Size(950, 641);
+            this.splitContainer1.Size = new System.Drawing.Size(974, 644);
             this.splitContainer1.SplitterDistance = 323;
             this.splitContainer1.TabIndex = 1;
-            // 
-            // ucTeacher1
-            // 
-            this.ucTeacher1.Location = new System.Drawing.Point(2, 2);
-            this.ucTeacher1.Margin = new System.Windows.Forms.Padding(2);
-            this.ucTeacher1.Name = "ucTeacher1";
-            this.ucTeacher1.Size = new System.Drawing.Size(307, 411);
-            this.ucTeacher1.TabIndex = 5;
-            this.ucTeacher1.Visible = false;
-            // 
-            // ucRoom1
-            // 
-            this.ucRoom1.Location = new System.Drawing.Point(2, 2);
-            this.ucRoom1.Margin = new System.Windows.Forms.Padding(2);
-            this.ucRoom1.Name = "ucRoom1";
-            this.ucRoom1.Size = new System.Drawing.Size(307, 411);
-            this.ucRoom1.TabIndex = 4;
-            this.ucRoom1.Visible = false;
-            // 
-            // ucMgtTeacher1
-            // 
-            this.ucMgtTeacher1.Location = new System.Drawing.Point(2, 2);
-            this.ucMgtTeacher1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ucMgtTeacher1.Name = "ucMgtTeacher1";
-            this.ucMgtTeacher1.Size = new System.Drawing.Size(304, 347);
-            this.ucMgtTeacher1.TabIndex = 3;
-            this.ucMgtTeacher1.Visible = false;
-            // 
-            // ucMgtSubject1
-            // 
-            this.ucMgtSubject1.Location = new System.Drawing.Point(2, 2);
-            this.ucMgtSubject1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ucMgtSubject1.Name = "ucMgtSubject1";
-            this.ucMgtSubject1.Size = new System.Drawing.Size(307, 411);
-            this.ucMgtSubject1.TabIndex = 2;
-            this.ucMgtSubject1.Visible = false;
-            // 
-            // ucMgtRoom1
-            // 
-            this.ucMgtRoom1.Location = new System.Drawing.Point(2, 2);
-            this.ucMgtRoom1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ucMgtRoom1.Name = "ucMgtRoom1";
-            this.ucMgtRoom1.Size = new System.Drawing.Size(304, 347);
-            this.ucMgtRoom1.TabIndex = 1;
-            this.ucMgtRoom1.Visible = false;
-            // 
-            // ucPromotion1
-            // 
-            this.ucPromotion1.Location = new System.Drawing.Point(2, 2);
-            this.ucPromotion1.Margin = new System.Windows.Forms.Padding(2);
-            this.ucPromotion1.Name = "ucPromotion1";
-            this.ucPromotion1.Size = new System.Drawing.Size(307, 411);
-            this.ucPromotion1.TabIndex = 0;
-            // 
-            // ucMgtPeriod1
-            // 
-            this.ucMgtPeriod1.Location = new System.Drawing.Point(0, 0);
-            this.ucMgtPeriod1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ucMgtPeriod1.Name = "ucMgtPeriod1";
-            this.ucMgtPeriod1.Size = new System.Drawing.Size(632, 642);
-            this.ucMgtPeriod1.TabIndex = 7;
-            this.ucMgtPeriod1.Visible = false;
-            // 
-            // ucMgtPromotion1
-            // 
-            this.ucMgtPromotion1.Location = new System.Drawing.Point(0, 0);
-            this.ucMgtPromotion1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ucMgtPromotion1.Name = "ucMgtPromotion1";
-            this.ucMgtPromotion1.Size = new System.Drawing.Size(431, 402);
-            this.ucMgtPromotion1.TabIndex = 6;
-            this.ucMgtPromotion1.Visible = false;
             // 
             // calendar
             // 
@@ -169,7 +98,7 @@
             this.calendar.AllowItemResize = false;
             this.calendar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.calendar.FirstDayOfWeek = System.DayOfWeek.Monday;
-            this.calendar.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.calendar.Font = new System.Drawing.Font("Segoe UI", 9F);
             calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
             calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
             calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
@@ -194,7 +123,7 @@
             this.calendar.Location = new System.Drawing.Point(0, 0);
             this.calendar.MaximumFullDays = 0;
             this.calendar.Name = "calendar";
-            this.calendar.Size = new System.Drawing.Size(623, 641);
+            this.calendar.Size = new System.Drawing.Size(647, 644);
             this.calendar.TabIndex = 0;
             this.calendar.Text = "calendar1";
             // 
@@ -208,7 +137,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(950, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(974, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -311,16 +240,87 @@
             this.currentYearMonthLabel.TabIndex = 4;
             this.currentYearMonthLabel.Text = "CurrentYearMonth";
             // 
+            // ucTeacher1
+            // 
+            this.ucTeacher1.Location = new System.Drawing.Point(2, 2);
+            this.ucTeacher1.Margin = new System.Windows.Forms.Padding(2);
+            this.ucTeacher1.Name = "ucTeacher1";
+            this.ucTeacher1.Size = new System.Drawing.Size(307, 411);
+            this.ucTeacher1.TabIndex = 5;
+            this.ucTeacher1.Visible = false;
+            // 
+            // ucRoom1
+            // 
+            this.ucRoom1.Location = new System.Drawing.Point(2, 2);
+            this.ucRoom1.Margin = new System.Windows.Forms.Padding(2);
+            this.ucRoom1.Name = "ucRoom1";
+            this.ucRoom1.Size = new System.Drawing.Size(307, 411);
+            this.ucRoom1.TabIndex = 4;
+            this.ucRoom1.Visible = false;
+            // 
+            // ucMgtTeacher1
+            // 
+            this.ucMgtTeacher1.Location = new System.Drawing.Point(2, 2);
+            this.ucMgtTeacher1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ucMgtTeacher1.Name = "ucMgtTeacher1";
+            this.ucMgtTeacher1.Size = new System.Drawing.Size(304, 347);
+            this.ucMgtTeacher1.TabIndex = 3;
+            this.ucMgtTeacher1.Visible = false;
+            // 
+            // ucMgtSubject1
+            // 
+            this.ucMgtSubject1.Location = new System.Drawing.Point(2, 2);
+            this.ucMgtSubject1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ucMgtSubject1.Name = "ucMgtSubject1";
+            this.ucMgtSubject1.Size = new System.Drawing.Size(307, 411);
+            this.ucMgtSubject1.TabIndex = 2;
+            this.ucMgtSubject1.Visible = false;
+            // 
+            // ucMgtRoom1
+            // 
+            this.ucMgtRoom1.Location = new System.Drawing.Point(2, 2);
+            this.ucMgtRoom1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ucMgtRoom1.Name = "ucMgtRoom1";
+            this.ucMgtRoom1.Size = new System.Drawing.Size(304, 347);
+            this.ucMgtRoom1.TabIndex = 1;
+            this.ucMgtRoom1.Visible = false;
+            // 
+            // ucPromotion1
+            // 
+            this.ucPromotion1.Location = new System.Drawing.Point(2, 2);
+            this.ucPromotion1.Margin = new System.Windows.Forms.Padding(2);
+            this.ucPromotion1.Name = "ucPromotion1";
+            this.ucPromotion1.Size = new System.Drawing.Size(307, 411);
+            this.ucPromotion1.TabIndex = 0;
+            // 
+            // ucMgtPeriod1
+            // 
+            this.ucMgtPeriod1.Location = new System.Drawing.Point(0, 0);
+            this.ucMgtPeriod1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ucMgtPeriod1.Name = "ucMgtPeriod1";
+            this.ucMgtPeriod1.Size = new System.Drawing.Size(632, 642);
+            this.ucMgtPeriod1.TabIndex = 7;
+            this.ucMgtPeriod1.Visible = false;
+            // 
+            // ucMgtPromotion1
+            // 
+            this.ucMgtPromotion1.Location = new System.Drawing.Point(0, 0);
+            this.ucMgtPromotion1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ucMgtPromotion1.Name = "ucMgtPromotion1";
+            this.ucMgtPromotion1.Size = new System.Drawing.Size(431, 402);
+            this.ucMgtPromotion1.TabIndex = 6;
+            this.ucMgtPromotion1.Visible = false;
+            // 
             // PlannITI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 665);
+            this.ClientSize = new System.Drawing.Size(974, 668);
             this.Controls.Add(this.currentYearMonthLabel);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PlannITI";
             this.Text = "Plann";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

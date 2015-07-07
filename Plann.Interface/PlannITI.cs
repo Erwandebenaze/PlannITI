@@ -120,6 +120,9 @@ namespace Plann.Interface
         {
             calendar.SetViewRange( CurrentPeriod.CurrentViewMonthStart, CurrentPeriod.CurrentViewMonthEnd );
             SetCurrentYearMonth();
+
+            ExtendedCalendarRenderer renderer = (ExtendedCalendarRenderer)calendar.Renderer;
+            renderer.Holidays = GetHolidaysOnView();
         }
         protected override void WndProc( ref Message m )
         {
@@ -332,15 +335,51 @@ namespace Plann.Interface
                 else
                     newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions, isIl );
 
+                bool roomConflict = IsRoomAffectationConflict( newSlot );
+                if( roomConflict )
+                {
+                    e.Cancel = true;
+                    return;
+                }
                 CurrentPeriod.addSlot( newSlot );
                 #endregion
             }
 
             _topClick = null;
         }
-        bool isAffectationConflict( DateTime dayPicked, bool? isIl, bool morning, string teacherText, string subjectText, string roomText, string promotionText )
+
+        private bool IsRoomAffectationConflict( Slot slot )
         {
             bool conflict = false;
+            if( slot.IsIl.HasValue )
+            {
+                if( slot.IsIl.Value )
+                    conflict = slot.AssociatedPromotionList[ 0 ].NumberOfIl > slot.AssociatedRoom.NumberOfSeats;
+                else
+                    conflict = slot.AssociatedPromotionList[ 0 ].NumberOfSr > slot.AssociatedRoom.NumberOfSeats;
+            }
+            else
+                conflict = slot.AssociatedPromotionList[ 0 ].NumberOfStudents > slot.AssociatedRoom.NumberOfSeats;
+
+            if( conflict )
+            {
+                affectTooltip.Show( "La salle ne peut pas accueillir autant d'élèves", this, Cursor.Position, 5000 );
+                return true;
+            }
+
+            return false;
+        }
+        private bool isAffectationConflict( DateTime dayPicked, bool? isIl, bool morning, string teacherText, string subjectText, string roomText, string promotionText )
+        {
+            bool conflict = false;
+
+            // Holiday
+            conflict = CurrentPeriod.ListOfHolidays.Any( d => d.Date == dayPicked );
+            if( conflict )
+            {
+                affectTooltip.Show( "Ce jour n'est pas travaillé", this, Cursor.Position, 5000 );
+                return true;
+            }
 
             if( promotionText == String.Empty )
             {
@@ -573,6 +612,18 @@ namespace Plann.Interface
             CurrentPeriod.SetPreviousMonthView();
             setViewRange();
             LoadCalendarView();
+        }
+
+        private List<DateTime> GetHolidaysOnView()
+        {
+            List<DateTime> holidaysOnView = new List<DateTime>();
+            foreach( CalendarDay day in calendar.Days )
+            {
+                DateTime d = CurrentPeriod.ListOfHolidays.Where( h => h.Date == day.Date ).SingleOrDefault();
+                if( d != DateTime.MinValue )
+                    holidaysOnView.Add( d );
+            }
+            return holidaysOnView;
         }
         #endregion
         #region ToolStrip

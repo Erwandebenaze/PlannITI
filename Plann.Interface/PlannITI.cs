@@ -48,7 +48,7 @@ namespace Plann.Interface
 
 
             _timer = new Timer();
-            interval = 5000;
+            interval = 1000;
             _timer.Interval = interval;
             _timer.Tick += _timer_Tick;
             _timer.Start();
@@ -217,7 +217,8 @@ namespace Plann.Interface
 
         private void calendar_ItemDeleted( object sender, CalendarItemEventArgs e )
         {
-            Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.CurrentCalendarItem == e.Item ).Single();
+            Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.Date == e.Item.StartDate && s.IsOnView == e.Item.IsOnViewDateRange ).Single();
+            //Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.CurrentCalendarItem == e.Item ).Single();
             CurrentPeriod.removeSlot( slotToDelete );
             LoadCalendarView();
         }
@@ -356,7 +357,7 @@ namespace Plann.Interface
                     newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions, isIl, additionnalText );
                 else
                     newSlot = new Slot( e.Item.StartDate, morning, room, subject, teacher, promotions, isIl );
-                newSlot.CurrentCalendarItem = e.Item;
+                // newSlot.CurrentCalendarItem = e.Item;
                 CurrentPeriod.addSlot( newSlot );
                 #endregion
             }
@@ -423,13 +424,26 @@ namespace Plann.Interface
         {
             calendar.Items.Clear();
             List<Slot> filteredSlots = getFilteredSlots();
+            List<Slot> slotsOnView = new List<Slot>();
+            // Add filtered slots to items
             foreach( Slot slot in filteredSlots )
             {
                 CalendarItem ci = getCalendarItemFromSlot( slot );
-                slot.CurrentCalendarItem = ci;
                 if( ci.IsOnViewDateRange )
+                {
                     calendar.Items.Add( ci );
+                    slot.IsOnView = true;
+                    slotsOnView.Add( slot );
+                }
             }
+            // IsOnView = false if the slot is not on the view
+            foreach(Slot slot in CurrentPeriod.ListSlots)
+            {
+                if( !slotsOnView.Any( s => s == slot ) )
+                {
+                    slot.IsOnView = false;
+                }
+            }           
             foreach( CalendarItem ci in calendar.Items )
             {
                 if( ci.StartDate.Hour > 10 && calendar.Items.Count( c => c.Date.DayOfYear == ci.Date.DayOfYear ) < 2 )
@@ -491,6 +505,7 @@ namespace Plann.Interface
             CalendarItem ci = new CalendarItem( calendar, startDate, endDate, slotFormattedText );
             ci.BackgroundColor = slot.AssociatedSubject.Color;
 
+            // slot.CurrentCalendarItem = ci;
             return ci;
         }
 

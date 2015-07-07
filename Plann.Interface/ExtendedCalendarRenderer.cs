@@ -12,7 +12,6 @@ namespace Plann.Interface
 {
     class ExtendedCalendarRenderer : CalendarProfessionalRenderer
     {
-        int _standardItemHeight;
 
         public ExtendedCalendarRenderer( Calendar calendar )
             : base( calendar )
@@ -42,7 +41,6 @@ namespace Plann.Interface
 
             double textSize = Calendar.Days[ 0 ].Bounds.Height / divider;
             Font newFont = new Font( Calendar.Font.FontFamily, (float)textSize );
-            Console.WriteLine( "nbLines : " + CountLines( e.Text ) );
             e.Font = newFont;
             base.OnDrawItemText( e );
         }

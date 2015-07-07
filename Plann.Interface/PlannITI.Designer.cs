@@ -97,7 +97,7 @@
             // ucTeacher1
             // 
             this.ucTeacher1.Location = new System.Drawing.Point(3, 2);
-            this.ucTeacher1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ucTeacher1.Margin = new System.Windows.Forms.Padding(2);
             this.ucTeacher1.Name = "ucTeacher1";
             this.ucTeacher1.Size = new System.Drawing.Size(409, 506);
             this.ucTeacher1.TabIndex = 5;
@@ -106,7 +106,7 @@
             // ucRoom1
             // 
             this.ucRoom1.Location = new System.Drawing.Point(3, 2);
-            this.ucRoom1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ucRoom1.Margin = new System.Windows.Forms.Padding(2);
             this.ucRoom1.Name = "ucRoom1";
             this.ucRoom1.Size = new System.Drawing.Size(409, 506);
             this.ucRoom1.TabIndex = 4;
@@ -142,7 +142,7 @@
             // ucPromotion1
             // 
             this.ucPromotion1.Location = new System.Drawing.Point(3, 2);
-            this.ucPromotion1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ucPromotion1.Margin = new System.Windows.Forms.Padding(2);
             this.ucPromotion1.Name = "ucPromotion1";
             this.ucPromotion1.Size = new System.Drawing.Size(409, 506);
             this.ucPromotion1.TabIndex = 0;
@@ -286,20 +286,20 @@
             this.amToolStripMenuItem,
             this.pmToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
             // 
             // amToolStripMenuItem
             // 
             this.amToolStripMenuItem.Name = "amToolStripMenuItem";
-            this.amToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.amToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.amToolStripMenuItem.Text = "Matin";
             // 
             // pmToolStripMenuItem
             // 
             this.pmToolStripMenuItem.Name = "pmToolStripMenuItem";
-            this.pmToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.pmToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pmToolStripMenuItem.Text = "Après-Midi";
             // 
             // currentYearMonthLabel

@@ -19,6 +19,7 @@ namespace Plann.Core
         List<Promotion> _associatedPromotionList;
         bool? _isIl;
         string _additionnalText;
+        bool isOnView;
         CalendarItem _currentCalendarItem;
 
         public Slot( DateTime date, bool morning, Room associatedRoom, Subject associatedSubject, Teacher associatedTeacher, List<Promotion> promotionAssociatedList, bool? il, string additionnalText )
@@ -89,6 +90,11 @@ namespace Plann.Core
         {
             get { return _currentCalendarItem; }
             set { _currentCalendarItem = value; }
+        }
+        public bool IsOnView
+        {
+            get { return isOnView; }
+            set { isOnView = value; }
         }
         #endregion
     }

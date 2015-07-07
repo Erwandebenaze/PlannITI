@@ -218,7 +218,6 @@ namespace Plann.Interface
         private void calendar_ItemDeleted( object sender, CalendarItemEventArgs e )
         {
             Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.Date == e.Item.StartDate && s.IsOnView == e.Item.IsOnViewDateRange ).Single();
-            //Slot slotToDelete = CurrentPeriod.ListSlots.Where( s => s.CurrentCalendarItem == e.Item ).Single();
             CurrentPeriod.removeSlot( slotToDelete );
             LoadCalendarView();
         }
@@ -270,7 +269,7 @@ namespace Plann.Interface
         {
             Console.WriteLine( e.Item.Text );
             Console.WriteLine( e.Item.Date );
-            Console.WriteLine( e.Item.Bounds.Width );
+            Console.WriteLine( e.Item.Bounds.Y );
         }
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )
         {
@@ -452,6 +451,7 @@ namespace Plann.Interface
                     ci.SetBounds( r );
                 }
             }
+            Console.WriteLine( "LoadCalendarView called !" );
         }
 
         void SetCurrentYearMonth()
@@ -640,10 +640,10 @@ namespace Plann.Interface
             ucTeacher1.Visible = false;
             ucPromotion1.Visible = false;
             ucRoom1.Visible = true;
-            LoadCalendarView();
             ucMgtSubject1.reload += callReload;
             ucMgtRoom1.reload += callReload;
             ucMgtTeacher1.reload += callReload;
+            LoadCalendarView();
         }
         #endregion
 

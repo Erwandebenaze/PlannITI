@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.Calendar;
+
 
 namespace Plann.Core
 {
@@ -16,8 +18,23 @@ namespace Plann.Core
         Teacher _associatedTeacher;
         List<Promotion> _associatedPromotionList;
         bool? _isIl;
+        string _additionnalText;
+        CalendarItem _currentCalendarItem;
 
-        public Slot(DateTime date, bool morning, Room associatedRoom, Subject associatedSubject, Teacher associatedTeacher, List<Promotion> promotionAssociatedList, bool? il)
+        public Slot( DateTime date, bool morning, Room associatedRoom, Subject associatedSubject, Teacher associatedTeacher, List<Promotion> promotionAssociatedList, bool? il, string additionnalText )
+        {
+            if( date == null || associatedRoom == null || associatedSubject == null ) throw new ArgumentNullException();
+            _date = date;
+            _morning = morning;
+            _associatedRoom = associatedRoom;
+            _associatedSubject = associatedSubject;
+            _associatedTeacher = associatedTeacher;
+            _associatedPromotionList = promotionAssociatedList;
+            _isIl = il;
+            _additionnalText = additionnalText;
+        }
+
+        public Slot( DateTime date, bool morning, Room associatedRoom, Subject associatedSubject, Teacher associatedTeacher, List<Promotion> promotionAssociatedList, bool? il )
         {
             if( date == null || associatedRoom == null || associatedSubject == null ) throw new ArgumentNullException();
             _date = date;
@@ -49,17 +66,29 @@ namespace Plann.Core
         }
         public DateTime Date
         {
-            get { return _date; }
+            get
+            {
+                return _date.AddHours( _morning ? 9 : 13.5 );
+            }
             internal set { _date = value; }
         }
         public List<Promotion> AssociatedPromotionList
         {
             get { return _associatedPromotionList; }
-            set { _associatedPromotionList = value; }
         }
         public bool? IsIl
         {
             get { return _isIl; }
+        }
+        public string AdditionnalText
+        {
+            get { return _additionnalText; }
+            set { _additionnalText = value; }
+        }
+        public CalendarItem CurrentCalendarItem
+        {
+            get { return _currentCalendarItem; }
+            set { _currentCalendarItem = value; }
         }
         #endregion
     }

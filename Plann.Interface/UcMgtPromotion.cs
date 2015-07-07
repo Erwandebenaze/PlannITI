@@ -84,7 +84,6 @@ namespace Plann.Interface
                         {
                             MessageBox.Show( "Le nombre de SR et le nombre d'IL doit être égal au nombre d'élèves." );
                         }
-
                     }
                     else
                     {

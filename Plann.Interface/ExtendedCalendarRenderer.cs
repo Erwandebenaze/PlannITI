@@ -44,6 +44,10 @@ namespace Plann.Interface
             e.Font = newFont;
             base.OnDrawItemText( e );
         }
+
+        // ON DRAW DAY (CALENDAR SYSTEM RENDERER)
+
+
         int CountLines( string s )
         {
             int n = 0;

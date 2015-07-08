@@ -11,19 +11,27 @@ namespace Plann.Interface
         public UcMgtPromotion()
         {
             InitializeComponent();
+            reinitialisation();
         }
         private void reinitialisation()
         {
             nameTextBox.Text = "";
             mailTextBox.Text = "";
-            numberOfIl.Text = "";
-            numberOfSr.Text = "";
-            numberOfStudentsTextBox.Text = "";
+            numberOfILTextBox.Text = "0";
+            numberOfSRTextBox.Text = "0";
+            numberOfStudentsTextBox.Text = "0";
             validate.Text = "Valider";
         }
         public void LoadPage()
         {
             InitializeOlv();
+        }
+        internal delegate void MyEventHandler();
+        internal event MyEventHandler reload;
+        internal void OnReload()
+        {
+            if( reload != null )
+                reload();
         }
         private bool IsValidEmail( string email )
         {
@@ -76,21 +84,21 @@ namespace Plann.Interface
                     int numberOfStudents;
                     int numberOfIL;
                     int numberOfSR;
-                    if( int.TryParse( numberOfStudentsTextBox.Text, out numberOfStudents ) && int.TryParse( numberOfILTextBox.Text, out numberOfIL ) && int.TryParse(numberOfSRTextBox.Text, out numberOfSR))
+                    if( int.TryParse( numberOfStudentsTextBox.Text, out numberOfStudents ) && int.TryParse( numberOfILTextBox.Text, out numberOfIL ) && int.TryParse( numberOfSRTextBox.Text, out numberOfSR ) )
                     {
-                        if ((numberOfIL + numberOfSR) == numberOfStudents)
+                        if (((numberOfIL + numberOfSR) == numberOfStudents) || (numberOfIL == 0 && numberOfSR == 0))
                         {
                             SoftContext.CurrentPeriod.addPromotion( new Promotion( nameTextBox.Text, mailTextBox.Text, numberOfStudents, numberOfIL, numberOfSR ) );
                             InitializeOlv();
                             reinitialisation();
                         } else
                         {
-                            MessageBox.Show( "Le nombre de SR et le nombre d'IL doit être égal au nombre d'élèves." );
+                            MessageBox.Show( "Le nombre de SR et le nombre d'IL doit être égal au nombre d'élèves. Pour les semestres 1 et 2, laissez les deux champs à 0." );
                         }
                     }
                     else
                     {
-                        MessageBox.Show( "Le nombre d'élèves entré n'est pas un nombre entier." );
+                        MessageBox.Show( "Le nombre d'élèves, de SR ou IL entré n'est pas un nombre entier. S'il n'y a pas d'IL ou SR, laissez 0." );
                     }
                 }
             }
@@ -100,6 +108,7 @@ namespace Plann.Interface
             this.Visible = false;
             Parent.Controls[SoftContext.CurrentPeriod.CurrentUcFilter].Visible = true;
             reinitialisation();
+            OnReload();
         }
 
         private void supprimerPromotionToolStripMenuItem_Click( object sender, EventArgs e )

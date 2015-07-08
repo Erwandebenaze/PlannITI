@@ -16,14 +16,14 @@ namespace Plann.Core
         int _numberOfSr;
 
 
-        public Promotion(string name, string mail, int numberOfStudents, int numberOfIL, int numberOfSR)
+        public Promotion(string name, string mail, int numberOfStudents, int numberOfIL = 0, int numberOfSR = 0)
         {
             if( String.IsNullOrWhiteSpace( name ) || String.IsNullOrWhiteSpace( mail ) ) throw new ArgumentNullException();
             if( !IsValidEmail( mail ) ) throw new ArgumentException( "La chaine entrée n'est pas un mail" );
             if( numberOfStudents < 4 ) throw new ArgumentException( "Il ne peut pas y avoir moins de 4 étudiants dans la promotion" );
             if( numberOfIL < 0 ) throw new ArgumentException( "Il ne peut pas y avoir un nombre négatif de IL" );
             if( numberOfSR < 0 ) throw new ArgumentException( "Il ne peut pas y avoir un nombre négatif de SR" );
-            if( numberOfIL + numberOfSR != numberOfStudents ) throw new ArgumentException( "La somme des IL et des SR doit égale au nombre d'élèves." );
+            if( (numberOfIL + numberOfSR) != numberOfStudents && (numberOfIL + numberOfSR) != 0) throw new ArgumentException( "La somme des IL et des SR doit être égale au nombre d'élèves ou égale à 0." );
            
             _name = name;
             _mail = mail;

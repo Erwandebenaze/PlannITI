@@ -114,6 +114,7 @@ namespace Plann.Interface
                 this.Height = 300;
             if( this.Width < 400 )
                 this.Width = 400;
+            Console.WriteLine( "Fesses" );
             LoadCalendarView();
         }
         void setViewRange()

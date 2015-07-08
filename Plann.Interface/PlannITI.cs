@@ -124,6 +124,7 @@ namespace Plann.Interface
             ExtendedCalendarRenderer renderer = (ExtendedCalendarRenderer)calendar.Renderer;
             renderer.Holidays = GetHolidaysOnView();
         }
+
         protected override void WndProc( ref Message m )
         {
             base.WndProc( ref m );
@@ -136,6 +137,7 @@ namespace Plann.Interface
                 }
             }
         }
+
         void contextMenuStrip1_Opening( object sender, System.ComponentModel.CancelEventArgs e )
         {
             contextMenuStrip1.Items.Clear();

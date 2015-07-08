@@ -63,7 +63,7 @@ namespace Plann.Interface
 
             if( isHoliday )
             {
-                using( Brush b = new SolidBrush( Color.DarkRed ) )
+                using( Brush b = new SolidBrush( Color.Gray ) )
                 {
                     e.Graphics.FillRectangle( b, r );
                 }

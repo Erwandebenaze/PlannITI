@@ -98,6 +98,7 @@ namespace Plann.Interface
             ucPromotion1.InitializeComboBox();
             ucRoom1.InitializeComboBox();
             ucTeacher1.InitializeComboBox();
+            ucMgtSubject1.InitializeComboBox();
         }
         #region Calendar
         void PlannITI_ResizeEnd( object sender, EventArgs e )

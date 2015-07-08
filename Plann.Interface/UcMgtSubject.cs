@@ -29,7 +29,7 @@ namespace Plann.Interface
         {
             InitializeOlv();
         }
-        private void InitializeComboBox()
+        internal void InitializeComboBox()
         {
             teacherNameComboBox.Items.Clear();
             try

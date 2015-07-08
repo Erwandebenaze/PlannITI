@@ -86,7 +86,10 @@ namespace Plann.Interface
                     int numberOfSR;
                     if( int.TryParse( numberOfStudentsTextBox.Text, out numberOfStudents ) && int.TryParse( numberOfILTextBox.Text, out numberOfIL ) && int.TryParse( numberOfSRTextBox.Text, out numberOfSR ) )
                     {
-                        if (((numberOfIL + numberOfSR) == numberOfStudents) || (numberOfIL == 0 && numberOfSR == 0))
+                        if(numberOfStudents < 4)
+                        {
+                            MessageBox.Show( "Vous ne pouvez pas ajouter une promotion de moins de 4 élèves" );
+                        }else if (((numberOfIL + numberOfSR) == numberOfStudents) || (numberOfIL == 0 && numberOfSR == 0))
                         {
                             SoftContext.CurrentPeriod.addPromotion( new Promotion( nameTextBox.Text, mailTextBox.Text, numberOfStudents, numberOfIL, numberOfSR ) );
                             InitializeOlv();

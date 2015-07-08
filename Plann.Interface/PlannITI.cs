@@ -50,8 +50,6 @@ namespace Plann.Interface
             CurrentPeriod.CurrentUcFilter = "ucPromotion1";
             InitializeComponent();
 
-
-
             _timer = new Timer();
             interval = 1500;
             _timer.Interval = interval;

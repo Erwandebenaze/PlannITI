@@ -60,29 +60,29 @@ namespace System.Windows.Forms.Calendar
 
         public override void OnDrawDay(CalendarRendererDayEventArgs e)
         {
-            Rectangle r = e.Day.Bounds;
+            //Rectangle r = e.Day.Bounds;
 
-            if (e.Day.Selected)
-            {
-                using (Brush b = new SolidBrush(ColorTable.DayBackgroundSelected))
-                {
-                    e.Graphics.FillRectangle(b, r); 
-                }
-            }
-            else if (e.Day.Date.Month % 2 == 0)
-            {
-                using (Brush b = new SolidBrush(ColorTable.DayBackgroundEven))
-                {
-                    e.Graphics.FillRectangle(b, r);
-                }
-            }
-            else
-            {
-                using (Brush b = new SolidBrush(ColorTable.DayBackgroundOdd))
-                {
-                    e.Graphics.FillRectangle(b, r);
-                }
-            }
+            //if( e.Day.Selected )
+            //{
+            //    using( Brush b = new SolidBrush( ColorTable.DayBackgroundSelected ) )
+            //    {
+            //        e.Graphics.FillRectangle( b, r );
+            //    }
+            //}
+            //else if( e.Day.Date.Month % 2 == 0 )
+            //{
+            //    using( Brush b = new SolidBrush( ColorTable.DayBackgroundEven ) )
+            //    {
+            //        e.Graphics.FillRectangle( b, r );
+            //    }
+            //}
+            //else
+            //{
+            //    using( Brush b = new SolidBrush( ColorTable.DayBackgroundOdd ) )
+            //    {
+            //        e.Graphics.FillRectangle( b, r );
+            //    }
+            //}
 
             base.OnDrawDay(e);
         }

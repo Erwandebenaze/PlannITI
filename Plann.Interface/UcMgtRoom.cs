@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Plann.Core;
+using System.Linq;
 
 namespace Plann.Interface
 {
@@ -39,6 +40,7 @@ namespace Plann.Interface
         }
         private void InitializeOlv()
         {
+            objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
             try
             {
                 this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListRooms );
@@ -52,24 +54,16 @@ namespace Plann.Interface
         {
             if( !String.IsNullOrWhiteSpace( nameTextBox.Text ) && !String.IsNullOrWhiteSpace( numberOfSeatsTextBox.Text ) )
             {
-                if( SoftContext.CurrentPeriod.ListRooms.Contains( new Room( nameTextBox.Text, 5 ) ) && validateButton.Text == "Valider" )
+                if( SoftContext.CurrentPeriod.ListRooms.Contains( new Room( nameTextBox.Text, 5 ) ) )
                 {
                     MessageBox.Show( "Cette salle a déjà été créée." );
                 } else
                 {
                     int numberOfSeats;
-                    if( int.TryParse( numberOfSeatsTextBox.Text, out numberOfSeats ) && validateButton.Text == "Valider" )
+                    if( int.TryParse( numberOfSeatsTextBox.Text, out numberOfSeats ))
                     {
                         SoftContext.CurrentPeriod.addRoom( new Room( nameTextBox.Text, numberOfSeats ) );
                         InitializeOlv();
-                        reinitialisation();
-                    }
-                    else if( int.TryParse( numberOfSeatsTextBox.Text, out numberOfSeats ) && validateButton.Text == "Modifier" )
-                    {
-                        SoftContext.CurrentPeriod.editRoom( _rTmp, new Room( nameTextBox.Text, numberOfSeats ) );
-                        InitializeOlv();
-                        validateButton.Text = "Valider";
-                        delete.Visible = false;
                         reinitialisation();
                     } else 
                     {
@@ -82,28 +76,27 @@ namespace Plann.Interface
         {
             this.Visible = false;
             Parent.Controls[ SoftContext.CurrentPeriod.CurrentUcFilter ].Visible = true;
+            reinitialisation();
             OnReload();
         }
-
-        private void delete_Click( object sender, EventArgs e )
+        private void supprimerSalleToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            SoftContext.CurrentPeriod.ListRooms.Remove( _rTmp );
-            InitializeOlv();
-            delete.Visible = false; 
-            reinitialisation();
+            if( SoftContext.CurrentPeriod.ListSlots.Where( sl => sl.AssociatedRoom == _rTmp ).Any() )
+            {
+                MessageBox.Show( "Vous ne pouvez pas supprimer cette salle. Supprimer d'abord le créneau où elle est affectée." );
+            }
+            else
+            {
+                SoftContext.CurrentPeriod.removeRoom( _rTmp );
+                InitializeOlv();
+                reinitialisation();
+            }
         }
 
-        private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )
+        private void objectListView1_CellRightClick( object sender, BrightIdeasSoftware.CellRightClickEventArgs e )
         {
-            if( e.Model != null )
-            {
-                _rTmp = (Room)e.Model;
-                nameTextBox.Text = _rTmp.Name;
-                numberOfSeatsTextBox.Text = _rTmp.NumberOfSeats.ToString();
-                validateButton.Text = "Modifier";
-                delete.Visible = true;
-            }
-
+            contextMenuStrip1.Show( new System.Drawing.Point( Cursor.Position.X, Cursor.Position.Y - 30 ) );
+            _rTmp = (Room)e.Model;
         }
     }
 }

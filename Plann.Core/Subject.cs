@@ -12,7 +12,7 @@ namespace Plann.Core
     [Serializable]
     public class Subject
     {
-        readonly string _name;
+        string _name;
         Teacher _referentTeacher;
         Color _color;
         
@@ -39,14 +39,17 @@ namespace Plann.Core
         public string Name
         {
             get { return _name; }
+            set { _name = value; }
         }
         public Teacher ReferentTeacher
         {
             get { return _referentTeacher; }
+            set { _referentTeacher = value; }
         }
         public Color Color
         {
             get { return _color; }
+            set { _color = value; }
         }
 
         #endregion

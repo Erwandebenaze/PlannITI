@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Plann.Core;
+using System.Linq;
 
 namespace Plann.Interface
 {
@@ -10,18 +11,27 @@ namespace Plann.Interface
         public UcMgtPromotion()
         {
             InitializeComponent();
+            reinitialisation();
         }
-
         private void reinitialisation()
         {
             nameTextBox.Text = "";
             mailTextBox.Text = "";
-            numberOfStudentsTextBox.Text = "";
+            numberOfILTextBox.Text = "0";
+            numberOfSRTextBox.Text = "0";
+            numberOfStudentsTextBox.Text = "0";
             validate.Text = "Valider";
         }
         public void LoadPage()
         {
             InitializeOlv();
+        }
+        internal delegate void MyEventHandler();
+        internal event MyEventHandler reload;
+        internal void OnReload()
+        {
+            if( reload != null )
+                reload();
         }
         private bool IsValidEmail( string email )
         {
@@ -46,6 +56,8 @@ namespace Plann.Interface
         }
         private void InitializeOlv()
         {
+            objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
+
             try
             {
                 this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListPromotion );
@@ -63,29 +75,33 @@ namespace Plann.Interface
                 {
                     MessageBox.Show( "L'adresse email n'est pas valide." );
                 }
-                else if( SoftContext.CurrentPeriod.ListPromotion.Contains( new Promotion( nameTextBox.Text, mailTextBox.Text, 5 ) ) && validate.Text =="Valider" )
+                else if( SoftContext.CurrentPeriod.ListPromotion.Contains( new Promotion( nameTextBox.Text, mailTextBox.Text, 5,3,2 ) ))
                 {
                     MessageBox.Show( "Cette promotion a déjà été créée." );
                 }
                 else
                 {
                     int numberOfStudents;
-                    if (int.TryParse(numberOfStudentsTextBox.Text, out numberOfStudents) && validate.Text == "Valider")
+                    int numberOfIL;
+                    int numberOfSR;
+                    if( int.TryParse( numberOfStudentsTextBox.Text, out numberOfStudents ) && int.TryParse( numberOfILTextBox.Text, out numberOfIL ) && int.TryParse( numberOfSRTextBox.Text, out numberOfSR ) )
                     {
-                        SoftContext.CurrentPeriod.addPromotion( new Promotion( nameTextBox.Text,mailTextBox.Text , numberOfStudents ) );
-                        InitializeOlv();
-                        reinitialisation();
-                    } else if (int.TryParse(numberOfStudentsTextBox.Text, out numberOfStudents) && validate.Text == "Modifier")
-                    {
-                        SoftContext.CurrentPeriod.editPromotion( _pTmp, new Promotion( nameTextBox.Text, mailTextBox.Text, numberOfStudents ) );
-                        InitializeOlv();
-                        validate.Text = "Valider";
-                        delete.Visible = false; 
-                        reinitialisation();
+                        if(numberOfStudents < 4)
+                        {
+                            MessageBox.Show( "Vous ne pouvez pas ajouter une promotion de moins de 4 élèves" );
+                        }else if (((numberOfIL + numberOfSR) == numberOfStudents) || (numberOfIL == 0 && numberOfSR == 0))
+                        {
+                            SoftContext.CurrentPeriod.addPromotion( new Promotion( nameTextBox.Text, mailTextBox.Text, numberOfStudents, numberOfIL, numberOfSR ) );
+                            InitializeOlv();
+                            reinitialisation();
+                        } else
+                        {
+                            MessageBox.Show( "Le nombre de SR et le nombre d'IL doit être égal au nombre d'élèves. Pour les semestres 1 et 2, laissez les deux champs à 0." );
+                        }
                     }
                     else
                     {
-                        MessageBox.Show( "Le nombre d'élèves entré n'est pas un nombre entier." );
+                        MessageBox.Show( "Le nombre d'élèves, de SR ou IL entré n'est pas un nombre entier. S'il n'y a pas d'IL ou SR, laissez 0." );
                     }
                 }
             }
@@ -94,30 +110,30 @@ namespace Plann.Interface
         {
             this.Visible = false;
             Parent.Controls[SoftContext.CurrentPeriod.CurrentUcFilter].Visible = true;
-        }
-
-        private void objectListView1_CellClick( object sender, BrightIdeasSoftware.CellClickEventArgs e )
-        {
-            if(e.Model != null)
-            {
-                _pTmp = (Promotion)e.Model;
-                nameTextBox.Text = _pTmp.Name;
-                numberOfStudentsTextBox.Text = _pTmp.NumberOfStudents.ToString();
-                mailTextBox.Text = _pTmp.Mail;
-                validate.Text = "Modifier";
-                delete.Visible = true;
-
-            }
-
-        }
-
-        private void delete_Click( object sender, EventArgs e )
-        {
-            SoftContext.CurrentPeriod.ListPromotion.Remove( _pTmp );
-            InitializeOlv();
-            delete.Visible = false;
             reinitialisation();
-
+            OnReload();
         }
+
+        private void supprimerPromotionToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            if( SoftContext.CurrentPeriod.ListSlots.Where( sl => sl.AssociatedPromotionList.Contains(_pTmp) ).Any() )
+            {
+                MessageBox.Show( "Vous ne pouvez pas supprimer cette promotion. Supprimer d'abord le créneau où elle est affectée." );
+            }
+            else
+            {
+                SoftContext.CurrentPeriod.removePromotion( _pTmp );
+                InitializeOlv();
+                reinitialisation();
+            }
+        }
+
+        private void objectListView1_CellRightClick( object sender, BrightIdeasSoftware.CellRightClickEventArgs e )
+        {
+            contextMenuStrip1.Show( new System.Drawing.Point( Cursor.Position.X, Cursor.Position.Y - 30 ) );
+            _pTmp = (Promotion)e.Model;
+        }
+
+
     }
 }

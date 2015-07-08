@@ -62,11 +62,11 @@ namespace Plann.Interface
         {
             if( _state == "begin")
             {
-                begginingDateText.Text = e.End.ToShortDateString();
+                begginingDateTextBox.Text = e.End.ToShortDateString();
                 _begDate = e.End;
             } else if( _state == "end")
             {
-                endingDateText.Text = e.End.ToShortDateString();
+                endingDateTextBox.Text = e.End.ToShortDateString();
                 _endDate = e.End;
             }
             monthCalendar1.Visible = false;
@@ -107,7 +107,7 @@ namespace Plann.Interface
 
         private void validatePeriod_Click( object sender, EventArgs e )
         {
-            if( !String.IsNullOrWhiteSpace( nameTextBox.Text ) && !String.IsNullOrWhiteSpace( begginingDateText.Text ) && !String.IsNullOrWhiteSpace( endingDateText.Text ) && _listHolidays.Count > 0) 
+            if( !String.IsNullOrWhiteSpace( nameTextBox.Text ) && !String.IsNullOrWhiteSpace( begginingDateTextBox.Text ) && !String.IsNullOrWhiteSpace( endingDateTextBox.Text ) && _listHolidays.Count > 0) 
             {
                 if( _begDate > _endDate)
                 {
@@ -133,12 +133,24 @@ namespace Plann.Interface
             _state = null;
             _listHolidays.Clear();
             objectListView1.SetObjects( _listHolidays );
-            endingDateText.Text = "";
-            begginingDateText.Text = "";
+            endingDateTextBox.Text = "";
+            begginingDateTextBox.Text = "";
             nameTextBox.Text = "";
             monthCalendar2.Visible = false;
             _state = "autre";
             holidaysButton.Text = "Choisir";
+        }
+
+        private void begginingDateTextBox_Click( object sender, EventArgs e )
+        {
+            monthCalendar1.Visible = true;
+            _state = "begin";
+        }
+
+        private void endingDateTextBox_Click( object sender, EventArgs e )
+        {
+            monthCalendar1.Visible = true;
+            _state = "end";
         }
     }
 }

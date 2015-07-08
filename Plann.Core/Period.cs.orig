@@ -42,21 +42,21 @@ namespace Plann.Core
             _listTeachers = new List<Teacher>();
             _listSlots = new List<Slot>();
             _listPromotion = new List<Promotion>();
-            _currentViewMonthStart = _begginningDate;
+            _currentViewMonthStart = GetFirstMonth( _begginningDate );
             _currentViewMonthEnd = _currentViewMonthStart.AddMonths( 1 );
             _mySoft = mySoft;
 
-            //Teacher spi = new Teacher( "Spi", "spi@gmail.com" );
-            //Subject pi = new Subject( "PI", spi, Color.Red );
-            //addSubject( pi );
-            //Room e5 = new Room( "E01", 40 );
-            //Promotion iti = new Promotion( "ItiTruc", "iti@intech.fr", 20, 10,10);
+            Teacher spi = new Teacher( "Spi", "spi@gmail.com" );
+            Subject pi = new Subject( "PI", spi, Color.Red );
+            addSubject( pi );
+            Room e5 = new Room( "E01", 40 );
+            Promotion iti = new Promotion( "ItiTruc", "iti@intech.fr", 20 );
 
-            //addTeacher( spi );
-            //addRoom( e5 );
-            //addPromotion( iti );
-            //addSlot( new Slot( new DateTime( 2015, 03, 20 ), true, e5, pi, spi, _listPromotion, true ) );
-            //addSlot( new Slot( new DateTime( 2015, 03, 20 ), false, e5, pi, spi, _listPromotion, false ) );
+            addTeacher( spi );
+            addRoom( e5 );
+            addPromotion( iti );
+            addSlot( new Slot( new DateTime( 2015, 03, 20 ), true, e5, pi, spi, _listPromotion, true ) );
+            addSlot( new Slot( new DateTime( 2015, 03, 20 ), false, e5, pi, spi, _listPromotion, false ) );
         }
 
         private DateTime GetFirstMonth( DateTime date )
@@ -276,14 +276,18 @@ namespace Plann.Core
             IFormatter formatter = new BinaryFormatter();
             // CHANGE ICI
             Stream stream = new FileStream( @"..\..\..\Sauvegardes\" + this.Name + "Tmp.bin", FileMode.Create, FileAccess.Write, FileShare.None );
+<<<<<<< HEAD
+            formatter.Serialize( stream, this );
+=======
             try
             {
                 formatter.Serialize( stream, this );
             }
             catch( SerializationException e )
             {
-                Console.WriteLine( "Problème de sérialisation dans SavePeriodTmp. " + e );
+                Console.WriteLine( "Problème de sérialisation dans SavePeriod. " + e );
             }
+>>>>>>> origin/dev
             Console.WriteLine( DateTime.Now + " : Fichier " + this.Name + "Tmp.bin sauvegardé." );
             stream.Close();
         }
@@ -318,6 +322,7 @@ namespace Plann.Core
                 }
             }
         }
+
         public void SetNextMonthView()
         {
             if( _currentViewMonthEnd.AddMonths( 1 ) < _endingDate )
@@ -330,6 +335,7 @@ namespace Plann.Core
                 _currentViewMonthEnd = _endingDate;
                 _currentViewMonthStart = _endingDate.AddMonths( -1 );
             }
+
         }
         public void SetPreviousMonthView()
         {
@@ -340,9 +346,12 @@ namespace Plann.Core
             }
             else
             {
-                _currentViewMonthEnd = _begginningDate.AddMonths( 1 );
+                _currentViewMonthEnd = _begginningDate.AddMonths(1);
                 _currentViewMonthStart = _begginningDate;
             }
+            
         }
+
+
     }
 }

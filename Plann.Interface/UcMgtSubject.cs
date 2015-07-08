@@ -29,7 +29,7 @@ namespace Plann.Interface
         {
             InitializeOlv();
         }
-        private void InitializeComboBox()
+        internal void InitializeComboBox()
         {
             teacherNameComboBox.Items.Clear();
             try
@@ -64,18 +64,7 @@ namespace Plann.Interface
         }
         private void InitializeOlv()
         {
-            objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
-            //BrightIdeasSoftware.ObjectListView.EditorRegistry.Register(typeof(Color) ,  );
-
-            //BrightIdeasSoftware.ObjectListView.EditorRegistry.Register( typeof( Color ), delegate( Object model, BrightIdeasSoftware.OLVColumn column, Object value )
-            //{
-            //    ColorDialog c = new ColorDialog();
-                
-
-            //    return c;
-            //} );
-
-            
+            objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;            
             try
             {
                 this.objectListView1.SetObjects( SoftContext.CurrentPeriod.ListSubjects );
@@ -161,14 +150,14 @@ namespace Plann.Interface
         {
             if( e.Value is Color )
             {
-                ColorCellEditor cce = new ColorCellEditor((Color)e.Value);
+                ColorCellEditor cce = new ColorCellEditor( (Color)e.Value );
                 _cTmp = cce.Value;
                 e.Control = cce;
             }
         }
         private void objectListView1_CellEditFinishing( object sender, CellEditEventArgs e )
         {
-            if(e.Cancel == false)
+            if(e.Cancel == false && e.Value is Color )
             {
                 e.NewValue = _cTmp;
             }

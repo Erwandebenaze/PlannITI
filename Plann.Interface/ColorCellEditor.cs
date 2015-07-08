@@ -23,7 +23,6 @@ namespace Plann.Interface
             if( _c.ShowDialog() == DialogResult.OK )
             {
                 _value = _c.Color;
-                //    int color = colorDialog1.Color.A;
             } else
             {
                 _value = c;

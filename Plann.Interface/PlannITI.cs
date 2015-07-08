@@ -98,6 +98,7 @@ namespace Plann.Interface
             ucPromotion1.InitializeComboBox();
             ucRoom1.InitializeComboBox();
             ucTeacher1.InitializeComboBox();
+            ucMgtSubject1.InitializeComboBox();
         }
         #region Calendar
         void PlannITI_ResizeEnd( object sender, EventArgs e )
@@ -114,6 +115,7 @@ namespace Plann.Interface
                 this.Height = 300;
             if( this.Width < 400 )
                 this.Width = 400;
+            Console.WriteLine( "Fesses" );
             LoadCalendarView();
         }
         void setViewRange()

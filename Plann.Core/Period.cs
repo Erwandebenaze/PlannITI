@@ -46,17 +46,17 @@ namespace Plann.Core
             _currentViewMonthEnd = _currentViewMonthStart.AddMonths( 1 );
             _mySoft = mySoft;
 
-            Teacher spi = new Teacher( "Spi", "spi@gmail.com" );
-            Subject pi = new Subject( "PI", spi, Color.Red );
-            addSubject( pi );
-            Room e5 = new Room( "E01", 40 );
-            Promotion iti = new Promotion( "ItiTruc", "iti@intech.fr", 20, 10,10);
+            //Teacher spi = new Teacher( "Spi", "spi@gmail.com" );
+            //Subject pi = new Subject( "PI", spi, Color.Red );
+            //addSubject( pi );
+            //Room e5 = new Room( "E01", 40 );
+            //Promotion iti = new Promotion( "ItiTruc", "iti@intech.fr", 20, 10,10);
 
-            addTeacher( spi );
-            addRoom( e5 );
-            addPromotion( iti );
-            addSlot( new Slot( new DateTime( 2015, 03, 20 ), true, e5, pi, spi, _listPromotion, true ) );
-            addSlot( new Slot( new DateTime( 2015, 03, 20 ), false, e5, pi, spi, _listPromotion, false ) );
+            //addTeacher( spi );
+            //addRoom( e5 );
+            //addPromotion( iti );
+            //addSlot( new Slot( new DateTime( 2015, 03, 20 ), true, e5, pi, spi, _listPromotion, true ) );
+            //addSlot( new Slot( new DateTime( 2015, 03, 20 ), false, e5, pi, spi, _listPromotion, false ) );
         }
 
         private DateTime GetFirstMonth( DateTime date )

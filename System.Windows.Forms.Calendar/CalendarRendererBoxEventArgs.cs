@@ -35,7 +35,7 @@ namespace System.Windows.Forms.Calendar
             : base(original)
         {
             Font = original.Calendar.Font;
-            Format |= TextFormatFlags.Default /*| TextFormatFlags.WordBreak*/ | TextFormatFlags.PreserveGraphicsClipping;// | TextFormatFlags.WordEllipsis;
+            Format |= TextFormatFlags.Default | TextFormatFlags.WordBreak | TextFormatFlags.PreserveGraphicsClipping;// | TextFormatFlags.WordEllipsis;
             TextColor = SystemColors.ControlText;
         }
 

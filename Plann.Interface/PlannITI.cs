@@ -247,9 +247,7 @@ namespace Plann.Interface
         }
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
         {
-            Console.WriteLine( e.Item.Text );
-            Console.WriteLine( e.Item.Date );
-            Console.WriteLine( e.Item.Bounds.Y );
+            MessageBox.Show( e.Item.Text );
         }
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )
         {
@@ -508,7 +506,7 @@ namespace Plann.Interface
             DateTime startDate = slot.Date;
             DateTime endDate = new DateTime();
 
-            string slotFormattedText = CustomTextWrap( slot );
+            string slotFormattedText = FormatTextFromSlot( slot );
             startDate = slot.Date;
             endDate = startDate.AddHours( 3.5 );
 
@@ -517,32 +515,12 @@ namespace Plann.Interface
 
             return ci;
         }
-        string CustomTextWrap( Slot slot )
+        string FormatTextFromSlot( Slot slot )
         {
             string slotFormattedText = "";
-            List<string> wrappedText = new List<string>();
-            double width = calendar.Days[ 0 ].Bounds.Width / 2.6;
 
-            float fontSize = calendar.Days[ 0 ].Bounds.Height / 14;
-            string fontFamily = calendar.Font.FontFamily.Name;
-
-            // 1st line = subject
-            wrappedText = WrapText( slot.AssociatedSubject.Name, width, fontFamily, fontSize );
-            foreach( string s in wrappedText )
-                slotFormattedText += s + Environment.NewLine;
-
-            // 2nd line = teacher
-            if( slot.AssociatedTeacher != null )
-            {
-                wrappedText = WrapText( slot.AssociatedTeacher.Name, width, fontFamily, fontSize );
-                foreach( string s in wrappedText )
-                    slotFormattedText += s + Environment.NewLine;
-            }
-            else
-                slotFormattedText += Environment.NewLine;
-
-            // 3rd line = room + sector
-            string roomAndSector = slot.AssociatedRoom.Name;
+            // 1st line = promotion + sector
+            slotFormattedText += slot.AssociatedPromotionList[ 0 ].Name;
 
             string sector = null;
             if( slot.IsIl.HasValue )
@@ -551,23 +529,89 @@ namespace Plann.Interface
                     sector = "IL";
                 else if( !slot.IsIl.Value )
                     sector = "SR";
-                roomAndSector += " - " + sector;
+                slotFormattedText += " - " + sector;
             }
+            slotFormattedText += Environment.NewLine;
 
-            slotFormattedText += roomAndSector;
+            // 2nd line = subject
+            slotFormattedText += slot.AssociatedSubject.Name + Environment.NewLine;
+
+            // 3rd line = teacher
+            if( slot.AssociatedTeacher != null )
+            {
+                slotFormattedText += slot.AssociatedTeacher.Name + Environment.NewLine;
+            }
+            else
+                slotFormattedText += Environment.NewLine;
+
+            // 4th line = room
+            string room = slot.AssociatedRoom.Name;
+            slotFormattedText += slot.AssociatedRoom.Name;
 
             // 4th line = additionnal text
             if( slot.AdditionnalText != null )
             {
-                fontSize = calendar.Days[ 0 ].Bounds.Height / 17;
-                List<string> addTextWrapped = WrapText( slot.AdditionnalText, width, fontFamily, fontSize );
-                foreach( string s in addTextWrapped )
-                {
-                    slotFormattedText += Environment.NewLine + s;
-                }
+                slotFormattedText += Environment.NewLine + slot.AdditionnalText;
             }
 
             return slotFormattedText;
+
+            #region Custom Word Wrap
+            //string slotFormattedText = "";
+            //List<string> wrappedText = new List<string>();
+            //double width = calendar.Days[ 0 ].Bounds.Width / 2.6;
+
+            //float fontSize = calendar.Days[ 0 ].Bounds.Height / 19;
+            //string fontFamily = calendar.Font.FontFamily.Name;
+
+            //// 1st line = promotion + sector
+            //string promotionAndSector = slot.AssociatedPromotionList[ 0 ].Name;
+
+            //string sector = null;
+            //if( slot.IsIl.HasValue )
+            //{
+            //    if( slot.IsIl.Value )
+            //        sector = "IL";
+            //    else if( !slot.IsIl.Value )
+            //        sector = "SR";
+            //    promotionAndSector += " - " + sector;
+            //}
+            //wrappedText = WrapText( promotionAndSector, width, fontFamily, fontSize );
+            //foreach( string s in wrappedText )
+            //    slotFormattedText += s + Environment.NewLine;
+
+            //// 2nd line = subject
+            //wrappedText = WrapText( slot.AssociatedSubject.Name, width, fontFamily, fontSize );
+            //foreach( string s in wrappedText )
+            //    slotFormattedText += s + Environment.NewLine;
+
+            //// 3rd line = teacher
+            //if( slot.AssociatedTeacher != null )
+            //{
+            //    wrappedText = WrapText( slot.AssociatedTeacher.Name, width, fontFamily, fontSize );
+            //    foreach( string s in wrappedText )
+            //        slotFormattedText += s + Environment.NewLine;
+            //}
+            //else
+            //    slotFormattedText += Environment.NewLine;
+
+            //// 4th line = room
+            //string room = slot.AssociatedRoom.Name;
+            //slotFormattedText += room;
+
+            //// 4th line = additionnal text
+            //if( slot.AdditionnalText != null )
+            //{
+            //    fontSize = calendar.Days[ 0 ].Bounds.Height / 17;
+            //    List<string> addTextWrapped = WrapText( slot.AdditionnalText, width, fontFamily, fontSize );
+            //    foreach( string s in addTextWrapped )
+            //    {
+            //        slotFormattedText += Environment.NewLine + s;
+            //    }
+            //}
+
+            //return slotFormattedText; 
+            #endregion
         }
         static List<string> WrapText( string text, double pixels, string fontFamily,
     float emSize )

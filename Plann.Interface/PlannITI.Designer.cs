@@ -88,7 +88,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.calendar);
-            this.splitContainer1.Size = new System.Drawing.Size(974, 644);
+            this.splitContainer1.Size = new System.Drawing.Size(1006, 648);
             this.splitContainer1.SplitterDistance = 323;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -122,8 +122,9 @@
         calendarHighlightRange5};
             this.calendar.Location = new System.Drawing.Point(0, 0);
             this.calendar.MaximumFullDays = 0;
+            this.calendar.MaximumViewDays = 28;
             this.calendar.Name = "calendar";
-            this.calendar.Size = new System.Drawing.Size(647, 644);
+            this.calendar.Size = new System.Drawing.Size(679, 648);
             this.calendar.TabIndex = 0;
             this.calendar.Text = "calendar1";
             // 
@@ -137,7 +138,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(974, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1006, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -315,7 +316,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 668);
+            this.ClientSize = new System.Drawing.Size(1006, 672);
             this.Controls.Add(this.currentYearMonthLabel);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);

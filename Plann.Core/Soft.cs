@@ -17,7 +17,7 @@ namespace Plann.Core
 
         public Soft()
         {
-            //List<DateTime> listDateTime= new List<DateTime>();
+            //List<DateTime> listDateTime = new List<DateTime>();
             //_listPeriod = new List<Period>();
 
             //listDateTime.Add( new DateTime( 2015, 05, 08 ) );
@@ -25,10 +25,12 @@ namespace Plann.Core
             //listDateTime.Add( new DateTime( 2015, 05, 01 ) );
             //listDateTime.Add( new DateTime( 2015, 05, 14 ) );
             //listDateTime.Add( new DateTime( 2015, 05, 15 ) );
-            //Period p = new Period( this,"test2", new DateTime( 2015, 03, 10 ), new DateTime( 2015, 07, 10 ), listDateTime );
+            //Period p = new Period( this, "test2", new DateTime( 2015, 03, 10 ), new DateTime( 2015, 07, 10 ), listDateTime );
             //_currentPeriod = p;
             //_listPeriod.Add( p );
+            //p.SavePeriod();
         }
+
         public List<Period> ListPeriod
         {
             get { return _listPeriod; }

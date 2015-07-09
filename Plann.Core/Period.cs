@@ -43,7 +43,7 @@ namespace Plann.Core
             _listSlots = new List<Slot>();
             _listPromotion = new List<Promotion>();
             _currentViewMonthStart = _begginningDate;
-            _currentViewMonthEnd = _currentViewMonthStart.AddMonths( 1 );
+            _currentViewMonthEnd = _currentViewMonthStart.AddDays(22);
             _mySoft = mySoft;
 
             //Teacher spi = new Teacher( "Spi", "spi@gmail.com" );
@@ -318,29 +318,56 @@ namespace Plann.Core
                 }
             }
         }
+        //public void SetNextMonthView()
+        //{
+        //    if( _currentViewMonthEnd.AddMonths( 1 ) < _endingDate )
+        //    {
+        //        _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( 1 );
+        //        _currentViewMonthStart = _currentViewMonthStart.AddMonths( 1 );
+        //    }
+        //    else
+        //    {
+        //        _currentViewMonthEnd = _endingDate;
+        //        _currentViewMonthStart = _endingDate.AddMonths( -1 );
+        //    }
+        //}
+        //public void SetPreviousMonthView()
+        //{
+        //    if( _currentViewMonthStart.AddMonths( -1 ) > _begginningDate )
+        //    {
+        //        _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( -1 );
+        //        _currentViewMonthStart = _currentViewMonthStart.AddMonths( -1 );
+        //    }
+        //    else
+        //    {
+        //        _currentViewMonthEnd = _begginningDate.AddMonths( 1 );
+        //        _currentViewMonthStart = _begginningDate;
+        //    }
+        //}
+
         public void SetNextMonthView()
         {
-            if( _currentViewMonthEnd.AddMonths( 1 ) < _endingDate )
+            if( _currentViewMonthEnd.AddDays( 22 ) < _endingDate )
             {
-                _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( 1 );
-                _currentViewMonthStart = _currentViewMonthStart.AddMonths( 1 );
+                _currentViewMonthEnd = _currentViewMonthEnd.AddDays( 22 );
+                _currentViewMonthStart = _currentViewMonthStart.AddDays( 22 );
             }
             else
             {
                 _currentViewMonthEnd = _endingDate;
-                _currentViewMonthStart = _endingDate.AddMonths( -1 );
+                _currentViewMonthStart = _endingDate.AddDays( -22 );
             }
         }
         public void SetPreviousMonthView()
         {
-            if( _currentViewMonthStart.AddMonths( -1 ) > _begginningDate )
+            if( _currentViewMonthStart.AddDays( -22 ) > _begginningDate )
             {
-                _currentViewMonthEnd = _currentViewMonthEnd.AddMonths( -1 );
-                _currentViewMonthStart = _currentViewMonthStart.AddMonths( -1 );
+                _currentViewMonthEnd = _currentViewMonthEnd.AddDays( -22 );
+                _currentViewMonthStart = _currentViewMonthStart.AddDays( -22 );
             }
             else
             {
-                _currentViewMonthEnd = _begginningDate.AddMonths( 1 );
+                _currentViewMonthEnd = _begginningDate.AddDays( 22 );
                 _currentViewMonthStart = _begginningDate;
             }
         }

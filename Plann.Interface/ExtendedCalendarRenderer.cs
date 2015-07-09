@@ -34,18 +34,15 @@ namespace Plann.Interface
 
         public override void OnDrawItemText( CalendarRendererBoxEventArgs e )
         {
+            int textHeight = TextRenderer.MeasureText( e.Text, Calendar.Font, e.Bounds.Size, TextFormatFlags.WordBreak ).Height;
             int nbLines = CountLines( e.Text );
             double divider = 1;
-            if( nbLines < 4 )
-                divider = 14.1;
-            else if( nbLines < 5 )
-                divider = 17.5;
-            else if( nbLines < 6 )
-                divider = 22;
-            else if( nbLines < 7 )
-                divider = 29;
 
-            double textSize = Calendar.Days[ 0 ].Bounds.Height / divider;
+            if( nbLines == 4 )
+                divider = 7.4;
+            else if( nbLines == 5 )
+                divider = 7.2;
+            double textSize = StandardItemHeight / ( textHeight / divider );
             Font newFont = new Font( Calendar.Font.FontFamily, (float)textSize );
             e.Font = newFont;
             base.OnDrawItemText( e );

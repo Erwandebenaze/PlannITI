@@ -419,19 +419,17 @@ namespace Plann.Interface
             }
 
             // Teacher
-            if( !String.IsNullOrEmpty( teacherText ) )
+            conflict = CurrentPeriod.ListSlots.Where( s => s.AssociatedTeacher != null )
+                .Count( s => s.Date.Date == dayPicked && s.Morning == morning && s.AssociatedTeacher.Name == teacherText ) > 0;
+            if( conflict )
             {
-                conflict = CurrentPeriod.ListSlots.Count( s => s.Date.Date == dayPicked && s.Morning == morning && s.AssociatedTeacher.Name == teacherText ) > 0;
-                if( conflict )
-                {
-                    affectTooltip.Show( "Le professeur est déjà pris pour ce créneau", this, Cursor.Position, 5000 );
-                    return true;
-                }
+                affectTooltip.Show( "Le professeur est déjà pris pour ce créneau", this, Cursor.Position, 5000 );
+                return true;
             }
-
 
             return false;
         }
+
         void calendar_ItemCreated( object sender, CalendarItemCancelEventArgs e )
         {
             LoadCalendarView();

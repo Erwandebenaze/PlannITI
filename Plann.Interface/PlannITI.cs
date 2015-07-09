@@ -247,7 +247,7 @@ namespace Plann.Interface
         }
         void calendar_ItemClick( object sender, CalendarItemEventArgs e )
         {
-            MessageBox.Show( e.Item.Text );
+            
         }
         void calendar_ItemCreating( object sender, CalendarItemCancelEventArgs e )
         {

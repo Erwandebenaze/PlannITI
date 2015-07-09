@@ -261,10 +261,10 @@ namespace Plann.Interface
                 return;
             }
 
-            string teacherText;
-            string subjectText;
-            string roomText;
-            string promotionText;
+            string teacherText = String.Empty;
+            string subjectText = String.Empty;
+            string roomText = String.Empty;
+            string promotionText = String.Empty;
             bool? isIl = null;
             string additionnalText = "";
 
@@ -324,7 +324,9 @@ namespace Plann.Interface
                 if( additionnalText != String.Empty )
                     isAddText = true;
 
-                Teacher teacher = CurrentPeriod.ListTeachers.Where( t => t.Name == teacherText ).SingleOrDefault();
+                Teacher teacher = null;
+                if( !String.IsNullOrEmpty(teacherText) )
+                    teacher = CurrentPeriod.ListTeachers.Where( t => t.Name == teacherText ).SingleOrDefault();
                 Subject subject = CurrentPeriod.ListSubjects.Where( s => s.Name == subjectText ).Single();
                 Room room = CurrentPeriod.ListRooms.Where( r => r.Name == roomText ).Single();
                 List<Promotion> promotions = CurrentPeriod.ListPromotion.Where( p => p.Name == promotionText ).ToList();
@@ -417,12 +419,16 @@ namespace Plann.Interface
             }
 
             // Teacher
-            conflict = CurrentPeriod.ListSlots.Count( s => s.Date.Date == dayPicked && s.Morning == morning && s.AssociatedTeacher.Name == teacherText ) > 0;
-            if( conflict )
+            if( String.IsNullOrEmpty( teacherText ) )
             {
-                affectTooltip.Show( "Le professeur est déjà pris pour ce créneau", this, Cursor.Position, 5000 );
-                return true;
+                conflict = CurrentPeriod.ListSlots.Count( s => s.Date.Date == dayPicked && s.Morning == morning && s.AssociatedTeacher.Name == teacherText ) > 0;
+                if( conflict )
+                {
+                    affectTooltip.Show( "Le professeur est déjà pris pour ce créneau", this, Cursor.Position, 5000 );
+                    return true;
+                }
             }
+
 
             return false;
         }

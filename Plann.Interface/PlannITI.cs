@@ -419,7 +419,7 @@ namespace Plann.Interface
             }
 
             // Teacher
-            if( String.IsNullOrEmpty( teacherText ) )
+            if( !String.IsNullOrEmpty( teacherText ) )
             {
                 conflict = CurrentPeriod.ListSlots.Count( s => s.Date.Date == dayPicked && s.Morning == morning && s.AssociatedTeacher.Name == teacherText ) > 0;
                 if( conflict )

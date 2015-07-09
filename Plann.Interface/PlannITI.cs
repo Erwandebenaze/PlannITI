@@ -497,7 +497,7 @@ namespace Plann.Interface
             }
             else if( CurrentPeriod.CurrentUcFilter == "ucTeacher1" )
             {
-                filteredSlots = slots.Where( s => s.AssociatedTeacher.Name == ucTeacher1.teacherComboBox.Text ).ToList();
+                filteredSlots = slots.Where( s => s.AssociatedTeacher != null && s.AssociatedTeacher.Name == ucTeacher1.teacherComboBox.Text ).ToList();
             }
 
             filteredSlots = filteredSlots.OrderByDescending( s => s.Date ).ToList();
